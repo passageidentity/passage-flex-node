@@ -12,6 +12,25 @@ Install this package using npm.
 npm i @passageidentity/passage-flex-node
 ```
 
+## Create a Passage object
+
+You will need to use a Passage AppID and API key. The API key can be created in the Passage Console under your Application Settings. This API key grants your web server access to the Passage management APIs to get and update information about users. This API key must be protected and stored in an appropriate secure storage location. It should never be hard-coded in the repository.
+
+```javascript
+import Passage from '@passageidentity/passage-flex-node';
+
+const passageConfig = {
+    appId: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
+};
+
+try {
+    const passage = new Passage(passageConfig);
+} catch (err) {
+    // this will throw a PassageError if the appId or apiKey are empty
+}
+```
+
 ## Retrieve App Info
 
 To retrieve information about an app, you should use the `passage.getApp()` function.
@@ -20,7 +39,8 @@ To retrieve information about an app, you should use the `passage.getApp()` func
 import Passage from '@passageidentity/passage-flex-node';
 
 const passageConfig = {
-    appID: 'YOUR_APP_ID',
+    appId: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
 };
 
 const passage = new Passage(passageConfig);
@@ -35,7 +55,8 @@ To create a transaction to kick off a user passkey registration or authenticatio
 import Passage from '@passageidentity/passage-flex-node';
 
 const passageConfig = {
-    appID: 'YOUR_APP_ID',
+    appId: process.env.APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
 };
 
 const passage = new Passage(passageConfig);
@@ -53,7 +74,8 @@ To verify a nonce that you received from the end of of passkey registration or a
 import Passage from '@passageidentity/passage-flex-node';
 
 const passageConfig = {
-    appID: 'YOUR_APP_ID',
+    appId: process.env.APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
 };
 
 try {
@@ -68,7 +90,7 @@ try {
 
 ## Retrieve User Info
 
-To retrieve information about a user, you should use the `passage.user.get()` function. You will need to use a Passage API key, which can be created in the Passage Console under your Application Settings. This API key grants your web server access to the Passage management APIs to get and update information about users. This API key must be protected and stored in an appropriate secure storage location. It should never be hard-coded in the repository.
+To retrieve information about a user by their external ID -- which is the unique, immutable ID you supply to associate the Passage user with your user -- you should use the `passage.user.getUser()` function.
 
 ```javascript
 import Passage from '@passageidentity/passage-flex-node';
@@ -78,18 +100,18 @@ const app = express();
 const port = 3000;
 
 const passageConfig = {
-    appID: 'YOUR_APP_ID',
-    apiKey: 'YOUR_API_KEY',
+    appId: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
 };
 const passage = new Passage(passageConfig);
 
 // example authenticated route
-app.get('/authenticatedRoute', passageAuthMiddleware, async (req, res) => {
-    // get passage user ID from middleware
-    const userID = res.userID;
+app.get('/authenticatedRoute', authMiddleware, async (req, res) => {
+    // this should be the same value you used when creating the transaction
+    const externalId = yourUser.id;
 
     // get user info
-    const passageUser = await passage.user.get(userID);
-    console.log(passageUser.email);
+    const passageUser = await passage.users.getUser(externalId);
+    console.log(passageUser.webauthnDevices);
 });
 ```

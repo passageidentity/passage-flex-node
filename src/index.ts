@@ -1,4 +1,4 @@
-import Passage from './classes/Passage';
+import Users from './classes/Passage';
 export * from './types/PassageConfig';
 export { ResponseError } from './generated';
 
@@ -8,6 +8,6 @@ export * from './models';
 // @ts-ignore ignore the export override
 export * from './generated/models';
 
-module.exports = Passage;
+module.exports = Users;
 
-export default Passage;
+export default Users;

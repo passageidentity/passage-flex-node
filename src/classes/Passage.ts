@@ -4,30 +4,32 @@ import { AppsApi, AuthenticateApi, Configuration, ResponseError, TransactionsApi
 import apiConfiguration from '../utils/apiConfiguration';
 import { AppInfo } from '../models/AppInfo';
 import { TransactionArgs } from '../types/TransactionArgs';
+import Users from './Users';
 
 /**
- * Passage Class
+ * Passage class used to get app info, create transactions, and verify nonces
  */
 export default class Passage {
     public readonly apiKey: string;
-    public readonly appID: string;
+    public readonly appId: string;
     private readonly configuration: Configuration;
     private readonly appClient: AppsApi;
     private readonly transactionClient: TransactionsApi;
     private readonly authClient: AuthenticateApi;
+    public readonly users: Users;
 
     /**
-     * Initialize a new Passage instance.
+     * Initialize a new Passage instance
      * @param {PassageConfig} config The default config for Passage initialization
      */
     public constructor(config: PassageConfig) {
-        if (!config.appID || !config.apiKey) {
+        if (!config.appId || !config.apiKey) {
             throw new PassageError(
-                'A Passage appID and apiKey are required. Please include {appID: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
+                'A Passage appId and apiKey are required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         }
 
-        this.appID = config.appID;
+        this.appId = config.appId;
         this.apiKey = config.apiKey;
         this.configuration = apiConfiguration({
             accessToken: this.apiKey,
@@ -35,6 +37,7 @@ export default class Passage {
         this.appClient = new AppsApi(this.configuration);
         this.transactionClient = new TransactionsApi(this.configuration);
         this.authClient = new AuthenticateApi(this.configuration);
+        this.users = new Users(config);
     }
 
     /**
@@ -45,7 +48,7 @@ export default class Passage {
     public async getApp(): Promise<AppInfo> {
         try {
             const response = await this.appClient.getApp({
-                appId: this.appID,
+                appId: this.appId,
             });
 
             const { id, name, auth_origin } = response.app;
@@ -70,7 +73,7 @@ export default class Passage {
     public async createTransaction(args: TransactionArgs): Promise<string> {
         try {
             const response = await this.transactionClient.createTransaction({
-                appId: this.appID,
+                appId: this.appId,
                 createTransactionRequest: {
                     external_id: args.externalId,
                     passkey_display_name: args.passkeyDisplayName,
@@ -92,7 +95,7 @@ export default class Passage {
     public async verifyNonce(nonce: string): Promise<boolean> {
         try {
             await this.authClient.authenticateVerifyNonce({
-                appId: this.appID,
+                appId: this.appId,
                 body: {
                     nonce,
                 },

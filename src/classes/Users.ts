@@ -5,10 +5,12 @@ import { Configuration, ResponseError, UserDevicesApi, UsersApi } from '../gener
 import { PassageError } from './PassageError';
 import { UserInfo, WebAuthnDevices } from '../models';
 
-/***/
+/**
+ * Users class used to get user info and manage user devices
+ */
 export default class Users {
     private readonly appId: string;
-    private readonly apiKey?: string;
+    private readonly apiKey: string;
     private readonly configuration: Configuration;
     private readonly userClient: UsersApi;
     private readonly deviceClient: UserDevicesApi;
@@ -19,8 +21,10 @@ export default class Users {
      * @param {PassageConfig} config The default config for Passage and User initialization
      */
     public constructor(config: PassageConfig) {
-        if (!config.appId) {
-            throw new PassageError('A Passage appId is required. Please include {appId: YOUR_APP_ID}.');
+        if (!config.appId || !config.apiKey) {
+            throw new PassageError(
+                'A Passage appId and apiKey are required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
+            );
         }
 
         this.appId = config.appId;
@@ -50,55 +54,49 @@ export default class Users {
      * @param {string} userId The Passage user ID
      * @return {Promise<UserInfo>} Passage User object
      */
-    public async getUser(userId: string): Promise<UserInfo> {
-        this.apiKeyCheck();
+    private async getUserById(userId: string): Promise<UserInfo> {
+        const response = await this.userClient.getUser({
+            appId: this.appId,
+            userId: userId,
+        });
 
-        try {
-            const response = await this.userClient.getUser({
-                appId: this.appId,
-                userId: userId,
-            });
+        const {
+            created_at,
+            id,
+            last_login_at,
+            login_count,
+            status,
+            updated_at,
+            user_metadata,
+            webauthn,
+            webauthn_devices,
+            webauthn_types,
+        } = response.user;
 
-            const {
-                created_at,
-                id,
-                last_login_at,
-                login_count,
-                status,
-                updated_at,
-                user_metadata,
-                webauthn,
-                webauthn_devices,
-                webauthn_types,
-            } = response.user;
-            
-            const userInfo: UserInfo = {
-                createdAt: created_at,
-                id: id,
-                lastLoginAt: last_login_at,
-                loginCount: login_count,
-                status: status,
-                updatedAt: updated_at,
-                userMetadata: user_metadata,
-                webauthn: webauthn,
-                webauthnDevices: webauthn_devices.map((device) => ({
-                    createdAt: device.created_at,
-                    credId: device.cred_id,
-                    friendlyName: device.friendly_name,
-                    id: device.id,
-                    lastLoginAt: device.last_login_at,
-                    type: device.type,
-                    updatedAt: device.updated_at,
-                    usageCount: device.usage_count,
-                    icons: device.icons,
-                })),
-                webauthnTypes: webauthn_types,
-            };
+        const userInfo: UserInfo = {
+            createdAt: created_at,
+            id: id,
+            lastLoginAt: last_login_at,
+            loginCount: login_count,
+            status: status,
+            updatedAt: updated_at,
+            userMetadata: user_metadata,
+            webauthn: webauthn,
+            webauthnDevices: webauthn_devices.map((device) => ({
+                createdAt: device.created_at,
+                credId: device.cred_id,
+                friendlyName: device.friendly_name,
+                id: device.id,
+                lastLoginAt: device.last_login_at,
+                type: device.type,
+                updatedAt: device.updated_at,
+                usageCount: device.usage_count,
+                icons: device.icons,
+            })),
+            webauthnTypes: webauthn_types,
+        };
 
-            return userInfo;
-        } catch (err) {
-            throw new PassageError('Could not fetch user', err as ResponseError);
-        }
+        return userInfo;
     }
 
     /**
@@ -107,7 +105,7 @@ export default class Users {
      * @param {string} externalId The external ID used to associate the user with Passage
      * @return {Promise<UserInfo>} Passage User object
      */
-    public async getUserByExternalId(externalId: string): Promise<UserInfo> {
+    public async getUser(externalId: string): Promise<UserInfo> {
         this.apiKeyCheck();
 
         try {
@@ -122,7 +120,7 @@ export default class Users {
                 throw new PassageError('Could not find user with that external ID');
             }
 
-            return await this.getUser(users[0].id);
+            return await this.getUserById(users[0].id);
         } catch (err) {
             throw new PassageError('Could not fetch user by external ID', err as ResponseError);
         }
@@ -138,7 +136,7 @@ export default class Users {
         this.apiKeyCheck();
 
         try {
-            const user = await this.getUserByExternalId(externalId);
+            const user = await this.getUser(externalId);
             const response = await this.deviceClient.listUserDevices({
                 appId: this.appId,
                 userId: user.id,
@@ -173,7 +171,7 @@ export default class Users {
         this.apiKeyCheck();
 
         try {
-            const user = await this.getUserByExternalId(externalId);
+            const user = await this.getUser(externalId);
             await this.deviceClient.deleteUserDevices({
                 appId: this.appId,
                 deviceId: deviceId,

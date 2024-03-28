@@ -1,5 +1,4 @@
-import { UserStatus, WebAuthnType } from '../generated';
-import { WebAuthnDevices } from './WebAuthnDevices';
+import { UserStatus, WebAuthnDevices, WebAuthnType } from '../generated';
 
 export interface UserInfo {
     createdAt: Date;

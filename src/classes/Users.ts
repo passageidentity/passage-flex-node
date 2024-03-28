@@ -1,9 +1,9 @@
 import { PassageConfig } from '../types/PassageConfig';
 import apiConfiguration from '../utils/apiConfiguration';
 
-import { Configuration, ResponseError, UserDevicesApi, UsersApi } from '../generated';
+import { Configuration, ResponseError, UserDevicesApi, UsersApi, WebAuthnDevices } from '../generated';
 import { PassageError } from './PassageError';
-import { UserInfo, WebAuthnDevices } from '../models';
+import { UserInfo } from '../models/UserInfo';
 
 /**
  * Users class used to get user info and manage user devices
@@ -60,40 +60,17 @@ export default class Users {
             userId: userId,
         });
 
-        const {
-            created_at,
-            id,
-            last_login_at,
-            login_count,
-            status,
-            updated_at,
-            user_metadata,
-            webauthn,
-            webauthn_devices,
-            webauthn_types,
-        } = response.user;
-
         const userInfo: UserInfo = {
-            createdAt: created_at,
-            id: id,
-            lastLoginAt: last_login_at,
-            loginCount: login_count,
-            status: status,
-            updatedAt: updated_at,
-            userMetadata: user_metadata,
-            webauthn: webauthn,
-            webauthnDevices: webauthn_devices.map((device) => ({
-                createdAt: device.created_at,
-                credId: device.cred_id,
-                friendlyName: device.friendly_name,
-                id: device.id,
-                lastLoginAt: device.last_login_at,
-                type: device.type,
-                updatedAt: device.updated_at,
-                usageCount: device.usage_count,
-                icons: device.icons,
-            })),
-            webauthnTypes: webauthn_types,
+            createdAt: response.user.createdAt,
+            id: response.user.id,
+            lastLoginAt: response.user.lastLoginAt,
+            loginCount: response.user.loginCount,
+            status: response.user.status,
+            updatedAt: response.user.updatedAt,
+            userMetadata: response.user.userMetadata,
+            webauthn: response.user.webauthn,
+            webauthnDevices: response.user.webauthnDevices,
+            webauthnTypes: response.user.webauthnTypes,
         };
 
         return userInfo;
@@ -132,7 +109,7 @@ export default class Users {
      * @param {string} externalId The external ID used to associate the user with Passage
      * @return {Promise<WebAuthnDevices[]>} List of devices
      */
-    public async listDevices(externalId: string): Promise<WebAuthnDevices[]> {
+    public async getDevices(externalId: string): Promise<WebAuthnDevices[]> {
         this.apiKeyCheck();
 
         try {
@@ -142,19 +119,7 @@ export default class Users {
                 userId: user.id,
             });
 
-            const devices: WebAuthnDevices[] = response.devices.map((device) => ({
-                createdAt: device.created_at,
-                credId: device.cred_id,
-                friendlyName: device.friendly_name,
-                id: device.id,
-                lastLoginAt: device.last_login_at,
-                type: device.type,
-                updatedAt: device.updated_at,
-                usageCount: device.usage_count,
-                icons: device.icons,
-            }));
-
-            return devices;
+            return response.devices;
         } catch (err) {
             throw new PassageError("Could not fetch user's devices", err as ResponseError);
         }

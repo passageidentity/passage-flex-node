@@ -24,25 +24,25 @@ export interface AppleUserSocialConnection {
      * @type {string}
      * @memberof AppleUserSocialConnection
      */
-    provider_id: string;
+    providerId: string;
     /**
      * 
      * @type {Date}
      * @memberof AppleUserSocialConnection
      */
-    created_at: Date;
+    createdAt: Date;
     /**
      * 
      * @type {Date}
      * @memberof AppleUserSocialConnection
      */
-    last_login_at: Date;
+    lastLoginAt: Date;
     /**
      * The email of connected social user.
      * @type {string}
      * @memberof AppleUserSocialConnection
      */
-    provider_identifier: string;
+    providerIdentifier: string;
 }
 
 /**
@@ -50,10 +50,10 @@ export interface AppleUserSocialConnection {
  */
 export function instanceOfAppleUserSocialConnection(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "provider_id" in value;
-    isInstance = isInstance && "created_at" in value;
-    isInstance = isInstance && "last_login_at" in value;
-    isInstance = isInstance && "provider_identifier" in value;
+    isInstance = isInstance && "providerId" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "lastLoginAt" in value;
+    isInstance = isInstance && "providerIdentifier" in value;
 
     return isInstance;
 }
@@ -68,10 +68,10 @@ export function AppleUserSocialConnectionFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'provider_id': json['provider_id'],
-        'created_at': (new Date(json['created_at'])),
-        'last_login_at': (new Date(json['last_login_at'])),
-        'provider_identifier': json['provider_identifier'],
+        'providerId': json['provider_id'],
+        'createdAt': (new Date(json['created_at'])),
+        'lastLoginAt': (new Date(json['last_login_at'])),
+        'providerIdentifier': json['provider_identifier'],
     };
 }
 
@@ -84,10 +84,10 @@ export function AppleUserSocialConnectionToJSON(value?: AppleUserSocialConnectio
     }
     return {
         
-        'provider_id': value.provider_id,
-        'created_at': (value.created_at.toISOString()),
-        'last_login_at': (value.last_login_at.toISOString()),
-        'provider_identifier': value.provider_identifier,
+        'provider_id': value.providerId,
+        'created_at': (value.createdAt.toISOString()),
+        'last_login_at': (value.lastLoginAt.toISOString()),
+        'provider_identifier': value.providerIdentifier,
     };
 }
 

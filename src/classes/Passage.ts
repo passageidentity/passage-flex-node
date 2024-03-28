@@ -51,11 +51,11 @@ export default class Passage {
                 appId: this.appId,
             });
 
-            const { id, name, auth_origin } = response.app;
+            const { id, name, authOrigin } = response.app;
             const appInfo: AppInfo = {
                 id,
                 name,
-                authOrigin: auth_origin,
+                authOrigin,
             };
 
             return appInfo;
@@ -72,15 +72,16 @@ export default class Passage {
      */
     public async createTransaction(args: TransactionArgs): Promise<string> {
         try {
+            const { externalId, passkeyDisplayName } = args;
             const response = await this.transactionClient.createTransaction({
                 appId: this.appId,
                 createTransactionRequest: {
-                    external_id: args.externalId,
-                    passkey_display_name: args.passkeyDisplayName,
+                    externalId,
+                    passkeyDisplayName,
                 },
             });
 
-            return response.transaction_id;
+            return response.transactionId;
         } catch (err) {
             throw new PassageError('Could not create transaction', err as ResponseError);
         }

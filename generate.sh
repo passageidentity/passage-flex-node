@@ -15,4 +15,4 @@ openapi-generator-cli generate \
   -i "$file" \
   -g typescript-fetch \
   -o ./src/generated \
-  --additional-properties=modelPropertyNaming=original
+  --additional-properties=modelPropertyNaming=camelCase

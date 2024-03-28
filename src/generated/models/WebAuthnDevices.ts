@@ -37,19 +37,19 @@ export interface WebAuthnDevices {
      * @type {Date}
      * @memberof WebAuthnDevices
      */
-    created_at: Date;
+    createdAt: Date;
     /**
      * The CredID for this webAuthn device
      * @type {string}
      * @memberof WebAuthnDevices
      */
-    cred_id: string;
+    credId: string;
     /**
      * The friendly name for the webAuthn device used to authenticate
      * @type {string}
      * @memberof WebAuthnDevices
      */
-    friendly_name: string;
+    friendlyName: string;
     /**
      * The ID of the webAuthn device used for authentication
      * @type {string}
@@ -61,7 +61,7 @@ export interface WebAuthnDevices {
      * @type {Date}
      * @memberof WebAuthnDevices
      */
-    last_login_at: Date;
+    lastLoginAt: Date;
     /**
      * 
      * @type {WebAuthnType}
@@ -73,13 +73,13 @@ export interface WebAuthnDevices {
      * @type {Date}
      * @memberof WebAuthnDevices
      */
-    updated_at: Date;
+    updatedAt: Date;
     /**
      * How many times this webAuthn device has been used to authenticate the user
      * @type {number}
      * @memberof WebAuthnDevices
      */
-    usage_count: number;
+    usageCount: number;
     /**
      * 
      * @type {WebAuthnIcons}
@@ -93,14 +93,14 @@ export interface WebAuthnDevices {
  */
 export function instanceOfWebAuthnDevices(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "created_at" in value;
-    isInstance = isInstance && "cred_id" in value;
-    isInstance = isInstance && "friendly_name" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "credId" in value;
+    isInstance = isInstance && "friendlyName" in value;
     isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "last_login_at" in value;
+    isInstance = isInstance && "lastLoginAt" in value;
     isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "updated_at" in value;
-    isInstance = isInstance && "usage_count" in value;
+    isInstance = isInstance && "updatedAt" in value;
+    isInstance = isInstance && "usageCount" in value;
     isInstance = isInstance && "icons" in value;
 
     return isInstance;
@@ -116,14 +116,14 @@ export function WebAuthnDevicesFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'created_at': (new Date(json['created_at'])),
-        'cred_id': json['cred_id'],
-        'friendly_name': json['friendly_name'],
+        'createdAt': (new Date(json['created_at'])),
+        'credId': json['cred_id'],
+        'friendlyName': json['friendly_name'],
         'id': json['id'],
-        'last_login_at': (new Date(json['last_login_at'])),
+        'lastLoginAt': (new Date(json['last_login_at'])),
         'type': WebAuthnTypeFromJSON(json['type']),
-        'updated_at': (new Date(json['updated_at'])),
-        'usage_count': json['usage_count'],
+        'updatedAt': (new Date(json['updated_at'])),
+        'usageCount': json['usage_count'],
         'icons': WebAuthnIconsFromJSON(json['icons']),
     };
 }
@@ -137,14 +137,14 @@ export function WebAuthnDevicesToJSON(value?: WebAuthnDevices | null): any {
     }
     return {
         
-        'created_at': (value.created_at.toISOString()),
-        'cred_id': value.cred_id,
-        'friendly_name': value.friendly_name,
+        'created_at': (value.createdAt.toISOString()),
+        'cred_id': value.credId,
+        'friendly_name': value.friendlyName,
         'id': value.id,
-        'last_login_at': (value.last_login_at.toISOString()),
+        'last_login_at': (value.lastLoginAt.toISOString()),
         'type': WebAuthnTypeToJSON(value.type),
-        'updated_at': (value.updated_at.toISOString()),
-        'usage_count': value.usage_count,
+        'updated_at': (value.updatedAt.toISOString()),
+        'usage_count': value.usageCount,
         'icons': WebAuthnIconsToJSON(value.icons),
     };
 }

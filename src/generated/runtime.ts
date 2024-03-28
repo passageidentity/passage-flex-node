@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "https://virtserver.swaggerhub.com/passage/passage-mgmt-flex-sdk-api/1".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.passage.id/v1".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path

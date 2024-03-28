@@ -12,6 +12,7 @@
     },
     "plugins": ["@typescript-eslint"],
     "rules": {
+        "camelcase": "off",
         "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
         "semi": ["error", "always"],
         "indent": ["error", 4],

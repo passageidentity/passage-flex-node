@@ -1,4 +1,4 @@
-name: Run Tests on PR
+name: Run tests on deploy-production by backend-services
 
 on:
     workflow_dispatch:

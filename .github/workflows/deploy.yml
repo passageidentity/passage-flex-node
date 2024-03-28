@@ -1,0 +1,51 @@
+name: Deploy To NPM
+
+on:
+    workflow_dispatch:
+
+env:
+    TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
+    TEST_APP_ID: ${{ secrets.TEST_APP_ID }}
+    TEST_AUTH_TOKEN: ${{ secrets.TEST_AUTH_TOKEN }}
+    TEST_USER_ID: ${{ secrets.TEST_USER_ID }}
+    TEST_USER_IDENTIFIER: ${{ secrets.TEST_USER_IDENTIFIER }}
+    NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+    PAT: ${{ secrets.GH_ACCESS_TOKEN }} # this is the BEACHBALL_PAT
+
+jobs:
+    publish:
+        name: Deploy To NPM
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ env.PAT }}
+
+            - name: Unit Test
+              run: npm i && npm run test
+
+            - name: Beachball Check
+              run: |
+                  npm run beachball-check
+
+            - name: Beachball Bump
+              run: |
+                  npm run beachball-bump
+
+            - name: Build
+              run: npm run set-version && npm run tsc
+
+            - name: Clear Beachball Changes
+              run: |
+                  git reset --hard
+
+            - name: Deploy to NPM
+              run: |
+                  git config user.email "beachball_bot@passage.id"
+                  git config user.name "Beachball Machine Account"
+                  git remote set-url origin https://$GITHUB_ACTOR:$PAT@github.com/$GITHUB_REPOSITORY.git
+                  npm run publish -- --token "$NPM_ACCESS_TOKEN"
+              env:
+                  NPM_ACCESS_TOKEN: ${{ env.NPM_ACCESS_TOKEN }}

@@ -31,7 +31,7 @@ try {
 }
 ```
 
-## Retrieve App Info
+## Retrieve app info
 
 To retrieve information about an app, you should use the `passage.getApp()` function.
 
@@ -88,7 +88,7 @@ try {
 }
 ```
 
-## Retrieve User Info
+## Retrieve user info
 
 To retrieve information about a user by their external ID -- which is the unique, immutable ID you supply to associate the Passage user with your user -- you should use the `passage.user.getUser()` function.
 
@@ -114,4 +114,68 @@ app.get('/authenticatedRoute', authMiddleware, async (req, res) => {
     const passageUser = await passage.users.getUser(externalId);
     console.log(passageUser.webauthnDevices);
 });
+```
+
+## Retrieve a user's passkey devices
+
+To retrieve information about a user's passkey devices you should use the `passage.user.getDevices()` function.
+
+```javascript
+import Passage from '@passageidentity/passage-flex-node';
+import express from 'express';
+
+const app = express();
+const port = 3000;
+
+const passageConfig = {
+    appId: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
+};
+const passage = new Passage(passageConfig);
+
+// this should be the same value you used when creating the transaction
+const externalId = yourUser.id;
+
+// get devices
+const passkeyDevices = await passage.users.getDevices(externalId);
+for (const device of passkeyDevices) {
+    console.log(device.usageCount);
+}
+```
+
+## Revoke a user's passkey device
+
+To revoke a user's passkey device you should use the `passage.user.revokeDevice()` function.
+
+```javascript
+import Passage from '@passageidentity/passage-flex-node';
+import express from 'express';
+
+const app = express();
+const port = 3000;
+
+const passageConfig = {
+    appId: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
+};
+const passage = new Passage(passageConfig);
+
+// this should be the same value you used when creating the transaction
+const externalId = yourUser.id;
+const lastYear = new Date();
+lastYear.setFullYear(lastYear.getFullYear() - 1);
+
+// get devices
+const passkeyDevices = await passage.users.getDevices(externalId);
+
+for (const device of passkeyDevices) {
+    // revoke old devices that haven't been used
+    if (device.usageCount == 0 && device.lastLoginAt < lastYear) {
+        try {
+            await passage.users.revokeDevice(externalId, device.id);
+        } catch (err) {
+            // device couldn't be revoked
+        }
+    }
+}
 ```

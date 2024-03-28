@@ -5,11 +5,33 @@ require('dotenv').config();
 
 describe('Passage', () => {
     const expectedAppID = process.env.TEST_APP_ID;
+    const expectedApiKey = process.env.TEST_API_KEY;
 
     describe('constructor', () => {
         it.each(['', undefined, null])('should throw an error if appID is %s', (appID) => {
             expect(() => {
-                new Passage({ appID });
+                new Passage({
+                    appID,
+                    apiKey: expectedApiKey,
+                });
+            }).toThrow(PassageError);
+        });
+
+        it.each(['', undefined, null])('should throw an error if apiKey is %s', (apiKey) => {
+            expect(() => {
+                new Passage({
+                    appID: expectedAppID,
+                    apiKey,
+                });
+            }).toThrow(PassageError);
+        });
+
+        it.each(['', undefined, null])('should throw an error if appID and apiKey are %s', (value) => {
+            expect(() => {
+                new Passage({
+                    appID: value,
+                    apiKey: value,
+                });
             }).toThrow(PassageError);
         });
     });

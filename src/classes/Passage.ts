@@ -9,7 +9,7 @@ import { TransactionArgs } from '../types/TransactionArgs';
  * Passage Class
  */
 export default class Passage {
-    public readonly apiKey?: string;
+    public readonly apiKey: string;
     public readonly appID: string;
     private readonly configuration: Configuration;
     private readonly appClient: AppsApi;
@@ -21,8 +21,10 @@ export default class Passage {
      * @param {PassageConfig} config The default config for Passage initialization
      */
     public constructor(config: PassageConfig) {
-        if (!config.appID) {
-            throw new PassageError('A Passage appID is required. Please include {appID: YOUR_APP_ID}.');
+        if (!config.appID || !config.apiKey) {
+            throw new PassageError(
+                'A Passage appID and apiKey are required. Please include {appID: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
+            );
         }
 
         this.appID = config.appID;

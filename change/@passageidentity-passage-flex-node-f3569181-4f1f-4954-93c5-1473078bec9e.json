@@ -1,0 +1,7 @@
+{
+    "type": "none",
+    "comment": "chore: codegen from passage-mgmt-flex-sdk-api in swaggerhub",
+    "packageName": "@passageidentity/passage-flex-node",
+    "email": "chris.tran@agilebits.com",
+    "dependentChangeType": "none"
+}

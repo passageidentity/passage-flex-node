@@ -80,7 +80,7 @@ const passageConfig = {
 
 try {
     const passage = new Passage(passageConfig);
-    const isValid = await passage.verifyNonce('nonce');
+    await passage.verifyNonce('nonce');
 
     // do things like generate and send your own auth token
 } catch (err) {

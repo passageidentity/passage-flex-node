@@ -12,53 +12,6 @@ Install this package using npm.
 npm i @passageidentity/passage-flex-node
 ```
 
-## Authenticating a Request
-
-To authenticate an HTTP request, you can use the Passage SDK to check a request for a valid authentication token. `authenticateRequest` can handle requests in the format of `IncomingMessage`, as used by common Node frameworks like Express or with the Next.js page router, and it can also handle requests formatted as a fetch `Request`, as used by tools like the Next.js app router or Deno.
-You need to provide Passage with your App ID in order to verify the JWTs.
-
-```javascript
-import Passage from '@passageidentity/passage-flex-node';
-import express from 'express';
-
-const app = express();
-const port = 3000;
-
-let passageConfig = {
-    appID: 'YOUR_APP_ID',
-};
-
-// example of custom middleware
-let passage = new Passage(passageConfig);
-let passageAuthMiddleware = (() => {
-    return async (req, res, next) => {
-        await passage
-            .authenticateRequest(req)
-            .then((userID) => {
-                if (userID) {
-                    res.userID = userID;
-                    return next();
-                }
-
-                return res.status(401).send('unauthorized');
-            })
-            .catch(() => {
-                return res.status(401).send('Could not authenticate user!');
-            });
-    };
-})();
-
-// example implementation of custom middleware
-app.get('/authenticatedRoute', passageAuthMiddleware, async (req, res) => {
-    // authenticated user
-    let userID = res.userID;
-});
-
-app.listen(port, () => {
-    console.log(`Example app running`);
-});
-```
-
 ## Retrieve App Info
 
 To retrieve information about an app, you should use the `passage.getApp()` function.
@@ -66,13 +19,12 @@ To retrieve information about an app, you should use the `passage.getApp()` func
 ```javascript
 import Passage from '@passageidentity/passage-flex-node';
 
-let passageConfig = {
+const passageConfig = {
     appID: 'YOUR_APP_ID',
 };
 
-let passage = new Passage(passageConfig);
-
-let passageApp = await passage.getApp();
+const passage = new Passage(passageConfig);
+const passageApp = await passage.getApp();
 ```
 
 ## Retrieve User Info
@@ -86,111 +38,19 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-let passageConfig = {
+const passageConfig = {
     appID: 'YOUR_APP_ID',
     apiKey: 'YOUR_API_KEY',
 };
-let passage = new Passage(passageConfig);
+const passage = new Passage(passageConfig);
 
 // example authenticated route
 app.get('/authenticatedRoute', passageAuthMiddleware, async (req, res) => {
     // get passage user ID from middleware
-    let userID = res.userID;
+    const userID = res.userID;
 
     // get user info
-    let passageUser = await passage.user.get(userID);
+    const passageUser = await passage.user.get(userID);
     console.log(passageUser.email);
-});
-```
-
-## Activate/Deactivate User
-
-You can also activate or deactivate a user using the Passage SDK. These actions require an API Key and deactivating a user will prevent them from logging into your application with Passage.
-
-```javascript
-import Passage from '@passageidentity/passage-flex-node';
-import express from 'express';
-
-const app = express();
-const port = 3000;
-
-let passageConfig = {
-    appID: 'YOUR_APP_ID',
-    apiKey: 'YOUR_API_KEY',
-};
-let passage = new Passage(passageConfig);
-
-// example authenticated route
-app.get('/authenticatedRoute', passageAuthMiddleware, async (req, res) => {
-    // get passage user ID from middleware
-    let userID = res.userID;
-
-    // deactivate user
-    let passageUser = await passage.user.deactivate(userID);
-    console.log(passageUser.activate);
-});
-```
-
-## Update User Attributes
-
-With the Passage SDK, you can update a User's attributes. These actions require an API Key.
-
-```javascript
-import Passage from '@passageidentity/passage-flex-node';
-import express from 'express';
-
-const app = express();
-const port = 3000;
-
-let passageConfig = {
-    appID: 'YOUR_APP_ID',
-    apiKey: 'YOUR_API_KEY',
-};
-let passage = new Passage(passageConfig);
-
-// example authenticated route
-app.get('/authenticatedRoute', passageAuthMiddleware, async (req, res) => {
-    // get passage user ID from middleware
-    let userID = res.userID;
-    let newAttributes = {
-        email: 'newEmail@domain.com',
-        phone: '+15005550006',
-        // note that user_metadata is an optional field and is defined in your Passage App settings.
-        user_metadata: {
-            examplefield: 123,
-        },
-    };
-
-    // update user attributes
-    let passageUser = await passage.user.update(userID, newAttributes);
-    console.log(passageUser);
-});
-```
-
-## Delete A User
-
-To delete a Passage user, you will need to provide the `userID`, and corresponding app credentials.
-
-```javascript
-import Passage from '@passageidentity/passage-flex-node';
-import express from 'express';
-
-const app = express();
-const port = 3000;
-
-let passageConfig = {
-    appID: 'YOUR_APP_ID',
-    apiKey: 'YOUR_API_KEY',
-};
-let passage = new Passage(passageConfig);
-
-// example authenticated route
-app.get('/authenticatedRoute', passageAuthMiddleware, async (req, res) => {
-    // get passage user ID from middleware
-    let userID = res.userID;
-
-    // deactivate user
-    let deletedPassageUser = await passage.user.delete(userID);
-    console.log(deletedPassageUser); // true
 });
 ```

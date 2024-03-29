@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "fix: removes deprecated command in deploy workflow",
+  "packageName": "@passageidentity/passage-flex-node",
+  "email": "chris.tran@agilebits.com",
+  "dependentChangeType": "none"
+}

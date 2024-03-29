@@ -1,4 +1,40 @@
 {
-    "name": "@passageidentity/passage-flex-node",
-    "entries": []
+  "name": "@passageidentity/passage-flex-node",
+  "entries": [
+    {
+      "date": "Fri, 29 Mar 2024 15:11:40 GMT",
+      "version": "0.1.0",
+      "tag": "@passageidentity/passage-flex-node_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "28e1d30d7526baf8a2a3794bf8ff5856dfb1ab8b",
+            "comment": "feat: adds User class"
+          },
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "90aea0b67d38d601a3a8b374a607ecc0805de9b1",
+            "comment": "feat: adds the Passage class"
+          }
+        ],
+        "none": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "b6fe56778bffe31bf4b71e6f02b326d08dd1f4ca",
+            "comment": "chore: codegen from passage-mgmt-flex-sdk-api in swaggerhub"
+          },
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "327f4bc04a14b68e003d88dd03de738848ab2a69",
+            "comment": "feat: initial commit for flex node sdk"
+          }
+        ]
+      }
+    }
+  ]
 }

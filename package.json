@@ -1,6 +1,6 @@
 {
     "name": "@passageidentity/passage-flex-node",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "author": "Passage Identity",
     "description": "Node.js client SDK for Passage Passkey Flex",
     "repository": "github:passageidentity/passage-flex-node",
@@ -15,6 +15,14 @@
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
     "types": "lib/esm/index.d.ts",
+    "type": "module",
+    "exports": {
+        ".": {
+        "require": "./lib/cjs/index.cjs",
+        "import": "./lib/esm/index.js",
+        "types": "./lib/esm/index.d.ts"
+        }
+    },
     "files": [
         "lib/",
         "CHANGELOG.md"
@@ -33,7 +41,6 @@
         "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
         "change": "beachball change",
         "publish": "beachball publish -y",
-        "set-version": "echo '{\"version\":\"'$npm_package_name' '$npm_package_version'\"}' > ./src/utils/config.json",
         "beachball-bump": "beachball bump",
         "beachball-check": "beachball check"
     },

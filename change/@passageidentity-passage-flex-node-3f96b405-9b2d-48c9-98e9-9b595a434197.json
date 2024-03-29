@@ -1,7 +1,0 @@
-{
-    "type": "none",
-    "comment": "feat: initial commit for flex node sdk",
-    "packageName": "@passageidentity/passage-flex-node",
-    "email": "chris.tran@agilebits.com",
-    "dependentChangeType": "none"
-}

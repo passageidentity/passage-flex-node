@@ -2,6 +2,21 @@
   "name": "@passageidentity/passage-flex-node",
   "entries": [
     {
+      "date": "Fri, 29 Mar 2024 18:48:39 GMT",
+      "version": "0.1.1",
+      "tag": "@passageidentity/passage-flex-node_v0.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "bcad43a05c4ac0046f0dd32b5553a6485877e610",
+            "comment": "chore: set version"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 29 Mar 2024 17:55:06 GMT",
       "version": "0.1.0",
       "tag": "@passageidentity/passage-flex-node_v0.1.0",

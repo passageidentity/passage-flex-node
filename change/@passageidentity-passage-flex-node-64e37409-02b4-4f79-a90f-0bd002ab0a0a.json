@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: set version",
+  "packageName": "@passageidentity/passage-flex-node",
+  "email": "chris.tran@agilebits.com",
+  "dependentChangeType": "patch"
+}

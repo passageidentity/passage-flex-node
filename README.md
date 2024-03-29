@@ -44,7 +44,7 @@ const passage = new Passage({
 });
 
 const passageApp = await passage.getApp();
-console.log(passageApp.authOrigin)
+console.log(passageApp.authOrigin);
 ```
 
 ## Create a transaction
@@ -88,7 +88,7 @@ try {
 
 ## Retrieve user info
 
-To retrieve information about a user by their external ID -- which is the unique, immutable ID you supply to associate the Passage user with your user -- you should use the `passage.user.getUser()` function.
+To retrieve information about a user by their external ID -- which is the unique, immutable ID you supply to associate the Passage user with your user -- you should use the `passage.getUser()` function.
 
 ```javascript
 import { Passage } from '@passageidentity/passage-flex-node';
@@ -106,14 +106,14 @@ app.get('/authenticatedRoute', authMiddleware, async (req, res) => {
     const externalId = yourUser.id;
 
     // get user info
-    const passageUser = await passage.users.getUser(externalId);
+    const passageUser = await passage.getUser(externalId);
     console.log(passageUser.webauthnDevices);
 });
 ```
 
 ## Retrieve a user's passkey devices
 
-To retrieve information about a user's passkey devices you should use the `passage.user.getDevices()` function.
+To retrieve information about a user's passkey devices you should use the `passage.getDevices()` function.
 
 ```javascript
 import { Passage } from '@passageidentity/passage-flex-node';
@@ -127,7 +127,7 @@ const passage = new Passage({
 const externalId = yourUser.id;
 
 // get devices
-const passkeyDevices = await passage.users.getDevices(externalId);
+const passkeyDevices = await passage.getDevices(externalId);
 for (const device of passkeyDevices) {
     console.log(device.usageCount);
 }
@@ -135,7 +135,7 @@ for (const device of passkeyDevices) {
 
 ## Revoke a user's passkey device
 
-To revoke a user's passkey device you should use the `passage.user.revokeDevice()` function.
+To revoke a user's passkey device you should use the `passage.revokeDevice()` function.
 
 ```javascript
 import { Passage } from '@passageidentity/passage-flex-node';
@@ -151,13 +151,13 @@ const lastYear = new Date();
 lastYear.setFullYear(lastYear.getFullYear() - 1);
 
 // get devices
-const passkeyDevices = await passage.users.getDevices(externalId);
+const passkeyDevices = await passage.getDevices(externalId);
 
 for (const device of passkeyDevices) {
     // revoke old devices that haven't been used
     if (device.usageCount == 0 && device.lastLoginAt < lastYear) {
         try {
-            await passage.users.revokeDevice(externalId, device.id);
+            await passage.revokeDevice(externalId, device.id);
         } catch (err) {
             // device couldn't be revoked
         }

@@ -31,7 +31,7 @@ export interface ListPaginatedUsersItem {
      * @type {Date}
      * @memberof ListPaginatedUsersItem
      */
-    created_at: Date;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -43,7 +43,7 @@ export interface ListPaginatedUsersItem {
      * @type {boolean}
      * @memberof ListPaginatedUsersItem
      */
-    email_verified: boolean;
+    emailVerified: boolean;
     /**
      * 
      * @type {string}
@@ -55,13 +55,13 @@ export interface ListPaginatedUsersItem {
      * @type {Date}
      * @memberof ListPaginatedUsersItem
      */
-    last_login_at: Date;
+    lastLoginAt: Date;
     /**
      * 
      * @type {number}
      * @memberof ListPaginatedUsersItem
      */
-    login_count: number;
+    loginCount: number;
     /**
      * 
      * @type {string}
@@ -73,7 +73,7 @@ export interface ListPaginatedUsersItem {
      * @type {boolean}
      * @memberof ListPaginatedUsersItem
      */
-    phone_verified: boolean;
+    phoneVerified: boolean;
     /**
      * 
      * @type {UserStatus}
@@ -85,13 +85,13 @@ export interface ListPaginatedUsersItem {
      * @type {Date}
      * @memberof ListPaginatedUsersItem
      */
-    updated_at: Date;
+    updatedAt: Date;
     /**
      * 
      * @type {object}
      * @memberof ListPaginatedUsersItem
      */
-    user_metadata: object | null;
+    userMetadata: object | null;
 }
 
 /**
@@ -99,17 +99,17 @@ export interface ListPaginatedUsersItem {
  */
 export function instanceOfListPaginatedUsersItem(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "created_at" in value;
+    isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "email_verified" in value;
+    isInstance = isInstance && "emailVerified" in value;
     isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "last_login_at" in value;
-    isInstance = isInstance && "login_count" in value;
+    isInstance = isInstance && "lastLoginAt" in value;
+    isInstance = isInstance && "loginCount" in value;
     isInstance = isInstance && "phone" in value;
-    isInstance = isInstance && "phone_verified" in value;
+    isInstance = isInstance && "phoneVerified" in value;
     isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "updated_at" in value;
-    isInstance = isInstance && "user_metadata" in value;
+    isInstance = isInstance && "updatedAt" in value;
+    isInstance = isInstance && "userMetadata" in value;
 
     return isInstance;
 }
@@ -124,17 +124,17 @@ export function ListPaginatedUsersItemFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'created_at': (new Date(json['created_at'])),
+        'createdAt': (new Date(json['created_at'])),
         'email': json['email'],
-        'email_verified': json['email_verified'],
+        'emailVerified': json['email_verified'],
         'id': json['id'],
-        'last_login_at': (new Date(json['last_login_at'])),
-        'login_count': json['login_count'],
+        'lastLoginAt': (new Date(json['last_login_at'])),
+        'loginCount': json['login_count'],
         'phone': json['phone'],
-        'phone_verified': json['phone_verified'],
+        'phoneVerified': json['phone_verified'],
         'status': UserStatusFromJSON(json['status']),
-        'updated_at': (new Date(json['updated_at'])),
-        'user_metadata': json['user_metadata'],
+        'updatedAt': (new Date(json['updated_at'])),
+        'userMetadata': json['user_metadata'],
     };
 }
 
@@ -147,17 +147,17 @@ export function ListPaginatedUsersItemToJSON(value?: ListPaginatedUsersItem | nu
     }
     return {
         
-        'created_at': (value.created_at.toISOString()),
+        'created_at': (value.createdAt.toISOString()),
         'email': value.email,
-        'email_verified': value.email_verified,
+        'email_verified': value.emailVerified,
         'id': value.id,
-        'last_login_at': (value.last_login_at.toISOString()),
-        'login_count': value.login_count,
+        'last_login_at': (value.lastLoginAt.toISOString()),
+        'login_count': value.loginCount,
         'phone': value.phone,
-        'phone_verified': value.phone_verified,
+        'phone_verified': value.phoneVerified,
         'status': UserStatusToJSON(value.status),
-        'updated_at': (value.updated_at.toISOString()),
-        'user_metadata': value.user_metadata,
+        'updated_at': (value.updatedAt.toISOString()),
+        'user_metadata': value.userMetadata,
     };
 }
 

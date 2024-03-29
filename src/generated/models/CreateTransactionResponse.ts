@@ -24,7 +24,7 @@ export interface CreateTransactionResponse {
      * @type {string}
      * @memberof CreateTransactionResponse
      */
-    transaction_id: string;
+    transactionId: string;
 }
 
 /**
@@ -32,7 +32,7 @@ export interface CreateTransactionResponse {
  */
 export function instanceOfCreateTransactionResponse(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "transaction_id" in value;
+    isInstance = isInstance && "transactionId" in value;
 
     return isInstance;
 }
@@ -47,7 +47,7 @@ export function CreateTransactionResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'transaction_id': json['transaction_id'],
+        'transactionId': json['transaction_id'],
     };
 }
 
@@ -60,7 +60,7 @@ export function CreateTransactionResponseToJSON(value?: CreateTransactionRespons
     }
     return {
         
-        'transaction_id': value.transaction_id,
+        'transaction_id': value.transactionId,
     };
 }
 

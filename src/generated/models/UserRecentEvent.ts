@@ -31,13 +31,13 @@ export interface UserRecentEvent {
      * @type {Date}
      * @memberof UserRecentEvent
      */
-    created_at: Date;
+    createdAt: Date;
     /**
      * 
      * @type {Date}
      * @memberof UserRecentEvent
      */
-    completed_at: Date | null;
+    completedAt: Date | null;
     /**
      * 
      * @type {string}
@@ -49,7 +49,7 @@ export interface UserRecentEvent {
      * @type {string}
      * @memberof UserRecentEvent
      */
-    ip_addr: string;
+    ipAddr: string;
     /**
      * 
      * @type {UserEventStatus}
@@ -67,7 +67,7 @@ export interface UserRecentEvent {
      * @type {string}
      * @memberof UserRecentEvent
      */
-    user_agent: string;
+    userAgent: string;
 }
 
 /**
@@ -75,13 +75,13 @@ export interface UserRecentEvent {
  */
 export function instanceOfUserRecentEvent(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "created_at" in value;
-    isInstance = isInstance && "completed_at" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "completedAt" in value;
     isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "ip_addr" in value;
+    isInstance = isInstance && "ipAddr" in value;
     isInstance = isInstance && "status" in value;
     isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "user_agent" in value;
+    isInstance = isInstance && "userAgent" in value;
 
     return isInstance;
 }
@@ -96,13 +96,13 @@ export function UserRecentEventFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'created_at': (new Date(json['created_at'])),
-        'completed_at': (json['completed_at'] === null ? null : new Date(json['completed_at'])),
+        'createdAt': (new Date(json['created_at'])),
+        'completedAt': (json['completed_at'] === null ? null : new Date(json['completed_at'])),
         'id': json['id'],
-        'ip_addr': json['ip_addr'],
+        'ipAddr': json['ip_addr'],
         'status': UserEventStatusFromJSON(json['status']),
         'type': json['type'],
-        'user_agent': json['user_agent'],
+        'userAgent': json['user_agent'],
     };
 }
 
@@ -115,13 +115,13 @@ export function UserRecentEventToJSON(value?: UserRecentEvent | null): any {
     }
     return {
         
-        'created_at': (value.created_at.toISOString()),
-        'completed_at': (value.completed_at === null ? null : value.completed_at.toISOString()),
+        'created_at': (value.createdAt.toISOString()),
+        'completed_at': (value.completedAt === null ? null : value.completedAt.toISOString()),
         'id': value.id,
-        'ip_addr': value.ip_addr,
+        'ip_addr': value.ipAddr,
         'status': UserEventStatusToJSON(value.status),
         'type': value.type,
-        'user_agent': value.user_agent,
+        'user_agent': value.userAgent,
     };
 }
 

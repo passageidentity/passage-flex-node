@@ -1,13 +1,7 @@
-import Passage from './classes/Passage';
-export * from './types/PassageConfig';
-export { ResponseError } from './generated';
-
-// override the exported models from ./generated/models
-export * from './models';
-
-// @ts-ignore ignore the export override
-export * from './generated/models';
-
-module.exports = Passage;
-
-export default Passage;
+export { Passage } from './classes/Passage';
+export { PassageError } from './classes/PassageError';
+export { AppInfo } from './models/AppInfo';
+export { UserInfo } from './models/UserInfo';
+export type { PassageConfig } from './types/PassageConfig';
+export type { TransactionArgs } from './types/TransactionArgs';
+export { UserStatus, WebAuthnDevices, WebAuthnIcons, WebAuthnType } from './generated';

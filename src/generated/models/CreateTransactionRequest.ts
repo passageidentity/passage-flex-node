@@ -24,13 +24,13 @@ export interface CreateTransactionRequest {
      * @type {string}
      * @memberof CreateTransactionRequest
      */
-    external_id: string;
+    externalId: string;
     /**
      * the immutable display name of the passkey that the user will see
      * @type {string}
      * @memberof CreateTransactionRequest
      */
-    passkey_display_name: string;
+    passkeyDisplayName: string;
 }
 
 /**
@@ -38,8 +38,8 @@ export interface CreateTransactionRequest {
  */
 export function instanceOfCreateTransactionRequest(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "external_id" in value;
-    isInstance = isInstance && "passkey_display_name" in value;
+    isInstance = isInstance && "externalId" in value;
+    isInstance = isInstance && "passkeyDisplayName" in value;
 
     return isInstance;
 }
@@ -54,8 +54,8 @@ export function CreateTransactionRequestFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'external_id': json['external_id'],
-        'passkey_display_name': json['passkey_display_name'],
+        'externalId': json['external_id'],
+        'passkeyDisplayName': json['passkey_display_name'],
     };
 }
 
@@ -68,8 +68,8 @@ export function CreateTransactionRequestToJSON(value?: CreateTransactionRequest 
     }
     return {
         
-        'external_id': value.external_id,
-        'passkey_display_name': value.passkey_display_name,
+        'external_id': value.externalId,
+        'passkey_display_name': value.passkeyDisplayName,
     };
 }
 

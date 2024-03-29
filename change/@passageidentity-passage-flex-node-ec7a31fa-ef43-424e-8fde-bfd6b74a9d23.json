@@ -1,7 +1,0 @@
-{
-    "type": "minor",
-    "comment": "feat: adds the Passage class",
-    "packageName": "@passageidentity/passage-flex-node",
-    "email": "chris.tran@agilebits.com",
-    "dependentChangeType": "patch"
-}

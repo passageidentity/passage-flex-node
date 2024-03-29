@@ -1,4 +1,4 @@
 export type PassageConfig = {
-    appID: string;
+    appId: string;
     apiKey: string;
 };

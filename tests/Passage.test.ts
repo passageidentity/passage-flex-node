@@ -1,6 +1,6 @@
 import { PassageError } from '../src/classes/PassageError';
-import Passage from '../src/classes/Passage';
-import Users from '../src/classes/Users';
+import {Passage} from '../src/classes/Passage';
+import {Users} from '../src/classes/Users';
 import { AppInfo } from '../src/models/AppInfo';
 
 require('dotenv').config();

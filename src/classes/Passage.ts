@@ -4,12 +4,12 @@ import { AppsApi, AuthenticateApi, Configuration, ResponseError, TransactionsApi
 import apiConfiguration from '../utils/apiConfiguration';
 import { AppInfo } from '../models/AppInfo';
 import { TransactionArgs } from '../types/TransactionArgs';
-import Users from './Users';
+import { Users } from './Users';
 
 /**
  * Passage class used to get app info, create transactions, and verify nonces
  */
-export default class Passage {
+export class Passage {
     public readonly apiKey: string;
     public readonly appId: string;
     private readonly configuration: Configuration;

@@ -8,7 +8,7 @@ import { UserInfo } from '../models/UserInfo';
 /**
  * Users class used to get user info and manage user devices
  */
-export default class Users {
+export class Users {
     private readonly appId: string;
     private readonly apiKey: string;
     private readonly configuration: Configuration;

@@ -1,5 +1,5 @@
 import { PassageError } from '../src/classes/PassageError';
-import Users from '../src/classes/Users';
+import {Users} from '../src/classes/Users';
 import { WebAuthnDevices, WebAuthnType } from '../src/generated';
 
 require('dotenv').config();

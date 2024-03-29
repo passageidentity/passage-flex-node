@@ -6,7 +6,6 @@ on:
 env:
     TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
     TEST_APP_ID: ${{ secrets.TEST_APP_ID }}
-    TEST_AUTH_TOKEN: ${{ secrets.TEST_AUTH_TOKEN }}
     TEST_USER_ID: ${{ secrets.TEST_USER_ID }}
     TEST_USER_IDENTIFIER: ${{ secrets.TEST_USER_IDENTIFIER }}
     NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
@@ -35,7 +34,7 @@ jobs:
                   npm run beachball-bump
 
             - name: Build
-              run: npm run set-version && npm run tsc
+              run: npm run tsc
 
             - name: Clear Beachball Changes
               run: |

@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "chore: bumps version to 0.1.0",
-  "packageName": "@passageidentity/passage-flex-node",
-  "email": "chris.tran@agilebits.com",
-  "dependentChangeType": "none"
-}

@@ -2,6 +2,27 @@
   "name": "@passageidentity/passage-flex-node",
   "entries": [
     {
+      "date": "Fri, 29 Mar 2024 17:55:06 GMT",
+      "version": "0.1.0",
+      "tag": "@passageidentity/passage-flex-node_v0.1.0",
+      "comments": {
+        "none": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "344cfe1ff1d019a7c0736f6af96760301ba45c95",
+            "comment": "chore: bumps version to 0.1.0"
+          },
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "344cfe1ff1d019a7c0736f6af96760301ba45c95",
+            "comment": "fix: removes deprecated command in deploy workflow"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 29 Mar 2024 15:11:40 GMT",
       "version": "0.1.0",
       "tag": "@passageidentity/passage-flex-node_v0.1.0",

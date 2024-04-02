@@ -1,5 +1,5 @@
 import { PassageError } from '../src/classes/PassageError';
-import { Passage } from '../src/classes/Passage';
+import { PassageFlex } from '../src/classes/PassageFlex';
 import { AppInfo } from '../src/models/AppInfo';
 import { WebAuthnDevices, WebAuthnType } from '../src/generated';
 
@@ -14,7 +14,7 @@ describe('Passage', () => {
     describe('constructor', () => {
         it.each(['', undefined, null])('should throw an error if appId is %s', (appId) => {
             expect(() => {
-                new Passage({
+                new PassageFlex({
                     appId,
                     apiKey: expectedApiKey,
                 });
@@ -23,7 +23,7 @@ describe('Passage', () => {
 
         it.each(['', undefined, null])('should throw an error if apiKey is %s', (apiKey) => {
             expect(() => {
-                new Passage({
+                new PassageFlex({
                     appId: expectedAppId,
                     apiKey,
                 });
@@ -32,7 +32,7 @@ describe('Passage', () => {
 
         it.each(['', undefined, null])('should throw an error if appID and apiKey are %s', (value) => {
             expect(() => {
-                new Passage({
+                new PassageFlex({
                     appId: value,
                     apiKey: value,
                 });
@@ -41,10 +41,10 @@ describe('Passage', () => {
     });
 
     describe('getApp', () => {
-        let passage: Passage;
+        let passage: PassageFlex;
 
         beforeEach(() => {
-            passage = new Passage({
+            passage = new PassageFlex({
                 appId: expectedAppId,
                 apiKey: expectedApiKey,
             });
@@ -60,7 +60,7 @@ describe('Passage', () => {
         });
 
         it('should throw an error if the app does not exist', async () => {
-            const passage = new Passage({
+            const passage = new PassageFlex({
                 appId: 'invalid',
                 apiKey: expectedApiKey,
             });
@@ -69,10 +69,10 @@ describe('Passage', () => {
     });
 
     describe('createTransaction', () => {
-        let passage: Passage;
+        let passage: PassageFlex;
 
         beforeEach(() => {
-            passage = new Passage({
+            passage = new PassageFlex({
                 appId: expectedAppId,
                 apiKey: expectedApiKey,
             });
@@ -88,10 +88,10 @@ describe('Passage', () => {
     });
 
     describe('verifyNonce', () => {
-        let passage: Passage;
+        let passage: PassageFlex;
 
         beforeEach(() => {
-            passage = new Passage({
+            passage = new PassageFlex({
                 appId: expectedAppId,
                 apiKey: expectedApiKey,
             });
@@ -103,10 +103,10 @@ describe('Passage', () => {
     });
 
     describe('getUser', () => {
-        let passage: Passage;
+        let passage: PassageFlex;
 
         beforeEach(() => {
-            passage = new Passage({
+            passage = new PassageFlex({
                 appId: expectedAppId,
                 apiKey: expectedApiKey,
             });
@@ -134,10 +134,10 @@ describe('Passage', () => {
     });
 
     describe('getDevices', () => {
-        let passage: Passage;
+        let passage: PassageFlex;
 
         beforeEach(() => {
-            passage = new Passage({
+            passage = new PassageFlex({
                 appId: expectedAppId,
                 apiKey: expectedApiKey,
             });

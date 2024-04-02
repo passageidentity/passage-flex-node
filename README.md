@@ -12,12 +12,12 @@ Install this package using npm.
 npm i @passageidentity/passage-flex-node
 ```
 
-## Create a Passage object
+## Create a PassageFlex object
 
 You will need to use a Passage AppID and API key. The API key can be created in the Passage Console under your Application Settings. This API key grants your web server access to the Passage management APIs to get and update information about users. This API key must be protected and stored in an appropriate secure storage location. It should never be hard-coded in the repository.
 
 ```javascript
-import { Passage, PassageConfig } from '@passageidentity/passage-flex-node';
+import { PassageFlex, PassageConfig } from '@passageidentity/passage-flex-node';
 
 const passageConfig: PassageConfig = {
     appId: process.env.PASSAGE_APP_ID,
@@ -25,7 +25,7 @@ const passageConfig: PassageConfig = {
 };
 
 try {
-    const passage = new Passage(passageConfig);
+    const passage = new PassageFlex(passageConfig);
 } catch (err) {
     // this will throw a PassageError if the appId or apiKey are empty
 }
@@ -36,9 +36,9 @@ try {
 To retrieve information about an app, you should use the `passage.getApp()` function.
 
 ```javascript
-import { Passage } from '@passageidentity/passage-flex-node';
+import { PassageFlex } from '@passageidentity/passage-flex-node';
 
-const passage = new Passage({
+const passage = new PassageFlex({
     appId: process.env.PASSAGE_APP_ID,
     apiKey: process.env.PASSAGE_API_KEY,
 });
@@ -52,9 +52,9 @@ console.log(passageApp.authOrigin);
 To create a transaction to kick off a user passkey registration or authentication, you should use the `passage.createTransaction()` function.
 
 ```javascript
-import { Passage } from '@passageidentity/passage-flex-node';
+import { PassageFlex } from '@passageidentity/passage-flex-node';
 
-const passage = new Passage({
+const passage = new PassageFlex({
     appId: process.env.PASSAGE_APP_ID,
     apiKey: process.env.PASSAGE_API_KEY,
 });
@@ -70,9 +70,9 @@ const transaction = await passage.createTransaction({
 To verify a nonce that you received from the end of of passkey registration or authentication ceremony, you should use the `passage.verifyNonce()` function.
 
 ```javascript
-import { Passage } from '@passageidentity/passage-flex-node';
+import { PassageFlex } from '@passageidentity/passage-flex-node';
 
-const passage = new Passage({
+const passage = new PassageFlex({
     appId: process.env.PASSAGE_APP_ID,
     apiKey: process.env.PASSAGE_API_KEY,
 });
@@ -91,11 +91,11 @@ try {
 To retrieve information about a user by their external ID -- which is the unique, immutable ID you supply to associate the Passage user with your user -- you should use the `passage.getUser()` function.
 
 ```javascript
-import { Passage } from '@passageidentity/passage-flex-node';
+import { PassageFlex } from '@passageidentity/passage-flex-node';
 import express from 'express';
 
 const app = express();
-const passage = new Passage({
+const passage = new PassageFlex({
     appId: process.env.PASSAGE_APP_ID,
     apiKey: process.env.PASSAGE_API_KEY,
 });
@@ -116,9 +116,9 @@ app.get('/authenticatedRoute', authMiddleware, async (req, res) => {
 To retrieve information about a user's passkey devices you should use the `passage.getDevices()` function.
 
 ```javascript
-import { Passage } from '@passageidentity/passage-flex-node';
+import { PassageFlex } from '@passageidentity/passage-flex-node';
 
-const passage = new Passage({
+const passage = new PassageFlex({
     appId: process.env.PASSAGE_APP_ID,
     apiKey: process.env.PASSAGE_API_KEY,
 });
@@ -138,9 +138,9 @@ for (const device of passkeyDevices) {
 To revoke a user's passkey device you should use the `passage.revokeDevice()` function.
 
 ```javascript
-import { Passage } from '@passageidentity/passage-flex-node';
+import { PassageFlex } from '@passageidentity/passage-flex-node';
 
-const passage = new Passage({
+const passage = new PassageFlex({
     appId: process.env.PASSAGE_APP_ID,
     apiKey: process.env.PASSAGE_API_KEY,
 });

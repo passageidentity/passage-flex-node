@@ -16,9 +16,9 @@ import { TransactionArgs } from '../types/TransactionArgs';
 import { UserInfo } from '../models/UserInfo';
 
 /**
- * Passage class used to get app info, create transactions, and verify nonces
+ * PassageFlex class used to get app info, create transactions, and verify nonces
  */
-export class Passage {
+export class PassageFlex {
     public readonly apiKey: string;
     public readonly appId: string;
     private readonly configuration: Configuration;
@@ -29,7 +29,7 @@ export class Passage {
     private readonly deviceClient: UserDevicesApi;
 
     /**
-     * Initialize a new Passage instance
+     * Initialize a new PassageFlex instance
      * @param {PassageConfig} config The default config for Passage initialization
      */
     public constructor(config: PassageConfig) {

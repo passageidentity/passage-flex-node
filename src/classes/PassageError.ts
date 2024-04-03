@@ -1,7 +1,7 @@
 import { ResponseError } from '../generated';
 
 /**
- * Passage Class
+ * PassageError Class used to handle errors from PassageFlex
  */
 export class PassageError extends Error {
     readonly statusCode: number | undefined;

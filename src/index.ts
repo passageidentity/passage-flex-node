@@ -1,4 +1,4 @@
-export { Passage } from './classes/Passage';
+export { PassageFlex } from './classes/PassageFlex';
 export { PassageError } from './classes/PassageError';
 export { AppInfo } from './models/AppInfo';
 export { UserInfo } from './models/UserInfo';

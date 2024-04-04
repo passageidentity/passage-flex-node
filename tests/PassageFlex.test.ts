@@ -5,7 +5,7 @@ import { WebAuthnDevices, WebAuthnType } from '../src/generated';
 
 require('dotenv').config();
 
-describe('Passage', () => {
+describe('PassageFlex', () => {
     const expectedAppId = process.env.TEST_APP_ID;
     const expectedApiKey = process.env.TEST_API_KEY;
     const userId = process.env.TEST_USER_ID;
@@ -68,7 +68,7 @@ describe('Passage', () => {
         });
     });
 
-    describe('createTransaction', () => {
+    describe('createRegisterTransaction', () => {
         let passage: PassageFlex;
 
         beforeEach(() => {
@@ -79,9 +79,27 @@ describe('Passage', () => {
         });
 
         it('should return the transaction ID', async () => {
-            const transactionId = await passage.createTransaction({
+            const transactionId = await passage.createRegisterTransaction({
                 externalId: 'test',
                 passkeyDisplayName: 'test',
+            });
+            expect(transactionId).toEqual(expect.any(String));
+        });
+    });
+
+    describe('createAuthenticateTransaction', () => {
+        let passage: PassageFlex;
+
+        beforeEach(() => {
+            passage = new PassageFlex({
+                appId: expectedAppId,
+                apiKey: expectedApiKey,
+            });
+        });
+
+        it('should return the transaction ID', async () => {
+            const transactionId = await passage.createAuthenticateTransaction({
+                externalId: 'test',
             });
             expect(transactionId).toEqual(expect.any(String));
         });

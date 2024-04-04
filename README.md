@@ -47,9 +47,9 @@ const passageApp = await passage.getApp();
 console.log(passageApp.authOrigin);
 ```
 
-## Create a transaction
+## Create a registration transaction
 
-To create a transaction to kick off a user passkey registration or authentication, you should use the `passage.createTransaction()` function.
+To create a transaction to kick off a user passkey registration, you should use the `passage.createRegisterTransaction()` function.
 
 ```javascript
 import { PassageFlex } from '@passageidentity/passage-flex-node';
@@ -59,9 +59,26 @@ const passage = new PassageFlex({
     apiKey: process.env.PASSAGE_API_KEY,
 });
 
-const transaction = await passage.createTransaction({
+const transaction = await passage.createRegisterTransaction({
     externalId: 'a unique immutable string that represents your user',
     passkeyDisplayName: "the label for the user's passkey that they will see when logging in",
+});
+```
+
+## Create an authentication transaction
+
+To create a transaction to kick off a user passkey authentication, you should use the `passage.createAuthenticateTransaction()` function.
+
+```javascript
+import { PassageFlex } from '@passageidentity/passage-flex-node';
+
+const passage = new PassageFlex({
+    appId: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
+});
+
+const transaction = await passage.createAuthenticateTransaction({
+    externalId: 'a unique immutable string that represents your user',
 });
 ```
 

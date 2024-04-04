@@ -15,7 +15,8 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreateTransactionRequest,
+  CreateTransactionAuthenticateRequest,
+  CreateTransactionRegisterRequest,
   CreateTransactionResponse,
   Model400Error,
   Model401Error,
@@ -25,8 +26,10 @@ import type {
   Model500Error,
 } from '../models/index';
 import {
-    CreateTransactionRequestFromJSON,
-    CreateTransactionRequestToJSON,
+    CreateTransactionAuthenticateRequestFromJSON,
+    CreateTransactionAuthenticateRequestToJSON,
+    CreateTransactionRegisterRequestFromJSON,
+    CreateTransactionRegisterRequestToJSON,
     CreateTransactionResponseFromJSON,
     CreateTransactionResponseToJSON,
     Model400ErrorFromJSON,
@@ -43,9 +46,14 @@ import {
     Model500ErrorToJSON,
 } from '../models/index';
 
-export interface CreateTransactionOperationRequest {
+export interface CreateAuthenticateTransactionRequest {
     appId: string;
-    createTransactionRequest: CreateTransactionRequest;
+    createTransactionAuthenticateRequest: CreateTransactionAuthenticateRequest;
+}
+
+export interface CreateRegisterTransactionRequest {
+    appId: string;
+    createTransactionRegisterRequest: CreateTransactionRegisterRequest;
 }
 
 /**
@@ -54,15 +62,15 @@ export interface CreateTransactionOperationRequest {
 export class TransactionsApi extends runtime.BaseAPI {
 
     /**
-     * Create a transaction to start a user\'s registration or authentication process
+     * Create a transaction to start a user\'s authentication process
      */
-    async createTransactionRaw(requestParameters: CreateTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTransactionResponse>> {
+    async createAuthenticateTransactionRaw(requestParameters: CreateAuthenticateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTransactionResponse>> {
         if (requestParameters.appId === null || requestParameters.appId === undefined) {
-            throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling createTransaction.');
+            throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling createAuthenticateTransaction.');
         }
 
-        if (requestParameters.createTransactionRequest === null || requestParameters.createTransactionRequest === undefined) {
-            throw new runtime.RequiredError('createTransactionRequest','Required parameter requestParameters.createTransactionRequest was null or undefined when calling createTransaction.');
+        if (requestParameters.createTransactionAuthenticateRequest === null || requestParameters.createTransactionAuthenticateRequest === undefined) {
+            throw new runtime.RequiredError('createTransactionAuthenticateRequest','Required parameter requestParameters.createTransactionAuthenticateRequest was null or undefined when calling createAuthenticateTransaction.');
         }
 
         const queryParameters: any = {};
@@ -80,21 +88,66 @@ export class TransactionsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/apps/{app_id}/transactions`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters.appId))),
+            path: `/apps/{app_id}/transactions/authenticate`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters.appId))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateTransactionRequestToJSON(requestParameters.createTransactionRequest),
+            body: CreateTransactionAuthenticateRequestToJSON(requestParameters.createTransactionAuthenticateRequest),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateTransactionResponseFromJSON(jsonValue));
     }
 
     /**
-     * Create a transaction to start a user\'s registration or authentication process
+     * Create a transaction to start a user\'s authentication process
      */
-    async createTransaction(requestParameters: CreateTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTransactionResponse> {
-        const response = await this.createTransactionRaw(requestParameters, initOverrides);
+    async createAuthenticateTransaction(requestParameters: CreateAuthenticateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTransactionResponse> {
+        const response = await this.createAuthenticateTransactionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create a transaction to start a user\'s registration process
+     */
+    async createRegisterTransactionRaw(requestParameters: CreateRegisterTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTransactionResponse>> {
+        if (requestParameters.appId === null || requestParameters.appId === undefined) {
+            throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling createRegisterTransaction.');
+        }
+
+        if (requestParameters.createTransactionRegisterRequest === null || requestParameters.createTransactionRegisterRequest === undefined) {
+            throw new runtime.RequiredError('createTransactionRegisterRequest','Required parameter requestParameters.createTransactionRegisterRequest was null or undefined when calling createRegisterTransaction.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/apps/{app_id}/transactions/register`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters.appId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateTransactionRegisterRequestToJSON(requestParameters.createTransactionRegisterRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTransactionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a transaction to start a user\'s registration process
+     */
+    async createRegisterTransaction(requestParameters: CreateRegisterTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTransactionResponse> {
+        const response = await this.createRegisterTransactionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

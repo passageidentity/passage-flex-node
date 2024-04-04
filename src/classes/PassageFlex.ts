@@ -12,8 +12,9 @@ import {
 } from '../generated';
 import apiConfiguration from '../utils/apiConfiguration';
 import { AppInfo } from '../models/AppInfo';
-import { TransactionArgs } from '../types/TransactionArgs';
+import { AuthenticateTransactionArgs } from '../types/AuthenticateTransactionArgs';
 import { UserInfo } from '../models/UserInfo';
+import { RegisterTransactionArgs } from '../types/RegisterTransactionArgs';
 
 /**
  * PassageFlex class used to get app info, create transactions, and verify nonces
@@ -77,17 +78,17 @@ export class PassageFlex {
     }
 
     /**
-     * Create a transaction to start a user's registration or authentication process
+     * Create a transaction to start a user's registration process
      *
-     * @param {TransactionArgs} args The required values to create a transaction
+     * @param {RegisterTransactionArgs} args The required values to create a transaction
      * @return {Promise<string>} The transaction ID
      */
-    public async createTransaction(args: TransactionArgs): Promise<string> {
+    public async createRegisterTransaction(args: RegisterTransactionArgs): Promise<string> {
         try {
             const { externalId, passkeyDisplayName } = args;
-            const response = await this.transactionClient.createTransaction({
+            const response = await this.transactionClient.createRegisterTransaction({
                 appId: this.appId,
-                createTransactionRequest: {
+                createTransactionRegisterRequest: {
                     externalId,
                     passkeyDisplayName,
                 },
@@ -95,7 +96,29 @@ export class PassageFlex {
 
             return response.transactionId;
         } catch (err) {
-            throw new PassageError('Could not create transaction', err as ResponseError);
+            throw new PassageError('Could not create register transaction', err as ResponseError);
+        }
+    }
+
+    /**
+     * Create a transaction to start a user's authentication process
+     *
+     * @param {AuthenticateTransactionArgs} args The required values to create a transaction
+     * @return {Promise<string>} The transaction ID
+     */
+    public async createAuthenticateTransaction(args: AuthenticateTransactionArgs): Promise<string> {
+        try {
+            const { externalId } = args;
+            const response = await this.transactionClient.createAuthenticateTransaction({
+                appId: this.appId,
+                createTransactionAuthenticateRequest: {
+                    externalId,
+                },
+            });
+
+            return response.transactionId;
+        } catch (err) {
+            throw new PassageError('Could not create authenticate transaction', err as ResponseError);
         }
     }
 

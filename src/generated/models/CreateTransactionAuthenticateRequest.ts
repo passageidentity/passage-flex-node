@@ -16,50 +16,42 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateTransactionRequest
+ * @interface CreateTransactionAuthenticateRequest
  */
-export interface CreateTransactionRequest {
+export interface CreateTransactionAuthenticateRequest {
     /**
      * the user's unique identifier that will be associated with this transaction
      * @type {string}
-     * @memberof CreateTransactionRequest
+     * @memberof CreateTransactionAuthenticateRequest
      */
     externalId: string;
-    /**
-     * the immutable display name of the passkey that the user will see
-     * @type {string}
-     * @memberof CreateTransactionRequest
-     */
-    passkeyDisplayName: string;
 }
 
 /**
- * Check if a given object implements the CreateTransactionRequest interface.
+ * Check if a given object implements the CreateTransactionAuthenticateRequest interface.
  */
-export function instanceOfCreateTransactionRequest(value: object): boolean {
+export function instanceOfCreateTransactionAuthenticateRequest(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "externalId" in value;
-    isInstance = isInstance && "passkeyDisplayName" in value;
 
     return isInstance;
 }
 
-export function CreateTransactionRequestFromJSON(json: any): CreateTransactionRequest {
-    return CreateTransactionRequestFromJSONTyped(json, false);
+export function CreateTransactionAuthenticateRequestFromJSON(json: any): CreateTransactionAuthenticateRequest {
+    return CreateTransactionAuthenticateRequestFromJSONTyped(json, false);
 }
 
-export function CreateTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTransactionRequest {
+export function CreateTransactionAuthenticateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTransactionAuthenticateRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'externalId': json['external_id'],
-        'passkeyDisplayName': json['passkey_display_name'],
     };
 }
 
-export function CreateTransactionRequestToJSON(value?: CreateTransactionRequest | null): any {
+export function CreateTransactionAuthenticateRequestToJSON(value?: CreateTransactionAuthenticateRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -69,7 +61,6 @@ export function CreateTransactionRequestToJSON(value?: CreateTransactionRequest 
     return {
         
         'external_id': value.externalId,
-        'passkey_display_name': value.passkeyDisplayName,
     };
 }
 

@@ -126,18 +126,18 @@ export class PassageFlex {
      * Verify the nonce received from a WebAuthn registration or authentication ceremony
      *
      * @param {string} nonce The nonce to verify
-     * @return {Promise<boolean>} Whether the nonce was verified
+     * @return {Promise<string>} The unique identifier of the user associated with the nonce
      */
-    public async verifyNonce(nonce: string): Promise<boolean> {
+    public async verifyNonce(nonce: string): Promise<string> {
         try {
-            await this.authClient.authenticateVerifyNonce({
+            const response = await this.authClient.authenticateVerifyNonce({
                 appId: this.appId,
                 body: {
                     nonce,
                 },
             });
 
-            return true;
+            return response.externalId;
         } catch (err) {
             throw new PassageError('Could not verify nonce', err as ResponseError);
         }

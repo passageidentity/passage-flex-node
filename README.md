@@ -95,9 +95,9 @@ const passage = new PassageFlex({
 });
 
 try {
-    await passage.verifyNonce('nonce');
+    const externalId = await passage.verifyNonce('nonce');
 
-    // do things like generate and send your own auth token
+    // use externalId to do things like generate and send your own auth token
 } catch (err) {
     // nonce was invalid or unable to be verified
 }

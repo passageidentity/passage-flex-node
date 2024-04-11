@@ -16,32 +16,32 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateTransactionAuthenticateRequest
+ * @interface AuthenticateVerifyNonceResponse
  */
-export interface CreateTransactionAuthenticateRequest {
+export interface AuthenticateVerifyNonceResponse {
     /**
      * the user's unique identifier
      * @type {string}
-     * @memberof CreateTransactionAuthenticateRequest
+     * @memberof AuthenticateVerifyNonceResponse
      */
     externalId: string;
 }
 
 /**
- * Check if a given object implements the CreateTransactionAuthenticateRequest interface.
+ * Check if a given object implements the AuthenticateVerifyNonceResponse interface.
  */
-export function instanceOfCreateTransactionAuthenticateRequest(value: object): boolean {
+export function instanceOfAuthenticateVerifyNonceResponse(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "externalId" in value;
 
     return isInstance;
 }
 
-export function CreateTransactionAuthenticateRequestFromJSON(json: any): CreateTransactionAuthenticateRequest {
-    return CreateTransactionAuthenticateRequestFromJSONTyped(json, false);
+export function AuthenticateVerifyNonceResponseFromJSON(json: any): AuthenticateVerifyNonceResponse {
+    return AuthenticateVerifyNonceResponseFromJSONTyped(json, false);
 }
 
-export function CreateTransactionAuthenticateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTransactionAuthenticateRequest {
+export function AuthenticateVerifyNonceResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthenticateVerifyNonceResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -51,7 +51,7 @@ export function CreateTransactionAuthenticateRequestFromJSONTyped(json: any, ign
     };
 }
 
-export function CreateTransactionAuthenticateRequestToJSON(value?: CreateTransactionAuthenticateRequest | null): any {
+export function AuthenticateVerifyNonceResponseToJSON(value?: AuthenticateVerifyNonceResponse | null): any {
     if (value === undefined) {
         return undefined;
     }

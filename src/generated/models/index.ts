@@ -4,6 +4,7 @@ export * from './AppInfo';
 export * from './AppResponse';
 export * from './AppleUserSocialConnection';
 export * from './AuthMethods';
+export * from './AuthenticateVerifyNonceResponse';
 export * from './CreateTransactionAuthenticateRequest';
 export * from './CreateTransactionRegisterRequest';
 export * from './CreateTransactionResponse';

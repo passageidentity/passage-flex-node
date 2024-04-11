@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CreateTransactionRegisterRequest {
     /**
-     * the user's unique identifier that will be associated with this transaction
+     * the user's unique identifier
      * @type {string}
      * @memberof CreateTransactionRegisterRequest
      */

@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "update verifyNonce to return user's externalId",
+  "packageName": "@passageidentity/passage-flex-node",
+  "email": "bert.ramirez@agilebits.com",
+  "dependentChangeType": "patch"
+}

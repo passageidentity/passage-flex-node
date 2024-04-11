@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  AuthenticateVerifyNonceResponse,
   Model400Error,
   Model401Error,
   Model403Error,
@@ -23,6 +24,8 @@ import type {
   Nonce,
 } from '../models/index';
 import {
+    AuthenticateVerifyNonceResponseFromJSON,
+    AuthenticateVerifyNonceResponseToJSON,
     Model400ErrorFromJSON,
     Model400ErrorToJSON,
     Model401ErrorFromJSON,
@@ -51,7 +54,7 @@ export class AuthenticateApi extends runtime.BaseAPI {
      * Verify the nonce received from a WebAuthn registration or authentication ceremony. This endpoint checks that the nonce for the given application is valid, then returns a success or error message to the caller.
      * Verify the nonce received from a WebAuthn ceremony
      */
-    async authenticateVerifyNonceRaw(requestParameters: AuthenticateVerifyNonceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async authenticateVerifyNonceRaw(requestParameters: AuthenticateVerifyNonceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthenticateVerifyNonceResponse>> {
         if (requestParameters.appId === null || requestParameters.appId === undefined) {
             throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling authenticateVerifyNonce.');
         }
@@ -74,15 +77,16 @@ export class AuthenticateApi extends runtime.BaseAPI {
             body: requestParameters.body as any,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthenticateVerifyNonceResponseFromJSON(jsonValue));
     }
 
     /**
      * Verify the nonce received from a WebAuthn registration or authentication ceremony. This endpoint checks that the nonce for the given application is valid, then returns a success or error message to the caller.
      * Verify the nonce received from a WebAuthn ceremony
      */
-    async authenticateVerifyNonce(requestParameters: AuthenticateVerifyNonceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.authenticateVerifyNonceRaw(requestParameters, initOverrides);
+    async authenticateVerifyNonce(requestParameters: AuthenticateVerifyNonceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthenticateVerifyNonceResponse> {
+        const response = await this.authenticateVerifyNonceRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
 }

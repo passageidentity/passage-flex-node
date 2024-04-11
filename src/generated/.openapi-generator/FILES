@@ -10,6 +10,7 @@ models/AppInfo.ts
 models/AppResponse.ts
 models/AppleUserSocialConnection.ts
 models/AuthMethods.ts
+models/AuthenticateVerifyNonceResponse.ts
 models/CreateTransactionAuthenticateRequest.ts
 models/CreateTransactionRegisterRequest.ts
 models/CreateTransactionResponse.ts

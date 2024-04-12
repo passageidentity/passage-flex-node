@@ -2,6 +2,21 @@
   "name": "@passageidentity/passage-flex-node",
   "entries": [
     {
+      "date": "Fri, 12 Apr 2024 16:57:01 GMT",
+      "version": "0.2.1",
+      "tag": "@passageidentity/passage-flex-node_v0.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "kevin.flanagan@passage.id",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "b0b1726be0b5416c03fc8e62f9198fbf17b35bea",
+            "comment": "fix node importing issues"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 12 Apr 2024 16:01:11 GMT",
       "version": "0.2.0",
       "tag": "@passageidentity/passage-flex-node_v0.2.0",

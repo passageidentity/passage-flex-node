@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix node importing issues",
-  "packageName": "@passageidentity/passage-flex-node",
-  "email": "kevin.flanagan@passage.id",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,16 @@
 # Change Log - @passageidentity/passage-flex-node
 
-This log was last generated on Fri, 12 Apr 2024 16:01:11 GMT and should not be manually modified.
+This log was last generated on Fri, 12 Apr 2024 16:57:01 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.1
+
+Fri, 12 Apr 2024 16:57:01 GMT
+
+### Patches
+
+- fix node importing issues (kevin.flanagan@passage.id)
 
 ## 0.2.0
 

@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "feat: splits createTransaction into two functions for register and authenticate",
-  "packageName": "@passageidentity/passage-flex-node",
-  "email": "chris.tran@agilebits.com",
-  "dependentChangeType": "patch"
-}

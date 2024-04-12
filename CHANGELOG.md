@@ -1,8 +1,18 @@
 # Change Log - @passageidentity/passage-flex-node
 
-This log was last generated on Fri, 29 Mar 2024 18:56:01 GMT and should not be manually modified.
+This log was last generated on Fri, 12 Apr 2024 15:56:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.0
+
+Fri, 12 Apr 2024 15:56:43 GMT
+
+### Minor changes
+
+- update verifyNonce to return user's externalId (bert.ramirez@agilebits.com)
+- feat: splits createTransaction into two functions for register and authenticate (chris.tran@agilebits.com)
+- refactor: renames the Passage class to PassageFlex (chris.tran@agilebits.com)
 
 ## 0.1.1
 

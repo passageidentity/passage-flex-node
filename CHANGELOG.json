@@ -2,6 +2,41 @@
   "name": "@passageidentity/passage-flex-node",
   "entries": [
     {
+      "date": "Fri, 12 Apr 2024 15:56:43 GMT",
+      "version": "0.2.0",
+      "tag": "@passageidentity/passage-flex-node_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "bert.ramirez@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "ca5ce64a78ff516c1f9c5663e9a792d96aa831b3",
+            "comment": "update verifyNonce to return user's externalId"
+          },
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "ca5ce64a78ff516c1f9c5663e9a792d96aa831b3",
+            "comment": "feat: splits createTransaction into two functions for register and authenticate"
+          },
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "ca5ce64a78ff516c1f9c5663e9a792d96aa831b3",
+            "comment": "refactor: renames the Passage class to PassageFlex"
+          }
+        ],
+        "none": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "ca5ce64a78ff516c1f9c5663e9a792d96aa831b3",
+            "comment": "ci: removes unnecessary gha"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 29 Mar 2024 18:56:01 GMT",
       "version": "0.1.1",
       "tag": "@passageidentity/passage-flex-node_v0.1.1",

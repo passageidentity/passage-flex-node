@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "refactor: renames the Passage class to PassageFlex",
-  "packageName": "@passageidentity/passage-flex-node",
-  "email": "chris.tran@agilebits.com",
-  "dependentChangeType": "patch"
-}

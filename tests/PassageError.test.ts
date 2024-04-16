@@ -1,27 +1,45 @@
 import { ResponseError } from '../src/generated';
 import { PassageError } from '../src/classes/PassageError';
+import { faker } from '@faker-js/faker';
 
 describe('PassageError', () => {
-    test('message only', async () => {
-        const msg = 'Could not find valid cookie for authentication. You must catch this error.';
-        const err = new PassageError(msg);
+    describe('fromMessage', () => {
+        it('should set PassageError.message to message', async () => {
+            const expected = faker.string.sample();
+            const actual = PassageError.fromMessage(expected);
 
-        expect(err.message).toEqual(msg);
-        expect(err.error).toBeUndefined;
+            expect(actual.message).toEqual(expected);
+            expect(actual.stack).toBeDefined();
+            expect(actual.code).toBeUndefined();
+            expect(actual.status).toBeUndefined();
+        });
     });
 
-    test('with Response Error', async () => {
-        const responseError = {
-            message: 'some error message',
-            name: 'ResponseError',
-        } as ResponseError;
+    describe('fromResponseError', () => {
+        it('should set PassageError.code and PassageError.status from ResponseError', async () => {
+            const expectedMessage = 'friendly message';
+            const expectedResponseCode = faker.string.sample();
+            const expectedResponseError = 'error body message';
 
-        const msg = 'Could not find valid cookie for authentication. You must catch this error';
-        const err = new PassageError(msg, responseError);
+            const responseError = {
+                message: faker.string.sample(),
+                response: {
+                    status: faker.internet.httpStatusCode(),
+                    json: async () => {
+                        return {
+                            code: expectedResponseCode,
+                            error: expectedResponseError,
+                        };
+                    },
+                } as Response,
+            } as ResponseError;
 
-        expect(err.message).toEqual(`${msg}: ${responseError.message}`);
-        expect(err.statusCode).toBe(500);
+            const actual = await PassageError.fromResponseError(expectedMessage, responseError);
 
-        expect(err.error).toBe('some error message');
+            expect(actual.message).toEqual(`${expectedMessage}: ${expectedResponseError}`);
+            expect(actual.code).toEqual(expectedResponseCode);
+            expect(actual.status).toEqual(responseError.response.status);
+            expect(actual.stack).toBeDefined();
+        });
     });
 });

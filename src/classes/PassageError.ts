@@ -1,27 +1,52 @@
 import { ResponseError } from '../generated';
 
+type APIResponseError = { status: number; code: string; message: string };
+
 /**
  * PassageError Class used to handle errors from PassageFlex
  */
 export class PassageError extends Error {
-    readonly statusCode: number | undefined;
-    readonly error: string | undefined;
-    readonly message: string;
+    public readonly status: number | undefined;
+    public readonly code: string | undefined;
 
     /**
      * Initialize a new PassageError instance.
-     * @param {string} message friendly message,
-     * @param {Error} err error from node-fetch request
+     * @param {string} message friendly message
+     * @param {APIResponseError} response error information from PassageFlex API
      */
-    constructor(message: string, err?: ResponseError) {
-        super();
+    private constructor(message: string, response?: APIResponseError) {
+        super(message);
 
-        if (err) {
-            this.message = `${message}: ${err.message}`;
-            this.statusCode = 500;
-            this.error = err.message;
-        } else {
-            this.message = message;
+        if (!response) {
+            return;
         }
+
+        this.message = `${message}: ${response.message}`;
+        this.status = response.status;
+        this.code = response.code;
+    }
+
+    /**
+     * Initialize a new PassageError instance.
+     * @param {string} message friendly message
+     * @return {PassageError}
+     */
+    public static fromMessage(message: string): PassageError {
+        return new PassageError(message);
+    }
+
+    /**
+     * Initialize a new PassageError instance.
+     * @param {string} message friendly message
+     * @param {ResponseError} err error from node-fetch request
+     * @return {Promise<PassageError>}
+     */
+    public static async fromResponseError(message: string, err: ResponseError): Promise<PassageError> {
+        const body: { code: string; error: string } = await err.response.json();
+        return new PassageError(message, {
+            status: err.response.status,
+            code: body.code,
+            message: body.error,
+        });
     }
 }

@@ -1,4 +1,3 @@
-import { PassageError } from '../src/classes/PassageError';
 import { PassageFlex } from '../src/classes/PassageFlex';
 import { AppInfo } from '../src/models/AppInfo';
 import { WebAuthnDevices, WebAuthnType } from '../src/generated';
@@ -12,13 +11,16 @@ describe('PassageFlex', () => {
     const userExternalId = process.env.TEST_USER_IDENTIFIER;
 
     describe('constructor', () => {
+        const expectedErrorMessage =
+            'A Passage appId and apiKey are required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
+
         it.each(['', undefined, null])('should throw an error if appId is %s', (appId) => {
             expect(() => {
                 new PassageFlex({
                     appId,
                     apiKey: expectedApiKey,
                 });
-            }).toThrow(PassageError);
+            }).toThrow(expectedErrorMessage);
         });
 
         it.each(['', undefined, null])('should throw an error if apiKey is %s', (apiKey) => {
@@ -27,7 +29,7 @@ describe('PassageFlex', () => {
                     appId: expectedAppId,
                     apiKey,
                 });
-            }).toThrow(PassageError);
+            }).toThrow(expectedErrorMessage);
         });
 
         it.each(['', undefined, null])('should throw an error if appID and apiKey are %s', (value) => {
@@ -36,7 +38,7 @@ describe('PassageFlex', () => {
                     appId: value,
                     apiKey: value,
                 });
-            }).toThrow(PassageError);
+            }).toThrow(expectedErrorMessage);
         });
     });
 
@@ -64,7 +66,7 @@ describe('PassageFlex', () => {
                 appId: 'invalid',
                 apiKey: expectedApiKey,
             });
-            await expect(passage.getApp()).rejects.toThrow(PassageError);
+            await expect(passage.getApp()).rejects.toThrow('Could not fetch app: Invalid access token');
         });
     });
 
@@ -116,7 +118,9 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the nonce is invalid', async () => {
-            await expect(passage.verifyNonce('invalid')).rejects.toThrow(PassageError);
+            await expect(passage.verifyNonce('invalid')).rejects.toThrow(
+                'Could not verify nonce: nonce is invalid, expired, or cannot be found',
+            );
         });
     });
 
@@ -147,7 +151,7 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.getUser('invalid')).rejects.toThrow(PassageError);
+            await expect(passage.getUser('invalid')).rejects.toThrow('Could not find user with that external ID');
         });
     });
 
@@ -179,7 +183,7 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.getDevices('invalid')).rejects.toThrow(PassageError);
+            await expect(passage.getDevices('invalid')).rejects.toThrow('Could not find user with that external ID');
         });
     });
 

@@ -1,13 +1,31 @@
-import { ResponseError } from '../generated';
+import {
+    Model400ErrorCodeEnum,
+    Model401ErrorCodeEnum,
+    Model403ErrorCodeEnum,
+    Model404ErrorCodeEnum,
+    Model409ErrorCodeEnum,
+    Model500ErrorCodeEnum,
+    ResponseError,
+} from '../generated';
 
-type APIResponseError = { statusCode: number; errorCode: string; message: string };
+export const ErrorStatusText = {
+    ...Model400ErrorCodeEnum,
+    ...Model401ErrorCodeEnum,
+    ...Model403ErrorCodeEnum,
+    ...Model404ErrorCodeEnum,
+    ...Model409ErrorCodeEnum,
+    ...Model500ErrorCodeEnum,
+};
+
+type ErrorStatusText = (typeof ErrorStatusText)[keyof typeof ErrorStatusText];
+type APIResponseError = { statusCode: number; statusText: ErrorStatusText; errorMessage: string };
 
 /**
  * PassageError Class used to handle errors from PassageFlex
  */
 export class PassageError extends Error {
     public readonly statusCode: number | undefined;
-    public readonly statusText: string | undefined;
+    public readonly statusText: ErrorStatusText | undefined;
 
     /**
      * Initialize a new PassageError instance.
@@ -21,9 +39,9 @@ export class PassageError extends Error {
             return;
         }
 
-        this.message = `${message}: ${response.message}`;
+        this.message = `${message}: ${response.errorMessage}`;
         this.statusCode = response.statusCode;
-        this.statusText = response.errorCode;
+        this.statusText = response.statusText;
     }
 
     /**
@@ -42,11 +60,11 @@ export class PassageError extends Error {
      * @return {Promise<PassageError>}
      */
     public static async fromResponseError(message: string, err: ResponseError): Promise<PassageError> {
-        const body: { code: string; error: string } = await err.response.json();
+        const body: { code: ErrorStatusText; error: string } = await err.response.json();
         return new PassageError(message, {
             statusCode: err.response.status,
-            errorCode: body.code,
-            message: body.error,
+            statusText: body.code,
+            errorMessage: body.error,
         });
     }
 }

@@ -1,13 +1,13 @@
 import { ResponseError } from '../generated';
 
-type APIResponseError = { status: number; code: string; message: string };
+type APIResponseError = { statusCode: number; errorCode: string; message: string };
 
 /**
  * PassageError Class used to handle errors from PassageFlex
  */
 export class PassageError extends Error {
-    public readonly status: number | undefined;
-    public readonly code: string | undefined;
+    public readonly statusCode: number | undefined;
+    public readonly statusText: string | undefined;
 
     /**
      * Initialize a new PassageError instance.
@@ -22,8 +22,8 @@ export class PassageError extends Error {
         }
 
         this.message = `${message}: ${response.message}`;
-        this.status = response.status;
-        this.code = response.code;
+        this.statusCode = response.statusCode;
+        this.statusText = response.errorCode;
     }
 
     /**
@@ -44,8 +44,8 @@ export class PassageError extends Error {
     public static async fromResponseError(message: string, err: ResponseError): Promise<PassageError> {
         const body: { code: string; error: string } = await err.response.json();
         return new PassageError(message, {
-            status: err.response.status,
-            code: body.code,
+            statusCode: err.response.status,
+            errorCode: body.code,
             message: body.error,
         });
     }

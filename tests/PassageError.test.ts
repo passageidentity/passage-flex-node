@@ -10,8 +10,8 @@ describe('PassageError', () => {
 
             expect(actual.message).toEqual(expected);
             expect(actual.stack).toBeDefined();
-            expect(actual.code).toBeUndefined();
-            expect(actual.status).toBeUndefined();
+            expect(actual.statusText).toBeUndefined();
+            expect(actual.statusCode).toBeUndefined();
         });
     });
 
@@ -37,8 +37,8 @@ describe('PassageError', () => {
             const actual = await PassageError.fromResponseError(expectedMessage, responseError);
 
             expect(actual.message).toEqual(`${expectedMessage}: ${expectedResponseError}`);
-            expect(actual.code).toEqual(expectedResponseCode);
-            expect(actual.status).toEqual(responseError.response.status);
+            expect(actual.statusText).toEqual(expectedResponseCode);
+            expect(actual.statusCode).toEqual(responseError.response.status);
             expect(actual.stack).toBeDefined();
         });
     });

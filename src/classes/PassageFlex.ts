@@ -4,6 +4,8 @@ import {
     AppsApi,
     AuthenticateApi,
     Configuration,
+    CreateTransactionAuthenticateRequest,
+    CreateTransactionRegisterRequest,
     ResponseError,
     TransactionsApi,
     UserDevicesApi,
@@ -12,9 +14,7 @@ import {
 } from '../generated';
 import apiConfiguration from '../utils/apiConfiguration';
 import { AppInfo } from '../models/AppInfo';
-import { AuthenticateTransactionArgs } from '../types/AuthenticateTransactionArgs';
 import { UserInfo } from '../models/UserInfo';
-import { RegisterTransactionArgs } from '../types/RegisterTransactionArgs';
 
 /**
  * PassageFlex class used to get app info, create transactions, and verify nonces
@@ -80,10 +80,10 @@ export class PassageFlex {
     /**
      * Create a transaction to start a user's registration process
      *
-     * @param {RegisterTransactionArgs} args The required values to create a transaction
+     * @param {CreateTransactionRegisterRequest} args The required values to create a transaction
      * @return {Promise<string>} The transaction ID
      */
-    public async createRegisterTransaction(args: RegisterTransactionArgs): Promise<string> {
+    public async createRegisterTransaction(args: CreateTransactionRegisterRequest): Promise<string> {
         try {
             const { externalId, passkeyDisplayName } = args;
             const response = await this.transactionClient.createRegisterTransaction({
@@ -103,10 +103,10 @@ export class PassageFlex {
     /**
      * Create a transaction to start a user's authentication process
      *
-     * @param {AuthenticateTransactionArgs} args The required values to create a transaction
+     * @param {CreateTransactionAuthenticateRequest} args The required values to create a transaction
      * @return {Promise<string>} The transaction ID
      */
-    public async createAuthenticateTransaction(args: AuthenticateTransactionArgs): Promise<string> {
+    public async createAuthenticateTransaction(args: CreateTransactionAuthenticateRequest): Promise<string> {
         try {
             const { externalId } = args;
             const response = await this.transactionClient.createAuthenticateTransaction({

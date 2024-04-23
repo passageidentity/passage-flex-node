@@ -4,6 +4,8 @@ import {
     AppsApi,
     AuthenticateApi,
     Configuration,
+    CreateTransactionAuthenticateRequest,
+    CreateTransactionRegisterRequest,
     ResponseError,
     TransactionsApi,
     UserDevicesApi,
@@ -12,9 +14,7 @@ import {
 } from '../generated';
 import apiConfiguration from '../utils/apiConfiguration';
 import { AppInfo } from '../models/AppInfo';
-import { AuthenticateTransactionArgs } from '../types/AuthenticateTransactionArgs';
 import { UserInfo } from '../models/UserInfo';
-import { RegisterTransactionArgs } from '../types/RegisterTransactionArgs';
 
 /**
  * PassageFlex class used to get app info, create transactions, and verify nonces
@@ -35,7 +35,7 @@ export class PassageFlex {
      */
     public constructor(config: PassageConfig) {
         if (!config.appId || !config.apiKey) {
-            throw new PassageError(
+            throw PassageError.fromMessage(
                 'A Passage appId and apiKey are required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         }
@@ -73,52 +73,57 @@ export class PassageFlex {
 
             return appInfo;
         } catch (err) {
-            throw new PassageError('Could not fetch app', err as ResponseError);
+            if (err instanceof ResponseError) {
+                throw await PassageError.fromResponseError('Could not fetch app', err);
+            }
+
+            throw err;
         }
     }
 
     /**
      * Create a transaction to start a user's registration process
      *
-     * @param {RegisterTransactionArgs} args The required values to create a transaction
+     * @param {CreateTransactionRegisterRequest} args The required values to create a transaction
      * @return {Promise<string>} The transaction ID
      */
-    public async createRegisterTransaction(args: RegisterTransactionArgs): Promise<string> {
+    public async createRegisterTransaction(args: CreateTransactionRegisterRequest): Promise<string> {
         try {
-            const { externalId, passkeyDisplayName } = args;
             const response = await this.transactionClient.createRegisterTransaction({
                 appId: this.appId,
-                createTransactionRegisterRequest: {
-                    externalId,
-                    passkeyDisplayName,
-                },
+                createTransactionRegisterRequest: args,
             });
 
             return response.transactionId;
         } catch (err) {
-            throw new PassageError('Could not create register transaction', err as ResponseError);
+            if (err instanceof ResponseError) {
+                throw await PassageError.fromResponseError('Could not create register transaction', err);
+            }
+
+            throw err;
         }
     }
 
     /**
      * Create a transaction to start a user's authentication process
      *
-     * @param {AuthenticateTransactionArgs} args The required values to create a transaction
+     * @param {CreateTransactionAuthenticateRequest} args The required values to create a transaction
      * @return {Promise<string>} The transaction ID
      */
-    public async createAuthenticateTransaction(args: AuthenticateTransactionArgs): Promise<string> {
+    public async createAuthenticateTransaction(args: CreateTransactionAuthenticateRequest): Promise<string> {
         try {
-            const { externalId } = args;
             const response = await this.transactionClient.createAuthenticateTransaction({
                 appId: this.appId,
-                createTransactionAuthenticateRequest: {
-                    externalId,
-                },
+                createTransactionAuthenticateRequest: args,
             });
 
             return response.transactionId;
         } catch (err) {
-            throw new PassageError('Could not create authenticate transaction', err as ResponseError);
+            if (err instanceof ResponseError) {
+                throw await PassageError.fromResponseError('Could not create authenticate transaction', err);
+            }
+
+            throw err;
         }
     }
 
@@ -139,7 +144,11 @@ export class PassageFlex {
 
             return response.externalId;
         } catch (err) {
-            throw new PassageError('Could not verify nonce', err as ResponseError);
+            if (err instanceof ResponseError) {
+                throw await PassageError.fromResponseError('Could not verify nonce', err);
+            }
+
+            throw err;
         }
     }
 
@@ -159,12 +168,16 @@ export class PassageFlex {
 
             const users = response.users;
             if (!users.length) {
-                throw new PassageError('Could not find user with that external ID');
+                throw PassageError.fromMessage('Could not find user with that external ID');
             }
 
             return await this.getUserById(users[0].id);
         } catch (err) {
-            throw new PassageError('Could not fetch user by external ID', err as ResponseError);
+            if (err instanceof ResponseError) {
+                throw await PassageError.fromResponseError('Could not fetch user by external ID', err);
+            }
+
+            throw err;
         }
     }
 
@@ -184,7 +197,11 @@ export class PassageFlex {
 
             return response.devices;
         } catch (err) {
-            throw new PassageError("Could not fetch user's devices", err as ResponseError);
+            if (err instanceof ResponseError) {
+                throw await PassageError.fromResponseError("Could not fetch user's devices", err);
+            }
+
+            throw err;
         }
     }
 
@@ -206,7 +223,11 @@ export class PassageFlex {
 
             return true;
         } catch (err) {
-            throw new PassageError("Could not delete user's device", err as ResponseError);
+            if (err instanceof ResponseError) {
+                throw await PassageError.fromResponseError("Could not delete user's device", err);
+            }
+
+            throw err;
         }
     }
 

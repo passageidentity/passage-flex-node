@@ -2,6 +2,21 @@
   "name": "@passageidentity/passage-flex-node",
   "entries": [
     {
+      "date": "Thu, 25 Apr 2024 17:01:51 GMT",
+      "version": "0.2.2",
+      "tag": "@passageidentity/passage-flex-node_v0.2.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "9854556478e5ff51d59a204f25c95dba007db919",
+            "comment": "fix: now passes the error info from the api response through to the PassageError object"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 12 Apr 2024 16:57:01 GMT",
       "version": "0.2.1",
       "tag": "@passageidentity/passage-flex-node_v0.2.1",

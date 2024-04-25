@@ -1,8 +1,16 @@
 # Change Log - @passageidentity/passage-flex-node
 
-This log was last generated on Fri, 12 Apr 2024 16:57:01 GMT and should not be manually modified.
+This log was last generated on Thu, 25 Apr 2024 17:01:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.2
+
+Thu, 25 Apr 2024 17:01:51 GMT
+
+### Patches
+
+- fix: now passes the error info from the api response through to the PassageError object (chris.tran@agilebits.com)
 
 ## 0.2.1
 

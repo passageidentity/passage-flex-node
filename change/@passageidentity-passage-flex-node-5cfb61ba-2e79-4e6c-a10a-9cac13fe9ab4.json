@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix: now passes the error info from the api response through to the PassageError object",
-  "packageName": "@passageidentity/passage-flex-node",
-  "email": "chris.tran@agilebits.com",
-  "dependentChangeType": "patch"
-}

@@ -108,6 +108,12 @@ export interface AppInfo {
     authOrigin: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof AppInfo
+     */
+    autoThemeEnabled: boolean;
+    /**
+     * 
      * @type {Date}
      * @memberof AppInfo
      */
@@ -313,6 +319,7 @@ export function instanceOfAppInfo(value: object): boolean {
     isInstance = isInstance && "authFallbackMethodTtl" in value;
     isInstance = isInstance && "authMethods" in value;
     isInstance = isInstance && "authOrigin" in value;
+    isInstance = isInstance && "autoThemeEnabled" in value;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "defaultLanguage" in value;
     isInstance = isInstance && "id" in value;
@@ -362,6 +369,7 @@ export function AppInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
         'authFallbackMethodTtl': json['auth_fallback_method_ttl'],
         'authMethods': AuthMethodsFromJSON(json['auth_methods']),
         'authOrigin': json['auth_origin'],
+        'autoThemeEnabled': json['auto_theme_enabled'],
         'createdAt': (new Date(json['created_at'])),
         'defaultLanguage': json['default_language'],
         'id': json['id'],
@@ -413,6 +421,7 @@ export function AppInfoToJSON(value?: AppInfo | null): any {
         'auth_fallback_method_ttl': value.authFallbackMethodTtl,
         'auth_methods': AuthMethodsToJSON(value.authMethods),
         'auth_origin': value.authOrigin,
+        'auto_theme_enabled': value.autoThemeEnabled,
         'created_at': (value.createdAt.toISOString()),
         'default_language': value.defaultLanguage,
         'id': value.id,

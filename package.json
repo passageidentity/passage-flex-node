@@ -29,6 +29,7 @@
     "lib/",
     "CHANGELOG.md"
   ],
+  "private": false,
   "publishConfig": {
     "access": "public"
   },

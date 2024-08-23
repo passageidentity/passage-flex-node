@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix: adds security scheme to authenticateVerify operation",
+  "packageName": "@passageidentity/passage-flex-node",
+  "email": "chris.tran@agilebits.com",
+  "dependentChangeType": "patch"
+}

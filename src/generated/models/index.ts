@@ -30,6 +30,7 @@ export * from './OtpAuthMethod';
 export * from './PaginatedLinks';
 export * from './PasskeysAuthMethod';
 export * from './Technologies';
+export * from './ThemeType';
 export * from './TtlDisplayUnit';
 export * from './UserEventStatus';
 export * from './UserInfo';

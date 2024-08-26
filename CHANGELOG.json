@@ -2,6 +2,35 @@
   "name": "@passageidentity/passage-flex-node",
   "entries": [
     {
+      "date": "Mon, 26 Aug 2024 18:43:54 GMT",
+      "version": "0.2.3",
+      "tag": "@passageidentity/passage-flex-node_v0.2.3",
+      "comments": {
+        "none": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "74835768469cd0ce6c6fec88886454d0147c3239",
+            "comment": "chore: explicitly sets \"private: false\" field in package.json to try to fix npm publish"
+          },
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "74835768469cd0ce6c6fec88886454d0147c3239",
+            "comment": "chore: adds beachball config for public package publishing"
+          }
+        ],
+        "patch": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "74835768469cd0ce6c6fec88886454d0147c3239",
+            "comment": "fix: adds security scheme to authenticateVerify operation"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 25 Apr 2024 17:01:51 GMT",
       "version": "0.2.2",
       "tag": "@passageidentity/passage-flex-node_v0.2.2",

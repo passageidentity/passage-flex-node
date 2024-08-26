@@ -1,8 +1,16 @@
 # Change Log - @passageidentity/passage-flex-node
 
-This log was last generated on Thu, 25 Apr 2024 17:01:51 GMT and should not be manually modified.
+This log was last generated on Mon, 26 Aug 2024 18:43:54 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.3
+
+Mon, 26 Aug 2024 18:43:54 GMT
+
+### Patches
+
+- fix: adds security scheme to authenticateVerify operation (chris.tran@agilebits.com)
 
 ## 0.2.2
 

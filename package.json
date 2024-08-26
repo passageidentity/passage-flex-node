@@ -1,6 +1,6 @@
 {
   "name": "@passageidentity/passage-flex-node",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Passage Identity",
   "description": "Node.js client SDK for Passage Passkey Flex",
   "repository": {

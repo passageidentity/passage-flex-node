@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "chore: adds beachball config for public package publishing",
-  "packageName": "@passageidentity/passage-flex-node",
-  "email": "chris.tran@agilebits.com",
-  "dependentChangeType": "none"
-}

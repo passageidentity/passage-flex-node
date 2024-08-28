@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: fixes the name of the passage version header",
+  "packageName": "@passageidentity/passage-flex-node",
+  "email": "chris.tran@agilebits.com",
+  "dependentChangeType": "patch"
+}

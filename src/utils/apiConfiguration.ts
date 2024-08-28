@@ -14,7 +14,7 @@ export default function apiConfiguration(config?: ConfigurationParameters): Conf
         headers: {
             ...config?.headers,
             'Authorization': `Bearer ${config?.accessToken}`,
-            'Passage-Flex-Version': process.env.npm_package_version || '',
+            'Passage-Version': `passage-flex-node ${process.env.npm_package_version ?? ''}`,
         },
         middleware: [],
     });

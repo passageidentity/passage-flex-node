@@ -15,6 +15,7 @@ import {
 import apiConfiguration from '../utils/apiConfiguration';
 import { AppInfo } from '../models/AppInfo';
 import { UserInfo } from '../models/UserInfo';
+import { createRemoteJWKSet, decodeProtectedHeader, jwtVerify } from 'jose';
 
 /**
  * PassageFlex class used to get app info, create transactions, and verify nonces
@@ -28,6 +29,7 @@ export class PassageFlex {
     private readonly authClient: AuthenticateApi;
     private readonly userClient: UsersApi;
     private readonly deviceClient: UserDevicesApi;
+    private readonly jwks: ReturnType<typeof createRemoteJWKSet>;
 
     /**
      * Initialize a new PassageFlex instance
@@ -51,6 +53,10 @@ export class PassageFlex {
         this.authClient = new AuthenticateApi(this.configuration);
         this.userClient = new UsersApi(this.configuration);
         this.deviceClient = new UserDevicesApi(this.configuration);
+
+        this.jwks = createRemoteJWKSet(new URL(`http://localhost:3003/v1/apps/${this.appId}/.well-known/jwks.json`), {
+            cacheMaxAge: 1000 * 60 * 60 * 24, // 24 hours
+        });
     }
 
     /**
@@ -150,6 +156,29 @@ export class PassageFlex {
 
             throw err;
         }
+    }
+
+    /**
+     * Determine if the provided token is valid when compared with its
+     * respective public key.
+     *
+     * @param {string} token Authentication token
+     * @return {string} sub claim if the jwt can be verified, or Error
+     */
+    public async verifyAuthToken(token: string): Promise<string | undefined> {
+        const { kid } = decodeProtectedHeader(token);
+        if (!kid) {
+            throw PassageError.fromMessage('Could not decode token header');
+        }
+
+        const jwt = await jwtVerify(token, this.jwks);
+        const userID = jwt.payload.sub;
+
+        if (!userID) {
+            throw PassageError.fromMessage('Could not verify token identity');
+        }
+
+        return userID.toString();
     }
 
     /**

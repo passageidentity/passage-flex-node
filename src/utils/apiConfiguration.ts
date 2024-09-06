@@ -9,6 +9,7 @@ import fetch from 'node-fetch';
  */
 export default function apiConfiguration(config?: ConfigurationParameters): Configuration {
     const configuration = new Configuration({
+        basePath: config?.basePath,
         accessToken: config?.accessToken,
         fetchApi: fetch as unknown as ConfigurationParameters['fetchApi'],
         headers: {

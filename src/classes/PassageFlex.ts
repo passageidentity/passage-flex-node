@@ -47,6 +47,7 @@ export class PassageFlex {
 
         this.configuration = apiConfiguration({
             accessToken: this.apiKey,
+            basePath: 'http://localhost:3003/v1',
         });
         this.appClient = new AppsApi(this.configuration);
         this.transactionClient = new TransactionsApi(this.configuration);
@@ -54,7 +55,7 @@ export class PassageFlex {
         this.userClient = new UsersApi(this.configuration);
         this.deviceClient = new UserDevicesApi(this.configuration);
 
-        this.jwks = createRemoteJWKSet(new URL(`http://localhost:3003/v1/apps/${this.appId}/.well-known/jwks.json`), {
+        this.jwks = createRemoteJWKSet(new URL(`http://localhost:3016/apps/${this.appId}/.well-known/jwks.json`), {
             cacheMaxAge: 1000 * 60 * 60 * 24, // 24 hours
         });
     }

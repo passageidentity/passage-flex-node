@@ -38,9 +38,10 @@ export interface Model409Error {
  * @export
  */
 export const Model409ErrorCodeEnum = {
-    AlreadyAdmin: 'user_already_admin',
-    AlreadyOrganizationMember: 'user_already_organization_member',
-    HasNoPasskeys: 'user_has_no_passkeys'
+    UserAlreadyAdmin: 'user_already_admin',
+    UserAlreadyOrganizationMember: 'user_already_organization_member',
+    UserHasNoPasskeys: 'user_has_no_passkeys',
+    NativeClientAlreadyExists: 'native_client_already_exists'
 } as const;
 export type Model409ErrorCodeEnum = typeof Model409ErrorCodeEnum[keyof typeof Model409ErrorCodeEnum];
 

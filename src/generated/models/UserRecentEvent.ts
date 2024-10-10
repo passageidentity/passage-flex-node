@@ -13,6 +13,18 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { SocialConnectionType } from './SocialConnectionType';
+import {
+    SocialConnectionTypeFromJSON,
+    SocialConnectionTypeFromJSONTyped,
+    SocialConnectionTypeToJSON,
+} from './SocialConnectionType';
+import type { UserEventAction } from './UserEventAction';
+import {
+    UserEventActionFromJSON,
+    UserEventActionFromJSONTyped,
+    UserEventActionToJSON,
+} from './UserEventAction';
 import type { UserEventStatus } from './UserEventStatus';
 import {
     UserEventStatusFromJSON,
@@ -63,11 +75,29 @@ export interface UserRecentEvent {
      */
     type: string;
     /**
-     * 
+     * The raw user agent value from the originating device
      * @type {string}
      * @memberof UserRecentEvent
      */
     userAgent: string;
+    /**
+     * A display-friendly version of the user agent
+     * @type {string}
+     * @memberof UserRecentEvent
+     */
+    userAgentDisplay: string;
+    /**
+     * 
+     * @type {UserEventAction}
+     * @memberof UserRecentEvent
+     */
+    action: UserEventAction;
+    /**
+     * 
+     * @type {SocialConnectionType}
+     * @memberof UserRecentEvent
+     */
+    socialLoginType: SocialConnectionType | null;
 }
 
 /**
@@ -82,6 +112,9 @@ export function instanceOfUserRecentEvent(value: object): boolean {
     isInstance = isInstance && "status" in value;
     isInstance = isInstance && "type" in value;
     isInstance = isInstance && "userAgent" in value;
+    isInstance = isInstance && "userAgentDisplay" in value;
+    isInstance = isInstance && "action" in value;
+    isInstance = isInstance && "socialLoginType" in value;
 
     return isInstance;
 }
@@ -103,6 +136,9 @@ export function UserRecentEventFromJSONTyped(json: any, ignoreDiscriminator: boo
         'status': UserEventStatusFromJSON(json['status']),
         'type': json['type'],
         'userAgent': json['user_agent'],
+        'userAgentDisplay': json['user_agent_display'],
+        'action': UserEventActionFromJSON(json['action']),
+        'socialLoginType': SocialConnectionTypeFromJSON(json['social_login_type']),
     };
 }
 
@@ -122,6 +158,9 @@ export function UserRecentEventToJSON(value?: UserRecentEvent | null): any {
         'status': UserEventStatusToJSON(value.status),
         'type': value.type,
         'user_agent': value.userAgent,
+        'user_agent_display': value.userAgentDisplay,
+        'action': UserEventActionToJSON(value.action),
+        'social_login_type': SocialConnectionTypeToJSON(value.socialLoginType),
     };
 }
 

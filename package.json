@@ -1,20 +1,32 @@
 {
   "name": "@passageidentity/passage-flex-node",
   "version": "0.2.3",
-  "author": "Passage Identity",
-  "description": "Node.js client SDK for Passage Passkey Flex",
+  "author": "Passage by 1Password",
+  "description": "Passkey Flex for Node.js - Add passkey authentication to your own Node.js authentication flows with Passage by 1Password",
+  "homepage": "https://docs.passage.id/complete",
+  "bugs": {
+    "url": "https://github.com/passageidentity/.github/blob/main/SUPPORT.md",
+    "email": "support@passage.id"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "typescript",
+    "authentication",
+    "passkeys",
+    "passwordless",
+    "webauthn",
+    "passkey-flex",
+    "biometrics",
+    "1password",
+    "passage",
+    "passage-sdk"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/passageidentity/passage-flex-node.git"
   },
   "license": "MIT",
-  "keywords": [
-    "passage",
-    "identity",
-    "passageidentity",
-    "authentication",
-    "login"
-  ],
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "types": "lib/esm/index.d.ts",

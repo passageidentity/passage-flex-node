@@ -1,6 +1,6 @@
 ![passage-flex-node](https://storage.googleapis.com/passage-docs/github-md-assets/passage-flex-node.png)
 
-![NPM Version](https://img.shields.io/npm/v/%40passageidentity%2Fpassage-flex-node?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40passageidentity%2Fpassage-flex-node) ![NPM Type Definitions](https://img.shields.io/npm/types/%40passageidentity%2Fpassage-flex-node) ![GitHub License](https://img.shields.io/github/license/passageidentity/passage-flex-node)
+![NPM Version](https://img.shields.io/npm/v/%40passageidentity%2Fpassage-flex-node?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40passageidentity%2Fpassage-flex-node) ![NPM Type Definitions](https://img.shields.io/npm/types/%40passageidentity%2Fpassage-flex-node) [![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#) ![GitHub License](https://img.shields.io/github/license/passageidentity/passage-flex-node)
 ![Static Badge](https://img.shields.io/badge/Built_by_1Password-grey?logo=1password)
 
 ## About

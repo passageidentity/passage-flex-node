@@ -1,183 +1,81 @@
-<img src="https://storage.googleapis.com/passage-docs/passage-logo-gradient.svg" alt="Passage logo" style="width:250px;"/>
+![passage-flex-node](https://storage.googleapis.com/passage-docs/github-md-assets/passage-flex-node.png)
 
-[![npm version](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-node.svg)](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-node)
+![NPM Version](https://img.shields.io/npm/v/%40passageidentity%2Fpassage-flex-node?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40passageidentity%2Fpassage-flex-node) ![NPM Type Definitions](https://img.shields.io/npm/types/%40passageidentity%2Fpassage-flex-node) ![GitHub License](https://img.shields.io/github/license/passageidentity/passage-flex-node)
+![Static Badge](https://img.shields.io/badge/Built_by_1Password-grey?logo=1password)
 
-# passage-flex-node
+## About
 
-This Node.js SDK allows for verification of server-side authentication for applications using [Passage Passkey Flex](https://passage.id).
+[Passage by 1Password](https://1password.com/product/passage) unlocks the passwordless future with a simpler, more secure passkey authentication experience. Passage handles the complexities of the [WebAuthn API](https://blog.1password.com/what-is-webauthn/), and allows you to implement passkeys with ease.
 
-Install this package using npm.
+Use [Passkey Flex](https://docs.passage.id/flex) to add passkeys to an existing authentication experience.
 
-```
+Use [Passkey Complete](https://docs.passage.id/complete) as a standalone passwordless auth solution.
+
+Use [Passkey Ready](https://docs.passage.id/passkey-ready) to determine if your users are ready for passkeys.
+
+### In passage-flex-node
+
+Use passage-flex-node to implement Passkey Flex into your Node.js backend to authenticate requests and manage users.
+
+| Product                                                                                                                                  | Compatible                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| ![Passkey Flex](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-flex-icon.png) Passkey **Flex**             | ✅  |
+| ![Passkey Complete](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-complete-icon.png) Passkey **Complete** | ✖️ For Passkey Complete, check out [passage-node](https://github.com/passageidentity/passage-node)                                                                                    |
+| ![Passkey Ready](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-ready-icon.png) Passkey **Ready**          | ✖️ For Passkey Ready, check out [Authentikit](https://www.npmjs.com/package/@passageidentity/authentikit) |
+
+## Getting Started
+
+### Check Prerequisites
+
+<p>
+ You'll need a free Passage account and a Passkey Complete app set up in <a href="https://console.passage.id/">Passage Console</a> to get started. <br />
+ <sub><a href="https://docs.passage.id/home#passage-console">Learn more about Passage Console →</a></sub>
+</p>
+
+### Install
+
+```shell
 npm i @passageidentity/passage-flex-node
 ```
 
-## Create a PassageFlex object
+### Import
 
-You will need to use a Passage AppID and API key. The API key can be created in the Passage Console under your Application Settings. This API key grants your web server access to the Passage management APIs to get and update information about users. This API key must be protected and stored in an appropriate secure storage location. It should never be hard-coded in the repository.
-
-```javascript
+```js
 import { PassageFlex, PassageConfig } from '@passageidentity/passage-flex-node';
+```
 
-const passageConfig: PassageConfig = {
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
+### Initialize
+
+```js
+const passageConfig = {
+  appID: process.env.YOUR_PASSAGE_APP_ID,
+  apiKey: process.env.YOUR_PASSAGE_API_KEY,
 };
 
-try {
-    const passage = new PassageFlex(passageConfig);
-} catch (err) {
-    // this will throw a PassageError if the appId or apiKey are empty
-}
+let passage = new Passage(passageConfig);
 ```
 
-## Retrieve app info
+### Go Passwordless
 
-To retrieve information about an app, you should use the `passage.getApp()` function.
+Find all core functions and more implementation guidance on our [Passkey Flex Node.js Documentation](https://docs.passage.id/flex/node) page.
 
-```javascript
-import { PassageFlex } from '@passageidentity/passage-flex-node';
+## Support & Feedback
 
-const passage = new PassageFlex({
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
-});
+We are here to help! Find additional docs, the best ways to get in touch with our team, and more within our [support resources](https://github.com/passageidentity/.github/blob/main/SUPPORT.md).
 
-const passageApp = await passage.getApp();
-console.log(passageApp.authOrigin);
-```
+<br />
 
-## Create a registration transaction
+---
 
-To create a transaction to kick off a user passkey registration, you should use the `passage.createRegisterTransaction()` function.
+<p align="center">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-light.png">
+      <img alt="Passage by 1Password Logo" src="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-light.png">
+    </picture>
+</p>
 
-```javascript
-import { PassageFlex } from '@passageidentity/passage-flex-node';
-
-const passage = new PassageFlex({
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
-});
-
-const transaction = await passage.createRegisterTransaction({
-    externalId: 'a unique immutable string that represents your user',
-    passkeyDisplayName: "the label for the user's passkey that they will see when logging in",
-});
-```
-
-## Create an authentication transaction
-
-To create a transaction to kick off a user passkey authentication, you should use the `passage.createAuthenticateTransaction()` function.
-
-```javascript
-import { PassageFlex } from '@passageidentity/passage-flex-node';
-
-const passage = new PassageFlex({
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
-});
-
-const transaction = await passage.createAuthenticateTransaction({
-    externalId: 'a unique immutable string that represents your user',
-});
-```
-
-## Verify a nonce
-
-To verify a nonce that you received from the end of of passkey registration or authentication ceremony, you should use the `passage.verifyNonce()` function.
-
-```javascript
-import { PassageFlex } from '@passageidentity/passage-flex-node';
-
-const passage = new PassageFlex({
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
-});
-
-try {
-    const externalId = await passage.verifyNonce('nonce');
-
-    // use externalId to do things like generate and send your own auth token
-} catch (err) {
-    // nonce was invalid or unable to be verified
-}
-```
-
-## Retrieve user info
-
-To retrieve information about a user by their external ID -- which is the unique, immutable ID you supply to associate the Passage user with your user -- you should use the `passage.getUser()` function.
-
-```javascript
-import { PassageFlex } from '@passageidentity/passage-flex-node';
-import express from 'express';
-
-const app = express();
-const passage = new PassageFlex({
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
-});
-
-// example authenticated route
-app.get('/authenticatedRoute', authMiddleware, async (req, res) => {
-    // this should be the same value you used when creating the transaction
-    const externalId = yourUser.id;
-
-    // get user info
-    const passageUser = await passage.getUser(externalId);
-    console.log(passageUser.webauthnDevices);
-});
-```
-
-## Retrieve a user's passkey devices
-
-To retrieve information about a user's passkey devices you should use the `passage.getDevices()` function.
-
-```javascript
-import { PassageFlex } from '@passageidentity/passage-flex-node';
-
-const passage = new PassageFlex({
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
-});
-
-// this should be the same value you used when creating the transaction
-const externalId = yourUser.id;
-
-// get devices
-const passkeyDevices = await passage.getDevices(externalId);
-for (const device of passkeyDevices) {
-    console.log(device.usageCount);
-}
-```
-
-## Revoke a user's passkey device
-
-To revoke a user's passkey device you should use the `passage.revokeDevice()` function.
-
-```javascript
-import { PassageFlex } from '@passageidentity/passage-flex-node';
-
-const passage = new PassageFlex({
-    appId: process.env.PASSAGE_APP_ID,
-    apiKey: process.env.PASSAGE_API_KEY,
-});
-
-// this should be the same value you used when creating the transaction
-const externalId = yourUser.id;
-const lastYear = new Date();
-lastYear.setFullYear(lastYear.getFullYear() - 1);
-
-// get devices
-const passkeyDevices = await passage.getDevices(externalId);
-
-for (const device of passkeyDevices) {
-    // revoke old devices that haven't been used
-    if (device.usageCount == 0 && device.lastLoginAt < lastYear) {
-        try {
-            await passage.revokeDevice(externalId, device.id);
-        } catch (err) {
-            // device couldn't be revoked
-        }
-    }
-}
-```
+<p align="center">
+    <sub>Passage is a product by <a href="https://1password.com/product/passage">1Password</a>, the global leader in access management solutions with nearly 150k business customers.</sub><br />
+    <sub>This project is licensed under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</sub>
+</p>

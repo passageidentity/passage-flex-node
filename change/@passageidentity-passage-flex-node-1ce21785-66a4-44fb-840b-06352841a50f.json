@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Update documentation and use org-level community files in repository",
+  "packageName": "@passageidentity/passage-flex-node",
+  "email": "jennifer.macfarlane@agilebits.com",
+  "dependentChangeType": "none"
+}

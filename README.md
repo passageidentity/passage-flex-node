@@ -19,8 +19,8 @@ Use passage-flex-node to implement Passkey Flex into your Node.js backend to aut
 
 | Product                                                                                                                                  | Compatible                                                                                                |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| ![Passkey Flex](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-flex-icon.png) Passkey **Flex**             | ✅  |
-| ![Passkey Complete](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-complete-icon.png) Passkey **Complete** | ✖️ For Passkey Complete, check out [passage-node](https://github.com/passageidentity/passage-node)                                                                                    |
+| ![Passkey Flex](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-flex-icon.png) Passkey **Flex**             | ✅                                                                                                        |
+| ![Passkey Complete](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-complete-icon.png) Passkey **Complete** | ✖️ For Passkey Complete, check out [passage-node](https://github.com/passageidentity/passage-node)        |
 | ![Passkey Ready](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-ready-icon.png) Passkey **Ready**          | ✖️ For Passkey Ready, check out [Authentikit](https://www.npmjs.com/package/@passageidentity/authentikit) |
 
 ## Getting Started
@@ -28,7 +28,7 @@ Use passage-flex-node to implement Passkey Flex into your Node.js backend to aut
 ### Check Prerequisites
 
 <p>
- You'll need a free Passage account and a Passkey Complete app set up in <a href="https://console.passage.id/">Passage Console</a> to get started. <br />
+ You'll need a free Passage account and a Passkey Flex app set up in <a href="https://console.passage.id/">Passage Console</a> to get started. <br />
  <sub><a href="https://docs.passage.id/home#passage-console">Learn more about Passage Console →</a></sub>
 </p>
 
@@ -48,8 +48,8 @@ import { PassageFlex, PassageConfig } from '@passageidentity/passage-flex-node';
 
 ```js
 const passageConfig = {
-  appID: process.env.YOUR_PASSAGE_APP_ID,
-  apiKey: process.env.YOUR_PASSAGE_API_KEY,
+    appID: process.env.YOUR_PASSAGE_APP_ID,
+    apiKey: process.env.YOUR_PASSAGE_API_KEY,
 };
 
 let passage = new Passage(passageConfig);

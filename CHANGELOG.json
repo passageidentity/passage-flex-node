@@ -2,6 +2,35 @@
   "name": "@passageidentity/passage-flex-node",
   "entries": [
     {
+      "date": "Thu, 24 Oct 2024 15:09:00 GMT",
+      "version": "0.2.4",
+      "tag": "@passageidentity/passage-flex-node_v0.2.4",
+      "comments": {
+        "none": [
+          {
+            "author": "jennifer.macfarlane@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "6fa0710660b4ead9b6ee1967c929850314f71c06",
+            "comment": "Update documentation and use org-level community files in repository"
+          }
+        ],
+        "patch": [
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "6fa0710660b4ead9b6ee1967c929850314f71c06",
+            "comment": "chore: fixes the name of the passage version header"
+          },
+          {
+            "author": "chris.tran@agilebits.com",
+            "package": "@passageidentity/passage-flex-node",
+            "commit": "6fa0710660b4ead9b6ee1967c929850314f71c06",
+            "comment": "Chore(deps-dev): bump braces from 3.0.2 to 3.0.3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 26 Aug 2024 18:43:54 GMT",
       "version": "0.2.3",
       "tag": "@passageidentity/passage-flex-node_v0.2.3",

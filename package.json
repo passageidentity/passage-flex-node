@@ -1,6 +1,6 @@
 {
   "name": "@passageidentity/passage-flex-node",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "Passage by 1Password",
   "description": "Passkey Flex for Node.js - Add passkey authentication to your own Node.js authentication flows with Passage by 1Password",
   "homepage": "https://docs.passage.id/complete",

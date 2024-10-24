@@ -1,8 +1,17 @@
 # Change Log - @passageidentity/passage-flex-node
 
-This log was last generated on Mon, 26 Aug 2024 18:43:54 GMT and should not be manually modified.
+This log was last generated on Thu, 24 Oct 2024 15:09:00 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.4
+
+Thu, 24 Oct 2024 15:09:00 GMT
+
+### Patches
+
+- chore: fixes the name of the passage version header (chris.tran@agilebits.com)
+- Chore(deps-dev): bump braces from 3.0.2 to 3.0.3 (chris.tran@agilebits.com)
 
 ## 0.2.3
 

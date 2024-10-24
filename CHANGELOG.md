@@ -1,8 +1,16 @@
 # Change Log - @passageidentity/passage-flex-node
 
-This log was last generated on Thu, 24 Oct 2024 15:09:00 GMT and should not be manually modified.
+This log was last generated on Thu, 24 Oct 2024 15:40:33 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.5
+
+Thu, 24 Oct 2024 15:40:33 GMT
+
+### Patches
+
+- Update copy (jennifer.macfarlane@agilebits.com)
 
 ## 0.2.4
 

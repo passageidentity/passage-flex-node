@@ -34,7 +34,7 @@ jobs:
                   npm run beachball-bump
 
             - name: Build
-              run: npm run tsc
+              run: npm run build
 
             - name: Clear Beachball Changes
               run: |

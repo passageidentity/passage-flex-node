@@ -53,7 +53,7 @@
     "dev": "ts-node-dev --respawn testServer.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "change": "beachball change",
     "publish": "beachball publish -y",
     "beachball-bump": "beachball bump",

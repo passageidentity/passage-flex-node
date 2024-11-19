@@ -27,14 +27,15 @@
     "url": "git+https://github.com/passageidentity/passage-flex-node.git"
   },
   "license": "MIT",
+  "type": "commonjs",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "types": "lib/esm/index.d.ts",
   "exports": {
     ".": {
+      "types": "./lib/esm/index.d.ts",
       "require": "./lib/cjs/index.js",
-      "import": "./lib/esm/index.js",
-      "types": "./lib/esm/index.d.ts"
+      "import": "./lib/esm/index.js"
     }
   },
   "files": [
@@ -44,6 +45,9 @@
   "private": false,
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": "^16 || ^18 || ^20 || ^22"
   },
   "scripts": {
     "lint": "eslint '{src,tests}/**/*.ts' --fix",
@@ -86,6 +90,6 @@
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.4.3"
+    "typescript": "^5.6.3"
   }
 }

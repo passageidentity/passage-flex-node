@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,14 +48,12 @@ export interface GoogleUserSocialConnection {
 /**
  * Check if a given object implements the GoogleUserSocialConnection interface.
  */
-export function instanceOfGoogleUserSocialConnection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "providerId" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "lastLoginAt" in value;
-    isInstance = isInstance && "providerIdentifier" in value;
-
-    return isInstance;
+export function instanceOfGoogleUserSocialConnection(value: object): value is GoogleUserSocialConnection {
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('lastLoginAt' in value) || value['lastLoginAt'] === undefined) return false;
+    if (!('providerIdentifier' in value) || value['providerIdentifier'] === undefined) return false;
+    return true;
 }
 
 export function GoogleUserSocialConnectionFromJSON(json: any): GoogleUserSocialConnection {
@@ -63,7 +61,7 @@ export function GoogleUserSocialConnectionFromJSON(json: any): GoogleUserSocialC
 }
 
 export function GoogleUserSocialConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): GoogleUserSocialConnection {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,19 +73,21 @@ export function GoogleUserSocialConnectionFromJSONTyped(json: any, ignoreDiscrim
     };
 }
 
-export function GoogleUserSocialConnectionToJSON(value?: GoogleUserSocialConnection | null): any {
-    if (value === undefined) {
-        return undefined;
+export function GoogleUserSocialConnectionToJSON(json: any): GoogleUserSocialConnection {
+    return GoogleUserSocialConnectionToJSONTyped(json, false);
+}
+
+export function GoogleUserSocialConnectionToJSONTyped(value?: GoogleUserSocialConnection | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'provider_id': value.providerId,
-        'created_at': (value.createdAt.toISOString()),
-        'last_login_at': (value.lastLoginAt.toISOString()),
-        'provider_identifier': value.providerIdentifier,
+        'provider_id': value['providerId'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'last_login_at': ((value['lastLoginAt']).toISOString()),
+        'provider_identifier': value['providerIdentifier'],
     };
 }
 

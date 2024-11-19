@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,14 +48,12 @@ export interface AppleUserSocialConnection {
 /**
  * Check if a given object implements the AppleUserSocialConnection interface.
  */
-export function instanceOfAppleUserSocialConnection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "providerId" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "lastLoginAt" in value;
-    isInstance = isInstance && "providerIdentifier" in value;
-
-    return isInstance;
+export function instanceOfAppleUserSocialConnection(value: object): value is AppleUserSocialConnection {
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('lastLoginAt' in value) || value['lastLoginAt'] === undefined) return false;
+    if (!('providerIdentifier' in value) || value['providerIdentifier'] === undefined) return false;
+    return true;
 }
 
 export function AppleUserSocialConnectionFromJSON(json: any): AppleUserSocialConnection {
@@ -63,7 +61,7 @@ export function AppleUserSocialConnectionFromJSON(json: any): AppleUserSocialCon
 }
 
 export function AppleUserSocialConnectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): AppleUserSocialConnection {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,19 +73,21 @@ export function AppleUserSocialConnectionFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function AppleUserSocialConnectionToJSON(value?: AppleUserSocialConnection | null): any {
-    if (value === undefined) {
-        return undefined;
+export function AppleUserSocialConnectionToJSON(json: any): AppleUserSocialConnection {
+    return AppleUserSocialConnectionToJSONTyped(json, false);
+}
+
+export function AppleUserSocialConnectionToJSONTyped(value?: AppleUserSocialConnection | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'provider_id': value.providerId,
-        'created_at': (value.createdAt.toISOString()),
-        'last_login_at': (value.lastLoginAt.toISOString()),
-        'provider_identifier': value.providerIdentifier,
+        'provider_id': value['providerId'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'last_login_at': ((value['lastLoginAt']).toISOString()),
+        'provider_identifier': value['providerIdentifier'],
     };
 }
 

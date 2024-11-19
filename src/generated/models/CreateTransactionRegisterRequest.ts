@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface CreateTransactionRegisterRequest {
 /**
  * Check if a given object implements the CreateTransactionRegisterRequest interface.
  */
-export function instanceOfCreateTransactionRegisterRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "externalId" in value;
-    isInstance = isInstance && "passkeyDisplayName" in value;
-
-    return isInstance;
+export function instanceOfCreateTransactionRegisterRequest(value: object): value is CreateTransactionRegisterRequest {
+    if (!('externalId' in value) || value['externalId'] === undefined) return false;
+    if (!('passkeyDisplayName' in value) || value['passkeyDisplayName'] === undefined) return false;
+    return true;
 }
 
 export function CreateTransactionRegisterRequestFromJSON(json: any): CreateTransactionRegisterRequest {
@@ -49,7 +47,7 @@ export function CreateTransactionRegisterRequestFromJSON(json: any): CreateTrans
 }
 
 export function CreateTransactionRegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTransactionRegisterRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function CreateTransactionRegisterRequestFromJSONTyped(json: any, ignoreD
     };
 }
 
-export function CreateTransactionRegisterRequestToJSON(value?: CreateTransactionRegisterRequest | null): any {
-    if (value === undefined) {
-        return undefined;
+export function CreateTransactionRegisterRequestToJSON(json: any): CreateTransactionRegisterRequest {
+    return CreateTransactionRegisterRequestToJSONTyped(json, false);
+}
+
+export function CreateTransactionRegisterRequestToJSONTyped(value?: CreateTransactionRegisterRequest | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'external_id': value.externalId,
-        'passkey_display_name': value.passkeyDisplayName,
+        'external_id': value['externalId'],
+        'passkey_display_name': value['passkeyDisplayName'],
     };
 }
 

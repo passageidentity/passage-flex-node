@@ -64,7 +64,7 @@
     "beachball-check": "beachball check"
   },
   "dependencies": {
-    "jose": "^5.2.3",
+    "jose": "^5.9.6",
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { UserStatus, WebAuthnDevices, WebAuthnType } from '../../generated';
+import { UserStatus, WebAuthnDevices, WebAuthnType, WebAuthnIcons } from '../../generated';
 
 export interface PassageUser {
     createdAt: Date;
@@ -12,3 +12,5 @@ export interface PassageUser {
     webauthnDevices: WebAuthnDevices[];
     webauthnTypes: WebAuthnType[];
 }
+
+export { UserStatus,WebAuthnDevices, WebAuthnType, WebAuthnIcons };

@@ -1,5 +1,5 @@
-import { PassageConfig } from '../types/PassageConfig';
-import { PassageError } from './PassageError';
+import { PassageConfig } from '../../types/PassageConfig';
+import { PassageError } from '../PassageError';
 import {
     AppsApi,
     AuthenticateApi,
@@ -11,10 +11,10 @@ import {
     UserDevicesApi,
     UsersApi,
     WebAuthnDevices,
-} from '../generated';
-import apiConfiguration from '../utils/apiConfiguration';
-import { AppInfo } from '../models/AppInfo';
-import { UserInfo } from '../models/UserInfo';
+} from '../../generated';
+import apiConfiguration from '../../utils/apiConfiguration';
+import { AppInfo } from '../../models/AppInfo';
+import { UserInfo } from '../../models/UserInfo';
 
 /**
  * PassageFlex class used to get app info, create transactions, and verify nonces

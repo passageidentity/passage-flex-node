@@ -6,7 +6,7 @@ import {
     Model409ErrorCodeEnum,
     Model500ErrorCodeEnum,
     ResponseError,
-} from '../generated';
+} from '../../generated';
 
 export const ErrorStatusText = {
     ...Model400ErrorCodeEnum,

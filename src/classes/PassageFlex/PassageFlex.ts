@@ -35,7 +35,7 @@ export class PassageFlex {
      */
     public constructor(config: PassageConfig) {
         if (!config.appId || !config.apiKey) {
-            throw PassageError.fromMessage(
+            throw Error(
                 'A Passage appId and apiKey are required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         }
@@ -168,7 +168,7 @@ export class PassageFlex {
 
             const users = response.users;
             if (!users.length) {
-                throw PassageError.fromMessage('Could not find user with that external ID');
+                throw Error('Could not find user with that external ID');
             }
 
             return await this.getUserById(users[0].id);

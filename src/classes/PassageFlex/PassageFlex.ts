@@ -1,4 +1,4 @@
-import { PassageConfig } from '../../types/PassageConfig';
+import { PassageConfig } from './types';
 import { PassageError } from '../PassageError';
 import {
     AppsApi,

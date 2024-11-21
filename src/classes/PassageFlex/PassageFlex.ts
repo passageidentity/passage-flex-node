@@ -1,4 +1,4 @@
-import { PassageConfig } from './types';
+import { PassageFlexConfig } from './types';
 import { PassageInstanceConfig } from '../PassageBase';
 import { apiConfiguration } from '../../utils/apiConfiguration';
 import { Auth } from '../Auth';
@@ -12,9 +12,9 @@ export class PassageFlex {
 
     /**
      * Initialize a new PassageFlex instance
-     * @param {PassageConfig} config The default config for Passage initialization
+     * @param {PassageFlexConfig} config The default config for Passage initialization
      */
-    public constructor(config: PassageConfig) {
+    public constructor(config: PassageFlexConfig) {
         if (!config.appId) {
             throw Error(
                 'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',

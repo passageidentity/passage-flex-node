@@ -37,7 +37,7 @@ export class Auth extends PassageBase {
             return response.transactionId;
         } catch (err) {
             if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError('Could not create register transaction', err);
+                throw await PassageError.fromResponseError(err);
             }
 
             throw err;
@@ -60,7 +60,7 @@ export class Auth extends PassageBase {
             return response.transactionId;
         } catch (err) {
             if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError('Could not create authenticate transaction', err);
+                throw await PassageError.fromResponseError(err);
             }
 
             throw err;
@@ -85,7 +85,7 @@ export class Auth extends PassageBase {
             return response.externalId;
         } catch (err) {
             if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError('Could not verify nonce', err);
+                throw await PassageError.fromResponseError(err);
             }
 
             throw err;

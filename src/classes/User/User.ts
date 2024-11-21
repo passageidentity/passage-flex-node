@@ -40,7 +40,7 @@ export class User extends PassageBase {
             return await this.getUserById(users[0].id);
         } catch (err) {
             if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError('Could not fetch user by external ID', err);
+                throw await PassageError.fromResponseError(err);
             }
 
             throw err;
@@ -64,7 +64,7 @@ export class User extends PassageBase {
             return response.devices;
         } catch (err) {
             if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError("Could not fetch user's devices", err);
+                throw await PassageError.fromResponseError(err);
             }
 
             throw err;
@@ -90,7 +90,7 @@ export class User extends PassageBase {
             return true;
         } catch (err) {
             if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError("Could not delete user's device", err);
+                throw await PassageError.fromResponseError(err);
             }
 
             throw err;

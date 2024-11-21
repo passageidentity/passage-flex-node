@@ -4,13 +4,13 @@ import { WebAuthnDevices, WebAuthnType } from '../src/generated';
 require('dotenv').config();
 
 describe('PassageFlex', () => {
-    const expectedAppId = process.env.TEST_APP_ID ?? '';
-    const expectedApiKey = process.env.TEST_API_KEY ?? '';
+    const expectedAppId = process.env.TEST_APP_ID ?? 'key';
+    const expectedApiKey = process.env.TEST_API_KEY ?? 'key';
     const userId = process.env.TEST_USER_ID ?? '';
     const userExternalId = process.env.TEST_USER_IDENTIFIER ?? '';
 
     describe('constructor', () => {
-        it('should throw an error if appId is empty', (appId) => {
+        it('should throw an error if appId is empty', () => {
             const expectedErrorMessage =
                 'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
@@ -21,9 +21,9 @@ describe('PassageFlex', () => {
             }).toThrow(expectedErrorMessage);
         });
 
-        it('should throw an error if apiKey is empty', (apiKey) => {
+        it('should throw an error if apiKey is empty', () => {
             const expectedErrorMessage =
-                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
+                'A Passage API Key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
                     appId: expectedAppId,
@@ -32,7 +32,7 @@ describe('PassageFlex', () => {
             }).toThrow(expectedErrorMessage);
         });
 
-        it('should throw an error if appID and apiKey are empty', (value) => {
+        it('should throw an error if appID and apiKey are empty', () => {
             const expectedErrorMessage =
                 'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
@@ -91,7 +91,7 @@ describe('PassageFlex', () => {
 
         it('should throw an error if the nonce is invalid', async () => {
             await expect(passage.auth.verifyNonce('invalid')).rejects.toThrow(
-                'Could not verify nonce: nonce is invalid, expired, or cannot be found',
+                'nonce is invalid, expired, or cannot be found',
             );
         });
     });

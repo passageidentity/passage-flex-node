@@ -10,32 +10,35 @@ describe('PassageFlex', () => {
     const userExternalId = process.env.TEST_USER_IDENTIFIER ?? '';
 
     describe('constructor', () => {
-        const expectedErrorMessage =
-            'A Passage appId and apiKey are required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
-
-        it.each([''])('should throw an error if appId is %s', (appId) => {
+        it('should throw an error if appId is empty', (appId) => {
+            const expectedErrorMessage =
+            'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
-                    appId,
+                    appId: '',
                     apiKey: expectedApiKey,
                 });
             }).toThrow(expectedErrorMessage);
         });
 
-        it.each([''])('should throw an error if apiKey is %s', (apiKey) => {
+        it('should throw an error if apiKey is empty', (apiKey) => {
+            const expectedErrorMessage =
+            'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
                     appId: expectedAppId,
-                    apiKey,
+                    apiKey: '',
                 });
             }).toThrow(expectedErrorMessage);
         });
 
-        it.each([''])('should throw an error if appID and apiKey are %s', (value) => {
+        it('should throw an error if appID and apiKey are empty', (value) => {
+            const expectedErrorMessage =
+            'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
-                    appId: value,
-                    apiKey: value,
+                    appId: '',
+                    apiKey: '',
                 });
             }).toThrow(expectedErrorMessage);
         });

@@ -39,7 +39,7 @@
     }
   },
   "files": [
-    "lib/",
+    "dist/",
     "CHANGELOG.md"
   ],
   "private": false,

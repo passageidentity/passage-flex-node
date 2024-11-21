@@ -1,7 +1,7 @@
 import { ResponseError, UserDevicesApi, UserInfo, UsersApi, WebAuthnDevices } from '../../generated';
 import { PassageBase, PassageInstanceConfig } from '../PassageBase';
 import { PassageError } from '../PassageError';
-import { PassageUser } from './types';
+import { PassageUser, RevokeDeviceArgs } from './types';
 /**
  * User class for handling operations to get and update user information.
  */
@@ -24,7 +24,7 @@ export class User extends PassageBase {
      * @param {string} externalId The external ID used to associate the user with Passage
      * @return {Promise<UserInfo>} Passage User object
      */
-    public async getUser(externalId: string): Promise<PassageUser> {
+    public async get(externalId: string): Promise<PassageUser> {
         try {
             const response = await this.userClient.listPaginatedUsers({
                 appId: this.config.appId,
@@ -53,9 +53,9 @@ export class User extends PassageBase {
      * @param {string} externalId The external ID used to associate the user with Passage
      * @return {Promise<WebAuthnDevices[]>} List of devices
      */
-    public async getDevices(externalId: string): Promise<WebAuthnDevices[]> {
+    public async listDevices(externalId: string): Promise<WebAuthnDevices[]> {
         try {
-            const user = await this.getUser(externalId);
+            const user = await this.get(externalId);
             const response = await this.deviceClient.listUserDevices({
                 appId: this.config.appId,
                 userId: user.id,
@@ -74,16 +74,15 @@ export class User extends PassageBase {
     /**
      * Revoke a user's device by their external ID and the device ID
      *
-     * @param {string} externalId The external ID used to associate the user with Passage
-     * @param {string} deviceId The Passage user's device ID
+     * @param {RevokeDeviceArgs} args The external ID used to associate the user with Passage and the device ID
      * @return {Promise<boolean>}
      */
-    public async revokeDevice(externalId: string, deviceId: string): Promise<boolean> {
+    public async revokeDevice(args: RevokeDeviceArgs): Promise<boolean> {
         try {
-            const user = await this.getUser(externalId);
+            const user = await this.get(args.externalId);
             await this.deviceClient.deleteUserDevices({
                 appId: this.config.appId,
-                deviceId: deviceId,
+                deviceId: args.deviceId,
                 userId: user.id,
             });
 

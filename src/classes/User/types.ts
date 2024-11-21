@@ -13,4 +13,9 @@ export interface PassageUser {
     webauthnTypes: WebAuthnType[];
 }
 
+export interface RevokeDeviceArgs {
+    externalId: string;
+    deviceId: string;
+}
+
 export { UserStatus,WebAuthnDevices, WebAuthnType, WebAuthnIcons };

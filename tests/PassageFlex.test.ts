@@ -104,7 +104,7 @@ describe('PassageFlex', () => {
         });
 
         it('should return the user info', async () => {
-            const user = await passage.user.getUser(userExternalId);
+            const user = await passage.user.get(userExternalId);
             expect(user).toStrictEqual({
                 id: userId,
                 createdAt: expect.any(Date),
@@ -120,7 +120,7 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.user.getUser('invalid')).rejects.toThrow('Could not find user with that external ID');
+            await expect(passage.user.get('invalid')).rejects.toThrow('Could not find user with that external ID');
         });
     });
 
@@ -135,7 +135,7 @@ describe('PassageFlex', () => {
         });
 
         it("should return the user's devices", async () => {
-            const devices = await passage.user.getDevices(userExternalId);
+            const devices = await passage.user.listDevices(userExternalId);
             expect(devices).toStrictEqual([
                 {
                     id: expect.any(String),
@@ -152,7 +152,7 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.user.getDevices('invalid')).rejects.toThrow('Could not find user with that external ID');
+            await expect(passage.user.listDevices('invalid')).rejects.toThrow('Could not find user with that external ID');
         });
     });
 

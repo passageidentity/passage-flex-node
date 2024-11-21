@@ -7,7 +7,6 @@ import { RegisterTransactionArgs } from './types';
  * Auth class that provides methods for creating and validating passkey transactions.
  */
 export class Auth extends PassageBase {
-
     private readonly transactionClient: TransactionsApi;
     private readonly authClient: AuthenticateApi;
 
@@ -54,7 +53,7 @@ export class Auth extends PassageBase {
         try {
             const response = await this.transactionClient.createAuthenticateTransaction({
                 appId: this.config.appId,
-                createTransactionAuthenticateRequest: {externalId},
+                createTransactionAuthenticateRequest: { externalId },
             });
 
             return response.transactionId;

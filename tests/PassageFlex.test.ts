@@ -12,7 +12,7 @@ describe('PassageFlex', () => {
     describe('constructor', () => {
         it('should throw an error if appId is empty', (appId) => {
             const expectedErrorMessage =
-            'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
+                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
                     appId: '',
@@ -23,7 +23,7 @@ describe('PassageFlex', () => {
 
         it('should throw an error if apiKey is empty', (apiKey) => {
             const expectedErrorMessage =
-            'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
+                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
                     appId: expectedAppId,
@@ -34,7 +34,7 @@ describe('PassageFlex', () => {
 
         it('should throw an error if appID and apiKey are empty', (value) => {
             const expectedErrorMessage =
-            'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
+                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
                     appId: '',
@@ -155,7 +155,9 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.user.listDevices('invalid')).rejects.toThrow('Could not find user with that external ID');
+            await expect(passage.user.listDevices('invalid')).rejects.toThrow(
+                'Could not find user with that external ID',
+            );
         });
     });
 

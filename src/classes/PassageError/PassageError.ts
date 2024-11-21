@@ -12,9 +12,12 @@ export class PassageError extends Error {
      * @param {string} errorCode error code from PassageFlex API
      * @param {string} message friendly message
      */
-    private constructor(public readonly statusCode: number, public readonly errorCode: PassageErrorCode, public readonly message: string) {
+    private constructor(
+        public readonly statusCode: number,
+        public readonly errorCode: PassageErrorCode,
+        public readonly message: string,
+    ) {
         super(message);
-
     }
     /**
      * Initialize a new PassageError instance.

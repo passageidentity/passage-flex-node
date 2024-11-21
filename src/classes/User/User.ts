@@ -110,7 +110,7 @@ export class User extends PassageBase {
 
         return this.mapUserInfoToPassageUser(response.user);
     }
-    
+
     /**
      * Utility function to map the user info to the PassageUser type
      * @param {UserInfo} userInfo UserInfo object

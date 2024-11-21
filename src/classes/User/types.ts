@@ -18,4 +18,4 @@ export interface RevokeDeviceArgs {
     deviceId: string;
 }
 
-export { UserStatus,WebAuthnDevices, WebAuthnType, WebAuthnIcons };
+export { UserStatus, WebAuthnDevices, WebAuthnType, WebAuthnIcons };

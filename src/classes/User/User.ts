@@ -2,12 +2,14 @@ import { ResponseError, UserDevicesApi, UserInfo, UsersApi, WebAuthnDevices } fr
 import { PassageBase, PassageInstanceConfig } from '../PassageBase';
 import { PassageError } from '../PassageError';
 import { PassageUser, RevokeDeviceArgs } from './types';
+
 /**
  * User class for handling operations to get and update user information.
  */
 export class User extends PassageBase {
     private readonly userClient: UsersApi;
     private readonly deviceClient: UserDevicesApi;
+
     /**
      * User class constructor.
      * @param {PassageInstanceConfig} config config properties for Passage instance

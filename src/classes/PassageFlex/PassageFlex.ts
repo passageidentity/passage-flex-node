@@ -3,6 +3,7 @@ import { PassageInstanceConfig } from '../PassageBase';
 import { apiConfiguration } from '../../utils/apiConfiguration';
 import { Auth } from '../Auth';
 import { User } from '../User';
+
 /**
  * PassageFlex class used to get app info, create transactions, and verify nonces
  */

@@ -20,7 +20,7 @@ export class PassageFlex {
         }
 
         if (!config.apiKey) {
-            throw Error('A Passage API Key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.');
+            throw Error('A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.');
         }
 
         const { appId, apiKey } = config;

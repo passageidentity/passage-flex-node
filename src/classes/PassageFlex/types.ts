@@ -7,7 +7,7 @@ export type PassageFlexConfig = {
      */
     appId: string;
     /**
-     * The Passage API Key
+     * The Passage API key
      */
     apiKey: string;
 };

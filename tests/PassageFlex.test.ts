@@ -23,7 +23,7 @@ describe('PassageFlex', () => {
 
         it('should throw an error if apiKey is empty', () => {
             const expectedErrorMessage =
-                'A Passage API Key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
+                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
                     appId: expectedAppId,

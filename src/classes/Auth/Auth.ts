@@ -14,7 +14,7 @@ export class Auth extends PassageBase {
      * Auth class constructor.
      * @param {PassageInstanceConfig} config config properties for Passage instance
      */
-    constructor(config: PassageInstanceConfig) {
+    public constructor(config: PassageInstanceConfig) {
         super(config);
         this.transactionClient = new TransactionsApi(config.apiConfiguration);
         this.authClient = new AuthenticateApi(config.apiConfiguration);

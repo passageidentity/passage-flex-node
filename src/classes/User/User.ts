@@ -12,7 +12,7 @@ export class User extends PassageBase {
      * User class constructor.
      * @param {PassageInstanceConfig} config config properties for Passage instance
      */
-    constructor(config: PassageInstanceConfig) {
+    public constructor(config: PassageInstanceConfig) {
         super(config);
         this.userClient = new UsersApi(config.apiConfiguration);
         this.deviceClient = new UserDevicesApi(config.apiConfiguration);

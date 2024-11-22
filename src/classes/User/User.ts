@@ -77,9 +77,9 @@ export class User extends PassageBase {
      * Revoke a user's device by their external ID and the device ID
      *
      * @param {RevokeDeviceArgs} args The external ID used to associate the user with Passage and the device ID
-     * @return {Promise<boolean>}
+     * @return {Promise<void>}
      */
-    public async revokeDevice(args: RevokeDeviceArgs): Promise<boolean> {
+    public async revokeDevice(args: RevokeDeviceArgs): Promise<void> {
         try {
             const user = await this.get(args.externalId);
             await this.deviceClient.deleteUserDevices({
@@ -87,8 +87,6 @@ export class User extends PassageBase {
                 deviceId: args.deviceId,
                 userId: user.id,
             });
-
-            return true;
         } catch (err) {
             if (err instanceof ResponseError) {
                 throw await PassageError.fromResponseError(err);

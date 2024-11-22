@@ -1,6 +1,5 @@
-import { ResponseError, UserDevicesApi, UserInfo, UsersApi, WebAuthnDevices } from '../../generated';
+import { UserDevicesApi, UserInfo, UsersApi, WebAuthnDevices } from '../../generated';
 import { PassageBase, PassageInstanceConfig } from '../PassageBase';
-import { PassageError } from '../PassageError';
 import { PassageUser, RevokeDeviceArgs } from './types';
 
 /**
@@ -38,14 +37,9 @@ export class User extends PassageBase {
             if (!users.length) {
                 throw Error('Could not find user with that external ID');
             }
-
             return await this.getUserById(users[0].id);
         } catch (err) {
-            if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError(err);
-            }
-
-            throw err;
+            throw await this.parseError(err);
         }
     }
 
@@ -65,11 +59,7 @@ export class User extends PassageBase {
 
             return response.devices;
         } catch (err) {
-            if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError(err);
-            }
-
-            throw err;
+            throw await this.parseError(err);
         }
     }
 
@@ -88,11 +78,7 @@ export class User extends PassageBase {
                 userId: user.id,
             });
         } catch (err) {
-            if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError(err);
-            }
-
-            throw err;
+            throw await this.parseError(err);
         }
     }
 

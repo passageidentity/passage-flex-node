@@ -1,6 +1,5 @@
-import { AuthenticateApi, ResponseError, TransactionsApi } from '../../generated';
+import { AuthenticateApi, TransactionsApi } from '../../generated';
 import { PassageBase, PassageInstanceConfig } from '../PassageBase';
-import { PassageError } from '../PassageError';
 import { RegisterTransactionArgs } from './types';
 
 /**
@@ -35,11 +34,7 @@ export class Auth extends PassageBase {
 
             return response.transactionId;
         } catch (err) {
-            if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError(err);
-            }
-
-            throw err;
+            throw await this.parseError(err);
         }
     }
 
@@ -58,11 +53,7 @@ export class Auth extends PassageBase {
 
             return response.transactionId;
         } catch (err) {
-            if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError(err);
-            }
-
-            throw err;
+            throw await this.parseError(err);
         }
     }
 
@@ -83,11 +74,7 @@ export class Auth extends PassageBase {
 
             return response.externalId;
         } catch (err) {
-            if (err instanceof ResponseError) {
-                throw await PassageError.fromResponseError(err);
-            }
-
-            throw err;
+            throw await this.parseError(err);
         }
     }
 }

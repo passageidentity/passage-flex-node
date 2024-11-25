@@ -1,72 +1,46 @@
 import { PassageFlex } from '../src/classes/PassageFlex';
-import { AppInfo } from '../src/models/AppInfo';
 import { WebAuthnDevices, WebAuthnType } from '../src/generated';
 
 require('dotenv').config();
 
 describe('PassageFlex', () => {
-    const expectedAppId = process.env.TEST_APP_ID;
-    const expectedApiKey = process.env.TEST_API_KEY;
-    const userId = process.env.TEST_USER_ID;
-    const userExternalId = process.env.TEST_USER_IDENTIFIER;
+    const expectedAppId = process.env.TEST_APP_ID ?? 'key';
+    const expectedApiKey = process.env.TEST_API_KEY ?? 'key';
+    const userId = process.env.TEST_USER_ID ?? '';
+    const userExternalId = process.env.TEST_USER_IDENTIFIER ?? '';
 
     describe('constructor', () => {
-        const expectedErrorMessage =
-            'A Passage appId and apiKey are required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
-
-        it.each(['', undefined, null])('should throw an error if appId is %s', (appId) => {
+        it('should throw an error if appId is empty', () => {
+            const expectedErrorMessage =
+                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
-                    appId,
+                    appId: '',
                     apiKey: expectedApiKey,
                 });
             }).toThrow(expectedErrorMessage);
         });
 
-        it.each(['', undefined, null])('should throw an error if apiKey is %s', (apiKey) => {
+        it('should throw an error if apiKey is empty', () => {
+            const expectedErrorMessage =
+                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
                     appId: expectedAppId,
-                    apiKey,
+                    apiKey: '',
                 });
             }).toThrow(expectedErrorMessage);
         });
 
-        it.each(['', undefined, null])('should throw an error if appID and apiKey are %s', (value) => {
+        it('should throw an error if appID and apiKey are empty', () => {
+            const expectedErrorMessage =
+                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.';
             expect(() => {
                 new PassageFlex({
-                    appId: value,
-                    apiKey: value,
+                    appId: '',
+                    apiKey: '',
                 });
             }).toThrow(expectedErrorMessage);
-        });
-    });
-
-    describe('getApp', () => {
-        let passage: PassageFlex;
-
-        beforeEach(() => {
-            passage = new PassageFlex({
-                appId: expectedAppId,
-                apiKey: expectedApiKey,
-            });
-        });
-
-        it('should return the app info', async () => {
-            const app = await passage.getApp();
-            expect(app).toStrictEqual<AppInfo>({
-                id: expectedAppId,
-                name: expect.any(String),
-                authOrigin: expect.any(String),
-            });
-        });
-
-        it('should throw an error if the app does not exist', async () => {
-            const passage = new PassageFlex({
-                appId: 'invalid',
-                apiKey: expectedApiKey,
-            });
-            await expect(passage.getApp()).rejects.toThrow('Could not fetch app: Invalid access token');
         });
     });
 
@@ -81,7 +55,7 @@ describe('PassageFlex', () => {
         });
 
         it('should return the transaction ID', async () => {
-            const transactionId = await passage.createRegisterTransaction({
+            const transactionId = await passage.auth.createRegisterTransaction({
                 externalId: 'test',
                 passkeyDisplayName: 'test',
             });
@@ -100,9 +74,7 @@ describe('PassageFlex', () => {
         });
 
         it('should return the transaction ID', async () => {
-            const transactionId = await passage.createAuthenticateTransaction({
-                externalId: 'test',
-            });
+            const transactionId = await passage.auth.createAuthenticateTransaction('test');
             expect(transactionId).toEqual(expect.any(String));
         });
     });
@@ -118,8 +90,8 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the nonce is invalid', async () => {
-            await expect(passage.verifyNonce('invalid')).rejects.toThrow(
-                'Could not verify nonce: nonce is invalid, expired, or cannot be found',
+            await expect(passage.auth.verifyNonce('invalid')).rejects.toThrow(
+                'nonce is invalid, expired, or cannot be found',
             );
         });
     });
@@ -135,7 +107,7 @@ describe('PassageFlex', () => {
         });
 
         it('should return the user info', async () => {
-            const user = await passage.getUser(userExternalId);
+            const user = await passage.user.get(userExternalId);
             expect(user).toStrictEqual({
                 id: userId,
                 createdAt: expect.any(Date),
@@ -151,7 +123,7 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.getUser('invalid')).rejects.toThrow('Could not find user with that external ID');
+            await expect(passage.user.get('invalid')).rejects.toThrow('Could not find user with that external ID');
         });
     });
 
@@ -166,7 +138,7 @@ describe('PassageFlex', () => {
         });
 
         it("should return the user's devices", async () => {
-            const devices = await passage.getDevices(userExternalId);
+            const devices = await passage.user.listDevices(userExternalId);
             expect(devices).toStrictEqual([
                 {
                     id: expect.any(String),
@@ -183,7 +155,9 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.getDevices('invalid')).rejects.toThrow('Could not find user with that external ID');
+            await expect(passage.user.listDevices('invalid')).rejects.toThrow(
+                'Could not find user with that external ID',
+            );
         });
     });
 

@@ -7,7 +7,7 @@ import fetch from 'node-fetch';
  * @param {ConfigurationParameters} config options for Configuration.
  * @return {Configuration} Configuration object
  */
-export default function apiConfiguration(config?: ConfigurationParameters): Configuration {
+export function apiConfiguration(config?: ConfigurationParameters): Configuration {
     const configuration = new Configuration({
         accessToken: config?.accessToken,
         fetchApi: fetch as unknown as ConfigurationParameters['fetchApi'],

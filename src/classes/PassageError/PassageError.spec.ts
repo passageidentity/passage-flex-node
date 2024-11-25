@@ -10,8 +10,8 @@ describe('PassageError', () => {
                 status: 400,
                 json: jest.fn().mockResolvedValue({
                     code: PassageErrorCode.InvalidRequest,
-                    error: 'Invalid request parameters'
-                })
+                    error: 'Invalid request parameters',
+                }),
             };
             const responseError = new ResponseError(mockResponse as unknown as Response);
 
@@ -28,7 +28,7 @@ describe('PassageError', () => {
             // Mock ResponseError with failing JSON parse
             const mockResponse = {
                 status: 500,
-                json: jest.fn().mockRejectedValue(new Error('Invalid JSON'))
+                json: jest.fn().mockRejectedValue(new Error('Invalid JSON')),
             };
             const responseError = new ResponseError(mockResponse as unknown as Response);
 

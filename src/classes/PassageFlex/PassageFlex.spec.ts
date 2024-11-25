@@ -8,7 +8,7 @@ describe('PassageFlex', () => {
         it('should create a new PassageFlex instance with valid config', () => {
             const config = {
                 appId: 'test-app-id',
-                apiKey: 'test-api-key'
+                apiKey: 'test-api-key',
             };
 
             const passageFlex = new PassageFlex(config);
@@ -20,43 +20,43 @@ describe('PassageFlex', () => {
 
         it('should throw error when appId is missing', () => {
             const config = {
-                apiKey: 'test-api-key'
+                apiKey: 'test-api-key',
             } as unknown as PassageFlexConfig;
 
             expect(() => new PassageFlex(config)).toThrow(
-                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.'
+                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         });
 
         it('should throw error when appId is empty string', () => {
             const config = {
                 appId: '',
-                apiKey: 'test-api-key'
+                apiKey: 'test-api-key',
             };
 
             expect(() => new PassageFlex(config)).toThrow(
-                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.'
+                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         });
 
         it('should throw error when apiKey is missing', () => {
             const config = {
-                appId: 'test-app-id'
+                appId: 'test-app-id',
             } as unknown as PassageFlexConfig;
 
             expect(() => new PassageFlex(config)).toThrow(
-                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.'
+                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         });
 
         it('should throw error when apiKey is empty string', () => {
             const config = {
                 appId: 'test-app-id',
-                apiKey: ''
+                apiKey: '',
             };
 
             expect(() => new PassageFlex(config)).toThrow(
-                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.'
+                'A Passage API key is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         });
     });

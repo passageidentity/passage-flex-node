@@ -63,10 +63,7 @@ describe('User', () => {
                 users: [],
             });
 
-            await expect(user.get('non-existent-id')).rejects.toThrow(
-                'Could not find user with that external ID'
-            );
+            await expect(user.get('non-existent-id')).rejects.toThrow('Could not find user with that external ID');
         });
-
     });
 });

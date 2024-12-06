@@ -55,12 +55,18 @@ export class AuthenticateApi extends runtime.BaseAPI {
      * Verify the nonce received from a WebAuthn ceremony
      */
     async authenticateVerifyNonceRaw(requestParameters: AuthenticateVerifyNonceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthenticateVerifyNonceResponse>> {
-        if (requestParameters.appId === null || requestParameters.appId === undefined) {
-            throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling authenticateVerifyNonce.');
+        if (requestParameters['appId'] == null) {
+            throw new runtime.RequiredError(
+                'appId',
+                'Required parameter "appId" was null or undefined when calling authenticateVerifyNonce().'
+            );
         }
 
-        if (requestParameters.body === null || requestParameters.body === undefined) {
-            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling authenticateVerifyNonce.');
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling authenticateVerifyNonce().'
+            );
         }
 
         const queryParameters: any = {};
@@ -78,11 +84,11 @@ export class AuthenticateApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/apps/{app_id}/authenticate/verify`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters.appId))),
+            path: `/apps/{app_id}/authenticate/verify`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters['appId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.body as any,
+            body: requestParameters['body'] as any,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AuthenticateVerifyNonceResponseFromJSON(jsonValue));

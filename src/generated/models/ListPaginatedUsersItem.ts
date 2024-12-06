@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserStatus } from './UserStatus';
 import {
     UserStatusFromJSON,
     UserStatusFromJSONTyped,
     UserStatusToJSON,
+    UserStatusToJSONTyped,
 } from './UserStatus';
 
 /**
@@ -100,25 +101,25 @@ export interface ListPaginatedUsersItem {
     userMetadata: object | null;
 }
 
+
+
 /**
  * Check if a given object implements the ListPaginatedUsersItem interface.
  */
-export function instanceOfListPaginatedUsersItem(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "emailVerified" in value;
-    isInstance = isInstance && "externalId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "lastLoginAt" in value;
-    isInstance = isInstance && "loginCount" in value;
-    isInstance = isInstance && "phone" in value;
-    isInstance = isInstance && "phoneVerified" in value;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "userMetadata" in value;
-
-    return isInstance;
+export function instanceOfListPaginatedUsersItem(value: object): value is ListPaginatedUsersItem {
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('emailVerified' in value) || value['emailVerified'] === undefined) return false;
+    if (!('externalId' in value) || value['externalId'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('lastLoginAt' in value) || value['lastLoginAt'] === undefined) return false;
+    if (!('loginCount' in value) || value['loginCount'] === undefined) return false;
+    if (!('phone' in value) || value['phone'] === undefined) return false;
+    if (!('phoneVerified' in value) || value['phoneVerified'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
+    if (!('userMetadata' in value) || value['userMetadata'] === undefined) return false;
+    return true;
 }
 
 export function ListPaginatedUsersItemFromJSON(json: any): ListPaginatedUsersItem {
@@ -126,7 +127,7 @@ export function ListPaginatedUsersItemFromJSON(json: any): ListPaginatedUsersIte
 }
 
 export function ListPaginatedUsersItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPaginatedUsersItem {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -146,27 +147,29 @@ export function ListPaginatedUsersItemFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function ListPaginatedUsersItemToJSON(value?: ListPaginatedUsersItem | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ListPaginatedUsersItemToJSON(json: any): ListPaginatedUsersItem {
+    return ListPaginatedUsersItemToJSONTyped(json, false);
+}
+
+export function ListPaginatedUsersItemToJSONTyped(value?: ListPaginatedUsersItem | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'email': value.email,
-        'email_verified': value.emailVerified,
-        'external_id': value.externalId,
-        'id': value.id,
-        'last_login_at': (value.lastLoginAt.toISOString()),
-        'login_count': value.loginCount,
-        'phone': value.phone,
-        'phone_verified': value.phoneVerified,
-        'status': UserStatusToJSON(value.status),
-        'updated_at': (value.updatedAt.toISOString()),
-        'user_metadata': value.userMetadata,
+        'created_at': ((value['createdAt']).toISOString()),
+        'email': value['email'],
+        'email_verified': value['emailVerified'],
+        'external_id': value['externalId'],
+        'id': value['id'],
+        'last_login_at': ((value['lastLoginAt']).toISOString()),
+        'login_count': value['loginCount'],
+        'phone': value['phone'],
+        'phone_verified': value['phoneVerified'],
+        'status': UserStatusToJSON(value['status']),
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'user_metadata': value['userMetadata'],
     };
 }
 

@@ -67,12 +67,18 @@ export class UsersApi extends runtime.BaseAPI {
      * Get User
      */
     async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserResponse>> {
-        if (requestParameters.appId === null || requestParameters.appId === undefined) {
-            throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling getUser.');
+        if (requestParameters['appId'] == null) {
+            throw new runtime.RequiredError(
+                'appId',
+                'Required parameter "appId" was null or undefined when calling getUser().'
+            );
         }
 
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -88,7 +94,7 @@ export class UsersApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/apps/{app_id}/users/{user_id}`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters.appId))).replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/apps/{app_id}/users/{user_id}`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters['appId']))).replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -111,54 +117,57 @@ export class UsersApi extends runtime.BaseAPI {
      * List Users
      */
     async listPaginatedUsersRaw(requestParameters: ListPaginatedUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPaginatedUsersResponse>> {
-        if (requestParameters.appId === null || requestParameters.appId === undefined) {
-            throw new runtime.RequiredError('appId','Required parameter requestParameters.appId was null or undefined when calling listPaginatedUsers.');
+        if (requestParameters['appId'] == null) {
+            throw new runtime.RequiredError(
+                'appId',
+                'Required parameter "appId" was null or undefined when calling listPaginatedUsers().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.page !== undefined) {
-            queryParameters['page'] = requestParameters.page;
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.createdBefore !== undefined) {
-            queryParameters['created_before'] = requestParameters.createdBefore;
+        if (requestParameters['createdBefore'] != null) {
+            queryParameters['created_before'] = requestParameters['createdBefore'];
         }
 
-        if (requestParameters.orderBy !== undefined) {
-            queryParameters['order_by'] = requestParameters.orderBy;
+        if (requestParameters['orderBy'] != null) {
+            queryParameters['order_by'] = requestParameters['orderBy'];
         }
 
-        if (requestParameters.identifier !== undefined) {
-            queryParameters['identifier'] = requestParameters.identifier;
+        if (requestParameters['identifier'] != null) {
+            queryParameters['identifier'] = requestParameters['identifier'];
         }
 
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
         }
 
-        if (requestParameters.loginCount !== undefined) {
-            queryParameters['login_count'] = requestParameters.loginCount;
+        if (requestParameters['loginCount'] != null) {
+            queryParameters['login_count'] = requestParameters['loginCount'];
         }
 
-        if (requestParameters.status !== undefined) {
-            queryParameters['status'] = requestParameters.status;
+        if (requestParameters['status'] != null) {
+            queryParameters['status'] = requestParameters['status'];
         }
 
-        if (requestParameters.createdAt !== undefined) {
-            queryParameters['created_at'] = requestParameters.createdAt;
+        if (requestParameters['createdAt'] != null) {
+            queryParameters['created_at'] = requestParameters['createdAt'];
         }
 
-        if (requestParameters.updatedAt !== undefined) {
-            queryParameters['updated_at'] = requestParameters.updatedAt;
+        if (requestParameters['updatedAt'] != null) {
+            queryParameters['updated_at'] = requestParameters['updatedAt'];
         }
 
-        if (requestParameters.lastLoginAt !== undefined) {
-            queryParameters['last_login_at'] = requestParameters.lastLoginAt;
+        if (requestParameters['lastLoginAt'] != null) {
+            queryParameters['last_login_at'] = requestParameters['lastLoginAt'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -172,7 +181,7 @@ export class UsersApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/apps/{app_id}/users`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters.appId))),
+            path: `/apps/{app_id}/users`.replace(`{${"app_id"}}`, encodeURIComponent(String(requestParameters['appId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

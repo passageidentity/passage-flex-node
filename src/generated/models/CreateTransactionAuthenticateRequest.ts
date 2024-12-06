@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface CreateTransactionAuthenticateRequest {
 /**
  * Check if a given object implements the CreateTransactionAuthenticateRequest interface.
  */
-export function instanceOfCreateTransactionAuthenticateRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "externalId" in value;
-
-    return isInstance;
+export function instanceOfCreateTransactionAuthenticateRequest(value: object): value is CreateTransactionAuthenticateRequest {
+    if (!('externalId' in value) || value['externalId'] === undefined) return false;
+    return true;
 }
 
 export function CreateTransactionAuthenticateRequestFromJSON(json: any): CreateTransactionAuthenticateRequest {
@@ -42,7 +40,7 @@ export function CreateTransactionAuthenticateRequestFromJSON(json: any): CreateT
 }
 
 export function CreateTransactionAuthenticateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTransactionAuthenticateRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function CreateTransactionAuthenticateRequestFromJSONTyped(json: any, ign
     };
 }
 
-export function CreateTransactionAuthenticateRequestToJSON(value?: CreateTransactionAuthenticateRequest | null): any {
-    if (value === undefined) {
-        return undefined;
+export function CreateTransactionAuthenticateRequestToJSON(json: any): CreateTransactionAuthenticateRequest {
+    return CreateTransactionAuthenticateRequestToJSONTyped(json, false);
+}
+
+export function CreateTransactionAuthenticateRequestToJSONTyped(value?: CreateTransactionAuthenticateRequest | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'external_id': value.externalId,
+        'external_id': value['externalId'],
     };
 }
 

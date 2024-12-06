@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -38,9 +38,11 @@ export interface Model409Error {
  * @export
  */
 export const Model409ErrorCodeEnum = {
-    AlreadyAdmin: 'user_already_admin',
-    AlreadyOrganizationMember: 'user_already_organization_member',
-    HasNoPasskeys: 'user_has_no_passkeys'
+    UserAlreadyAdmin: 'user_already_admin',
+    UserAlreadyOrganizationMember: 'user_already_organization_member',
+    UserHasNoPasskeys: 'user_has_no_passkeys',
+    NativeClientAlreadyExists: 'native_client_already_exists',
+    FailedToSyncEmailPreferences: 'failed_to_sync_email_preferences'
 } as const;
 export type Model409ErrorCodeEnum = typeof Model409ErrorCodeEnum[keyof typeof Model409ErrorCodeEnum];
 
@@ -48,12 +50,10 @@ export type Model409ErrorCodeEnum = typeof Model409ErrorCodeEnum[keyof typeof Mo
 /**
  * Check if a given object implements the Model409Error interface.
  */
-export function instanceOfModel409Error(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "code" in value;
-    isInstance = isInstance && "error" in value;
-
-    return isInstance;
+export function instanceOfModel409Error(value: object): value is Model409Error {
+    if (!('code' in value) || value['code'] === undefined) return false;
+    if (!('error' in value) || value['error'] === undefined) return false;
+    return true;
 }
 
 export function Model409ErrorFromJSON(json: any): Model409Error {
@@ -61,7 +61,7 @@ export function Model409ErrorFromJSON(json: any): Model409Error {
 }
 
 export function Model409ErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Model409Error {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -71,17 +71,19 @@ export function Model409ErrorFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function Model409ErrorToJSON(value?: Model409Error | null): any {
-    if (value === undefined) {
-        return undefined;
+export function Model409ErrorToJSON(json: any): Model409Error {
+    return Model409ErrorToJSONTyped(json, false);
+}
+
+export function Model409ErrorToJSONTyped(value?: Model409Error | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'code': value.code,
-        'error': value.error,
+        'code': value['code'],
+        'error': value['error'],
     };
 }
 

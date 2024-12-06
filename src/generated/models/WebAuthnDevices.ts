@@ -12,18 +12,20 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { WebAuthnIcons } from './WebAuthnIcons';
 import {
     WebAuthnIconsFromJSON,
     WebAuthnIconsFromJSONTyped,
     WebAuthnIconsToJSON,
+    WebAuthnIconsToJSONTyped,
 } from './WebAuthnIcons';
 import type { WebAuthnType } from './WebAuthnType';
 import {
     WebAuthnTypeFromJSON,
     WebAuthnTypeFromJSONTyped,
     WebAuthnTypeToJSON,
+    WebAuthnTypeToJSONTyped,
 } from './WebAuthnType';
 
 /**
@@ -88,22 +90,22 @@ export interface WebAuthnDevices {
     icons: WebAuthnIcons;
 }
 
+
+
 /**
  * Check if a given object implements the WebAuthnDevices interface.
  */
-export function instanceOfWebAuthnDevices(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "credId" in value;
-    isInstance = isInstance && "friendlyName" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "lastLoginAt" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "usageCount" in value;
-    isInstance = isInstance && "icons" in value;
-
-    return isInstance;
+export function instanceOfWebAuthnDevices(value: object): value is WebAuthnDevices {
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('credId' in value) || value['credId'] === undefined) return false;
+    if (!('friendlyName' in value) || value['friendlyName'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('lastLoginAt' in value) || value['lastLoginAt'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
+    if (!('usageCount' in value) || value['usageCount'] === undefined) return false;
+    if (!('icons' in value) || value['icons'] === undefined) return false;
+    return true;
 }
 
 export function WebAuthnDevicesFromJSON(json: any): WebAuthnDevices {
@@ -111,7 +113,7 @@ export function WebAuthnDevicesFromJSON(json: any): WebAuthnDevices {
 }
 
 export function WebAuthnDevicesFromJSONTyped(json: any, ignoreDiscriminator: boolean): WebAuthnDevices {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -128,24 +130,26 @@ export function WebAuthnDevicesFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function WebAuthnDevicesToJSON(value?: WebAuthnDevices | null): any {
-    if (value === undefined) {
-        return undefined;
+export function WebAuthnDevicesToJSON(json: any): WebAuthnDevices {
+    return WebAuthnDevicesToJSONTyped(json, false);
+}
+
+export function WebAuthnDevicesToJSONTyped(value?: WebAuthnDevices | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'cred_id': value.credId,
-        'friendly_name': value.friendlyName,
-        'id': value.id,
-        'last_login_at': (value.lastLoginAt.toISOString()),
-        'type': WebAuthnTypeToJSON(value.type),
-        'updated_at': (value.updatedAt.toISOString()),
-        'usage_count': value.usageCount,
-        'icons': WebAuthnIconsToJSON(value.icons),
+        'created_at': ((value['createdAt']).toISOString()),
+        'cred_id': value['credId'],
+        'friendly_name': value['friendlyName'],
+        'id': value['id'],
+        'last_login_at': ((value['lastLoginAt']).toISOString()),
+        'type': WebAuthnTypeToJSON(value['type']),
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'usage_count': value['usageCount'],
+        'icons': WebAuthnIconsToJSON(value['icons']),
     };
 }
 

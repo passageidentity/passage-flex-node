@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface CreateTransactionResponse {
 /**
  * Check if a given object implements the CreateTransactionResponse interface.
  */
-export function instanceOfCreateTransactionResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "transactionId" in value;
-
-    return isInstance;
+export function instanceOfCreateTransactionResponse(value: object): value is CreateTransactionResponse {
+    if (!('transactionId' in value) || value['transactionId'] === undefined) return false;
+    return true;
 }
 
 export function CreateTransactionResponseFromJSON(json: any): CreateTransactionResponse {
@@ -42,7 +40,7 @@ export function CreateTransactionResponseFromJSON(json: any): CreateTransactionR
 }
 
 export function CreateTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTransactionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function CreateTransactionResponseFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function CreateTransactionResponseToJSON(value?: CreateTransactionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function CreateTransactionResponseToJSON(json: any): CreateTransactionResponse {
+    return CreateTransactionResponseToJSONTyped(json, false);
+}
+
+export function CreateTransactionResponseToJSONTyped(value?: CreateTransactionResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'transaction_id': value.transactionId,
+        'transaction_id': value['transactionId'],
     };
 }
 

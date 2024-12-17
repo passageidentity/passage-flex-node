@@ -1,4 +1,4 @@
-import { UserDevicesApi, UserInfo, UsersApi, WebAuthnDevices } from '../../generated';
+import { ResponseError, UserDevicesApi, UserInfo, UsersApi, WebAuthnDevices } from '../../generated';
 import { PassageBase, PassageInstanceConfig } from '../PassageBase';
 import { PassageUser, RevokeDeviceArgs } from './types';
 
@@ -35,8 +35,11 @@ export class User extends PassageBase {
 
             const users = response.users;
             if (!users.length) {
-                throw Error('Could not find user with that external ID');
+                throw new ResponseError(
+                    new Response('{"code":"user_not_found","error":"User not found."}', { status: 404 }),
+                );
             }
+
             return await this.getUserById(users[0].id);
         } catch (err) {
             throw await this.parseError(err);

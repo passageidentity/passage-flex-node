@@ -123,7 +123,7 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.user.get('invalid')).rejects.toThrow('Could not find user with that external ID');
+            await expect(passage.user.get('invalid')).rejects.toThrow('User not found.');
         });
     });
 
@@ -155,9 +155,7 @@ describe('PassageFlex', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.user.listDevices('invalid')).rejects.toThrow(
-                'Could not find user with that external ID',
-            );
+            await expect(passage.user.listDevices('invalid')).rejects.toThrow('User not found.');
         });
     });
 

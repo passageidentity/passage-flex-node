@@ -27,7 +27,7 @@
     "url": "git+https://github.com/passageidentity/passage-flex-node.git"
   },
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -57,7 +57,7 @@
     "dev": "ts-node-dev --respawn testServer.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "tsc --noEmit & tsup ./src/index.ts --no-config --format esm,cjs --dts-resolve --minify",
+    "build": "tsc --noEmit & tsup ./src/index.ts --no-config --format esm --dts-resolve --minify",
     "change": "beachball change",
     "publish": "beachball publish -y",
     "beachball-bump": "beachball bump",

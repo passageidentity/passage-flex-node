@@ -14,7 +14,7 @@ describe('User e2e', () => {
             appId: expectedAppId,
             apiKey: expectedApiKey,
         });
-    })
+    });
 
     describe('getUser', () => {
         it('should return the user info', async () => {
@@ -61,7 +61,9 @@ describe('User e2e', () => {
         });
 
         it('should throw an error if the user does not exist', async () => {
-            await expect(passage.user.listDevices('invalid')).rejects.toThrow('Could not find user with that external ID');
+            await expect(passage.user.listDevices('invalid')).rejects.toThrow(
+                'Could not find user with that external ID',
+            );
         });
     });
 });

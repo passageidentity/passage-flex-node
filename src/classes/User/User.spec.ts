@@ -1,7 +1,6 @@
 import { User } from './User';
-import { UsersApi, UserInfo, WebAuthnDevices, WebAuthnType } from '../../generated';
+import { UsersApi, UserInfo } from '../../generated';
 import { apiConfiguration } from '../../utils/apiConfiguration';
-import { PassageFlex } from '../PassageFlex';
 
 // Mock the generated APIs
 jest.mock('../../generated');

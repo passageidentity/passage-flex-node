@@ -1,6 +1,4 @@
-import { apiConfiguration } from '../../utils/apiConfiguration';
 import { PassageFlex } from '../PassageFlex';
-import { Auth } from './Auth';
 
 describe('Auth e2e', () => {
     const expectedAppId = process.env.TEST_APP_ID ?? 'key';
@@ -13,7 +11,7 @@ describe('Auth e2e', () => {
             appId: expectedAppId,
             apiKey: expectedApiKey,
         });
-    })
+    });
 
     describe('createRegisterTransaction', () => {
         it('should return the transaction ID', async () => {
@@ -34,7 +32,9 @@ describe('Auth e2e', () => {
 
     describe('verifyNonce', () => {
         it('should throw an error if the nonce is invalid', async () => {
-            await expect(passage.auth.verifyNonce('invalid')).rejects.toThrow('nonce is invalid, expired, or cannot be found');
+            await expect(passage.auth.verifyNonce('invalid')).rejects.toThrow(
+                'nonce is invalid, expired, or cannot be found',
+            );
         });
     });
 });

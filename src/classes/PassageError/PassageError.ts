@@ -27,7 +27,7 @@ export class PassageError extends Error {
     public static async fromResponseError(err: ResponseError): Promise<PassageError> {
         let body: { code: PassageErrorCode; error: string };
         try {
-            body = await err.response.json() as { code: PassageErrorCode; error: string };
+            body = (await err.response.json()) as { code: PassageErrorCode; error: string };
         } catch {
             body = { code: PassageErrorCode.InternalServerError, error: 'Unknown error occured.' };
         }

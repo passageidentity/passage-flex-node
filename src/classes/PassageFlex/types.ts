@@ -1,7 +1,7 @@
 /**
  * PassageFlex configuration object
  */
-export type PassageFlexConfig = {
+export interface PassageFlexConfig {
     /**
      * The Passage app ID
      */
@@ -10,4 +10,4 @@ export type PassageFlexConfig = {
      * The Passage API key
      */
     apiKey: string;
-};
+}

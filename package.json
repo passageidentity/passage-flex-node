@@ -62,7 +62,10 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "@faker-js/faker": "^9.3.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+    "@types/eslint__js": "^8.42.3",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.2",
@@ -82,6 +85,7 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1"
   }
 }

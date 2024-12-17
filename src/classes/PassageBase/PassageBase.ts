@@ -14,7 +14,7 @@ export class PassageBase {
 
     /**
      * Handle errors from PassageFlex API
-     * @param {unknown} err error from node-fetch request
+     * @param {unknown} err error from fetch request
      * @return {Promise<void>}
      */
     protected async parseError(err: unknown): Promise<Error> {

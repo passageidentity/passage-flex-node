@@ -21,7 +21,7 @@ export class PassageError extends Error {
     }
     /**
      * Initialize a new PassageError instance.
-     * @param {ResponseError} err error from node-fetch request
+     * @param {ResponseError} err error from fetch request
      * @return {Promise<PassageError>}
      */
     public static async fromResponseError(err: ResponseError): Promise<PassageError> {

@@ -1,5 +1,4 @@
 import { Configuration, ConfigurationParameters } from '../generated';
-import fetch from 'node-fetch';
 
 /**
  * Initialize defaults for Configuration
@@ -10,7 +9,7 @@ import fetch from 'node-fetch';
 export function apiConfiguration(config?: ConfigurationParameters): Configuration {
     const configuration = new Configuration({
         accessToken: config?.accessToken,
-        fetchApi: fetch as unknown as ConfigurationParameters['fetchApi'],
+        fetchApi: config?.fetchApi,
         headers: {
             ...config?.headers,
             'Authorization': `Bearer ${config?.accessToken}`,

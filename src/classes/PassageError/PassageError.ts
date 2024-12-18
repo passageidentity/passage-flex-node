@@ -4,7 +4,7 @@ import { PassageErrorCode } from './types';
  * PassageError Class used to handle errors from PassageFlex
  */
 export class PassageError extends Error {
-    override name: 'PassageError' = 'PassageError';
+    public override name = 'PassageError';
 
     /**
      * Initialize a new PassageError instance.
@@ -27,7 +27,7 @@ export class PassageError extends Error {
     public static async fromResponseError(err: ResponseError): Promise<PassageError> {
         let body: { code: PassageErrorCode; error: string };
         try {
-            body = await err.response.json();
+            body = (await err.response.json()) as { code: PassageErrorCode; error: string };
         } catch {
             body = { code: PassageErrorCode.InternalServerError, error: 'Unknown error occured.' };
         }

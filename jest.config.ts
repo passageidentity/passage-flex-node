@@ -1,13 +1,9 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
+    setupFiles: ['dotenv/config'],
     transform: {
-        '^.+\\.(t|j)s$': [
-            'ts-jest',
-            {
-                isolatedModules: true,
-            },
-        ],
+        '^.+\\.ts$': 'ts-jest',
     },
 };
 

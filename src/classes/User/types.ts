@@ -2,6 +2,7 @@ import { UserStatus, WebAuthnDevices, WebAuthnType, WebAuthnIcons } from '../../
 
 export interface PassageUser {
     createdAt: Date;
+    externalId: string;
     id: string;
     lastLoginAt: Date;
     loginCount: number;

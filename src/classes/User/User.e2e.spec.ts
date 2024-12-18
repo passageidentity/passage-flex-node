@@ -22,6 +22,7 @@ describe('User e2e', () => {
             expect(actual).toStrictEqual({
                 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
                 id: userId,
+                externalId: userExternalId,
                 createdAt: expect.any(Date),
                 lastLoginAt: expect.any(Date),
                 loginCount: expect.any(Number),

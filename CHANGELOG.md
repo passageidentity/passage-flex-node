@@ -4,6 +4,27 @@ This log was last generated on Thu, 24 Oct 2024 15:40:33 GMT and should not be m
 
 <!-- Start content -->
 
+## [1.0.0](https://github.com/passageidentity/passage-flex-node/compare/passage-flex-node-v0.2.5...passage-flex-node-v1.0.0) (2024-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Reorganize API with new class structure and improved error handling ([#66](https://github.com/passageidentity/passage-flex-node/issues/66))
+
+### Features
+
+* add externalId prop to PassageUser type ([#76](https://github.com/passageidentity/passage-flex-node/issues/76)) ([6db397a](https://github.com/passageidentity/passage-flex-node/commit/6db397ae556f15f6784ab9f4ece9dc9285e6e4ac))
+* Reorganize API with new class structure and improved error handling ([#66](https://github.com/passageidentity/passage-flex-node/issues/66)) ([7f1aa55](https://github.com/passageidentity/passage-flex-node/commit/7f1aa55f8049f3c4fcf1ad8ca39136caa10aa9ad))
+* split createTransaction for register and authenticate ([#11](https://github.com/passageidentity/passage-flex-node/issues/11)) ([952fd8c](https://github.com/passageidentity/passage-flex-node/commit/952fd8c75730a92049653bfcf3aa3065c7fccadb))
+* updates user.get rejected error type and message ([#71](https://github.com/passageidentity/passage-flex-node/issues/71)) ([bae9587](https://github.com/passageidentity/passage-flex-node/commit/bae95876c7ae36530aee6e152bc2dda34527df97))
+
+
+### Bug Fixes
+
+* PSG-4576 fix missing authorization header ([#32](https://github.com/passageidentity/passage-flex-node/issues/32)) ([1ba6ac9](https://github.com/passageidentity/passage-flex-node/commit/1ba6ac9c4c5031ce3d6e0d340675bb5ce29af769))
+* PSG-4604 fix passage header ([#36](https://github.com/passageidentity/passage-flex-node/issues/36)) ([2bda381](https://github.com/passageidentity/passage-flex-node/commit/2bda381cd27d0d9c751eb9f8ce6a5fd80b5f46df))
+* removes deprecated command in deploy workflow ([#5](https://github.com/passageidentity/passage-flex-node/issues/5)) ([344cfe1](https://github.com/passageidentity/passage-flex-node/commit/344cfe1ff1d019a7c0736f6af96760301ba45c95))
+
 ## 0.2.5
 
 Thu, 24 Oct 2024 15:40:33 GMT

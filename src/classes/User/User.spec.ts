@@ -9,7 +9,7 @@ describe('User', () => {
     let user: User;
     const mockConfig = {
         appId: 'test-app-id',
-        apiConfiguration: apiConfiguration(),
+        apiConfiguration: apiConfiguration({}),
     };
 
     const mockUserInfo: Partial<UserInfo> = {

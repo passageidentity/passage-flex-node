@@ -108,6 +108,7 @@ export class User extends PassageBase {
     private mapUserInfoToPassageUser(userInfo: UserInfo): PassageUser {
         return {
             createdAt: userInfo.createdAt,
+            externalId: userInfo.externalId,
             id: userInfo.id,
             lastLoginAt: userInfo.lastLoginAt,
             loginCount: userInfo.loginCount,

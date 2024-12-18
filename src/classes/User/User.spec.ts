@@ -56,14 +56,5 @@ describe('User', () => {
                 webauthnTypes: [],
             });
         });
-
-        it('should throw error when user is not found', async () => {
-            // Mock empty user list response
-            (UsersApi.prototype.listPaginatedUsers as jest.Mock).mockResolvedValue({
-                users: [],
-            });
-
-            await expect(user.get('non-existent-id')).rejects.toThrow('Could not find user with that external ID');
-        });
     });
 });

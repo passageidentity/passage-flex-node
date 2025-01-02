@@ -41,18 +41,16 @@ npm i @passageidentity/passage-flex-node
 ### Import
 
 ```js
-import { PassageFlex, PassageConfig } from '@passageidentity/passage-flex-node';
+import { PassageFlex } from '@passageidentity/passage-flex-node';
 ```
 
 ### Initialize
 
 ```js
-const passageConfig = {
-    appID: process.env.YOUR_PASSAGE_APP_ID,
-    apiKey: process.env.YOUR_PASSAGE_API_KEY,
-};
-
-let passage = new Passage(passageConfig);
+const passage = new PassageFlex({
+    appId: process.env.YOUR_PASSAGE_APP_ID ?? 'your-passage-app-id',
+    apiKey: process.env.YOUR_PASSAGE_API_KEY ?? 'your-passage-api-key',
+});
 ```
 
 ### Go Passwordless

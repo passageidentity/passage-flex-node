@@ -26,6 +26,10 @@ export class User extends PassageBase {
      * @return {Promise<UserInfo>} Passage User object
      */
     public async get(externalId: string): Promise<PassageUser> {
+        if (!externalId) {
+            throw new Error('externalId is required.');
+        }
+
         try {
             const response = await this.userClient.listPaginatedUsers({
                 appId: this.config.appId,
@@ -53,6 +57,10 @@ export class User extends PassageBase {
      * @return {Promise<WebAuthnDevices[]>} List of devices
      */
     public async listDevices(externalId: string): Promise<WebAuthnDevices[]> {
+        if (!externalId) {
+            throw new Error('externalId is required.');
+        }
+
         try {
             const user = await this.get(externalId);
             const response = await this.deviceClient.listUserDevices({
@@ -92,6 +100,10 @@ export class User extends PassageBase {
      * @return {Promise<UserInfo>} Passage User object
      */
     private async getUserById(userId: string): Promise<PassageUser> {
+        if (!userId) {
+            throw new Error('userId is required.');
+        }
+        
         const response = await this.userClient.getUser({
             appId: this.config.appId,
             userId: userId,

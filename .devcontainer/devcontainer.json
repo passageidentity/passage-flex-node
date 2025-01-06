@@ -7,7 +7,9 @@
     },
     "customizations": {
         "vscode": {
-            "extensions": ["arahata.linter-actionlint"]
+            "extensions": [
+                "arahata.linter-actionlint"
+            ]
         }
     },
     "postCreateCommand": "npm install"

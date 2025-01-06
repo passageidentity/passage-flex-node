@@ -1,91 +1,91 @@
 {
-    "name": "@passageidentity/passage-flex-node",
-    "version": "0.2.5",
-    "author": "Passage by 1Password",
-    "description": "Passkey Flex for Node.js - Add passkey authentication to your own Node.js authentication flows with Passage by 1Password",
-    "homepage": "https://docs.passage.id/complete",
-    "bugs": {
-        "url": "https://github.com/passageidentity/.github/blob/main/SUPPORT.md",
-        "email": "support@passage.id"
-    },
-    "keywords": [
-        "nodejs",
-        "javascript",
-        "typescript",
-        "authentication",
-        "passkeys",
-        "passwordless",
-        "webauthn",
-        "passkey-flex",
-        "biometrics",
-        "1password",
-        "passage",
-        "passage-sdk"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/passageidentity/passage-flex-node.git"
-    },
-    "license": "MIT",
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "require": "./dist/index.js",
-            "import": "./dist/index.mjs"
-        }
-    },
-    "files": [
-        "dist/",
-        "CHANGELOG.md"
-    ],
-    "private": false,
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": "^18 || ^20 || ^22"
-    },
-    "scripts": {
-        "lint": "eslint '{src,tests}/**/*.ts' --fix",
-        "lint:ci": "eslint '{src,tests}/**/*.ts'",
-        "format": "prettier --write '{src,tests}/**/*.ts'",
-        "format:ci": "prettier --check '{src,tests}/**/*.ts'",
-        "test": "jest",
-        "build": "tsc --noEmit & tsup ./src/index.ts --no-config --format esm --dts-resolve --minify"
-    },
-    "dependencies": {
-        "jose": "^5.9.6",
-        "node-fetch": "^2.7.0"
-    },
-    "devDependencies": {
-        "@eslint/js": "^9.17.0",
-        "@faker-js/faker": "^9.3.0",
-        "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
-        "@types/eslint__js": "^8.42.3",
-        "@types/express": "^5.0.0",
-        "@types/jest": "^29.5.14",
-        "@types/node": "^22.10.2",
-        "@types/node-fetch": "^2.6.12",
-        "@types/pem": "^1.14.4",
-        "@types/supertest": "^6.0.2",
-        "@typescript-eslint/eslint-plugin": "^8.18.1",
-        "@typescript-eslint/parser": "^8.18.1",
-        "dotenv": "^16.4.7",
-        "eslint": "^9.17.0",
-        "eslint-config-google": "^0.14.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.1",
-        "express": "^4.21.2",
-        "jest": "^29.7.0",
-        "prettier": "^3.4.2",
-        "supertest": "^7.0.0",
-        "ts-jest": "^29.2.5",
-        "tsup": "^8.3.5",
-        "typescript": "^5.7.2",
-        "typescript-eslint": "^8.18.1"
+  "name": "@passageidentity/passage-flex-node",
+  "version": "0.2.5",
+  "author": "Passage by 1Password",
+  "description": "Passkey Flex for Node.js - Add passkey authentication to your own Node.js authentication flows with Passage by 1Password",
+  "homepage": "https://docs.passage.id/complete",
+  "bugs": {
+    "url": "https://github.com/passageidentity/.github/blob/main/SUPPORT.md",
+    "email": "support@passage.id"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "typescript",
+    "authentication",
+    "passkeys",
+    "passwordless",
+    "webauthn",
+    "passkey-flex",
+    "biometrics",
+    "1password",
+    "passage",
+    "passage-sdk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/passageidentity/passage-flex-node.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
     }
+  },
+  "files": [
+    "dist/",
+    "CHANGELOG.md"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": "^18 || ^20 || ^22"
+  },
+  "scripts": {
+    "lint": "eslint '{src,tests}/**/*.ts' --fix",
+    "lint:ci": "eslint '{src,tests}/**/*.ts'",
+    "format": "prettier --write '{src,tests}/**/*.ts'",
+    "format:ci": "prettier --check '{src,tests}/**/*.ts'",
+    "test": "jest",
+    "build": "tsc --noEmit & tsup ./src/index.ts --no-config --format esm --dts-resolve --minify"
+  },
+  "dependencies": {
+    "jose": "^5.9.6",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@faker-js/faker": "^9.3.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "@types/node-fetch": "^2.6.12",
+    "@types/pem": "^1.14.4",
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.17.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "express": "^4.21.2",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1"
+  }
 }

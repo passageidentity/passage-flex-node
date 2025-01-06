@@ -103,7 +103,7 @@ export class User extends PassageBase {
         if (!userId) {
             throw new Error('userId is required.');
         }
-
+        
         const response = await this.userClient.getUser({
             appId: this.config.appId,
             userId: userId,

@@ -3,7 +3,6 @@
 export * from './AppleUserSocialConnection';
 export * from './AuthenticateVerifyNonceResponse';
 export * from './CreateTransactionAuthenticateRequest';
-export * from './CreateTransactionRegisterRequest';
 export * from './CreateTransactionResponse';
 export * from './GithubUserSocialConnection';
 export * from './GoogleUserSocialConnection';
@@ -19,6 +18,7 @@ export * from './Model409Error';
 export * from './Model500Error';
 export * from './Nonce';
 export * from './PaginatedLinks';
+export * from './RegisterTransactionArgs';
 export * from './SocialConnectionType';
 export * from './UserEventAction';
 export * from './UserEventStatus';

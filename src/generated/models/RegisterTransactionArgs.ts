@@ -16,37 +16,37 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateTransactionRegisterRequest
+ * @interface RegisterTransactionArgs
  */
-export interface CreateTransactionRegisterRequest {
+export interface RegisterTransactionArgs {
     /**
      * the user's unique identifier
      * @type {string}
-     * @memberof CreateTransactionRegisterRequest
+     * @memberof RegisterTransactionArgs
      */
     externalId: string;
     /**
      * the immutable display name of the passkey that the user will see
      * @type {string}
-     * @memberof CreateTransactionRegisterRequest
+     * @memberof RegisterTransactionArgs
      */
     passkeyDisplayName: string;
 }
 
 /**
- * Check if a given object implements the CreateTransactionRegisterRequest interface.
+ * Check if a given object implements the RegisterTransactionArgs interface.
  */
-export function instanceOfCreateTransactionRegisterRequest(value: object): value is CreateTransactionRegisterRequest {
+export function instanceOfRegisterTransactionArgs(value: object): value is RegisterTransactionArgs {
     if (!('externalId' in value) || value['externalId'] === undefined) return false;
     if (!('passkeyDisplayName' in value) || value['passkeyDisplayName'] === undefined) return false;
     return true;
 }
 
-export function CreateTransactionRegisterRequestFromJSON(json: any): CreateTransactionRegisterRequest {
-    return CreateTransactionRegisterRequestFromJSONTyped(json, false);
+export function RegisterTransactionArgsFromJSON(json: any): RegisterTransactionArgs {
+    return RegisterTransactionArgsFromJSONTyped(json, false);
 }
 
-export function CreateTransactionRegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTransactionRegisterRequest {
+export function RegisterTransactionArgsFromJSONTyped(json: any, ignoreDiscriminator: boolean): RegisterTransactionArgs {
     if (json == null) {
         return json;
     }
@@ -57,11 +57,11 @@ export function CreateTransactionRegisterRequestFromJSONTyped(json: any, ignoreD
     };
 }
 
-export function CreateTransactionRegisterRequestToJSON(json: any): CreateTransactionRegisterRequest {
-    return CreateTransactionRegisterRequestToJSONTyped(json, false);
+export function RegisterTransactionArgsToJSON(json: any): RegisterTransactionArgs {
+    return RegisterTransactionArgsToJSONTyped(json, false);
 }
 
-export function CreateTransactionRegisterRequestToJSONTyped(value?: CreateTransactionRegisterRequest | null, ignoreDiscriminator: boolean = false): any {
+export function RegisterTransactionArgsToJSONTyped(value?: RegisterTransactionArgs | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

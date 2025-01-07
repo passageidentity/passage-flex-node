@@ -16,7 +16,6 @@
 import * as runtime from '../runtime';
 import type {
   CreateTransactionAuthenticateRequest,
-  CreateTransactionRegisterRequest,
   CreateTransactionResponse,
   Model400Error,
   Model401Error,
@@ -24,12 +23,11 @@ import type {
   Model404Error,
   Model409Error,
   Model500Error,
+  RegisterTransactionArgs,
 } from '../models/index';
 import {
     CreateTransactionAuthenticateRequestFromJSON,
     CreateTransactionAuthenticateRequestToJSON,
-    CreateTransactionRegisterRequestFromJSON,
-    CreateTransactionRegisterRequestToJSON,
     CreateTransactionResponseFromJSON,
     CreateTransactionResponseToJSON,
     Model400ErrorFromJSON,
@@ -44,6 +42,8 @@ import {
     Model409ErrorToJSON,
     Model500ErrorFromJSON,
     Model500ErrorToJSON,
+    RegisterTransactionArgsFromJSON,
+    RegisterTransactionArgsToJSON,
 } from '../models/index';
 
 export interface CreateAuthenticateTransactionRequest {
@@ -53,7 +53,7 @@ export interface CreateAuthenticateTransactionRequest {
 
 export interface CreateRegisterTransactionRequest {
     appId: string;
-    createTransactionRegisterRequest: CreateTransactionRegisterRequest;
+    registerTransactionArgs: RegisterTransactionArgs;
 }
 
 /**
@@ -123,10 +123,10 @@ export class TransactionsApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['createTransactionRegisterRequest'] == null) {
+        if (requestParameters['registerTransactionArgs'] == null) {
             throw new runtime.RequiredError(
-                'createTransactionRegisterRequest',
-                'Required parameter "createTransactionRegisterRequest" was null or undefined when calling createRegisterTransaction().'
+                'registerTransactionArgs',
+                'Required parameter "registerTransactionArgs" was null or undefined when calling createRegisterTransaction().'
             );
         }
 
@@ -149,7 +149,7 @@ export class TransactionsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateTransactionRegisterRequestToJSON(requestParameters['createTransactionRegisterRequest']),
+            body: RegisterTransactionArgsToJSON(requestParameters['registerTransactionArgs']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateTransactionResponseFromJSON(jsonValue));

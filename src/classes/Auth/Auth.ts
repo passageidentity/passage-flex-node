@@ -29,7 +29,7 @@ export class Auth extends PassageBase {
         try {
             const response = await this.transactionClient.createRegisterTransaction({
                 appId: this.config.appId,
-                createTransactionRegisterRequest: args,
+                registerTransactionArgs: args,
             });
 
             return response.transactionId;

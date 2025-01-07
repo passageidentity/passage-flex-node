@@ -8,7 +8,6 @@ index.ts
 models/AppleUserSocialConnection.ts
 models/AuthenticateVerifyNonceResponse.ts
 models/CreateTransactionAuthenticateRequest.ts
-models/CreateTransactionRegisterRequest.ts
 models/CreateTransactionResponse.ts
 models/GithubUserSocialConnection.ts
 models/GoogleUserSocialConnection.ts
@@ -24,6 +23,7 @@ models/Model409Error.ts
 models/Model500Error.ts
 models/Nonce.ts
 models/PaginatedLinks.ts
+models/RegisterTransactionArgs.ts
 models/SocialConnectionType.ts
 models/UserEventAction.ts
 models/UserEventStatus.ts

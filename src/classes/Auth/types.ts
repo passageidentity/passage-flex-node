@@ -1,3 +1,3 @@
-import { CreateTransactionRegisterRequest } from '../../generated';
+import { RegisterTransactionArgs } from '../../generated';
 
-export type RegisterTransactionArgs = CreateTransactionRegisterRequest;
+export { RegisterTransactionArgs };

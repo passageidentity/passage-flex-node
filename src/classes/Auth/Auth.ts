@@ -1,6 +1,5 @@
 import { AuthenticateApi, TransactionsApi } from '../../generated';
 import { PassageBase, PassageInstanceConfig } from '../PassageBase';
-import { RegisterTransactionArgs } from './types';
 
 /**
  * Auth class that provides methods for creating and validating passkey transactions.
@@ -22,14 +21,18 @@ export class Auth extends PassageBase {
     /**
      * Create a transaction to start a user's registration process
      *
-     * @param {RegisterTransactionArgs} args The required values to create a transaction
+     * @param {string} externalId The external ID of the user to register
+     * @param {string} passkeyDisplayName The display name of the passkey to use
      * @return {Promise<string>} The transaction ID
      */
-    public async createRegisterTransaction(args: RegisterTransactionArgs): Promise<string> {
+    public async createRegisterTransaction(externalId: string, passkeyDisplayName: string): Promise<string> {
         try {
             const response = await this.transactionClient.createRegisterTransaction({
                 appId: this.config.appId,
-                registerTransactionArgs: args,
+                registerTransactionArgs: {
+                    externalId,
+                    passkeyDisplayName,
+                },
             });
 
             return response.transactionId;

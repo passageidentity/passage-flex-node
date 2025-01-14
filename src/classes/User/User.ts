@@ -1,6 +1,6 @@
 import { ResponseError, UserDevicesApi, UserInfo, UsersApi, WebAuthnDevices } from '../../generated';
 import { PassageBase, PassageInstanceConfig } from '../PassageBase';
-import { PassageUser, RevokeDeviceArgs } from './types';
+import { PassageUser } from './types';
 
 /**
  * User class for handling operations to get and update user information.
@@ -77,16 +77,17 @@ export class User extends PassageBase {
     /**
      * Revoke a user's device by their external ID and the device ID
      *
-     * @param {RevokeDeviceArgs} args The external ID used to associate the user with Passage and the device ID
+     * @param {string} externalId The external ID of the user whose device to revoke
+     * @param {string} deviceId The device ID to revoke
      * @return {Promise<void>}
      */
-    public async revokeDevice(args: RevokeDeviceArgs): Promise<void> {
+    public async revokeDevice(externalId: string, deviceId: string): Promise<void> {
         try {
-            const user = await this.get(args.externalId);
+            const user = await this.get(externalId);
             await this.deviceClient.deleteUserDevices({
                 appId: this.config.appId,
-                deviceId: args.deviceId,
                 userId: user.id,
+                deviceId,
             });
         } catch (err) {
             throw await this.parseError(err);

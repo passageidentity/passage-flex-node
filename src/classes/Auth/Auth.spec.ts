@@ -15,10 +15,7 @@ describe('Auth e2e', () => {
 
     describe('createRegisterTransaction', () => {
         it('should return the transaction ID', async () => {
-            const transactionId = await passage.auth.createRegisterTransaction({
-                externalId: 'test',
-                passkeyDisplayName: 'test',
-            });
+            const transactionId = await passage.auth.createRegisterTransaction('test', 'test');
             expect(transactionId).toEqual(expect.any(String));
         });
     });

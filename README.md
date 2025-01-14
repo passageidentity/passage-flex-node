@@ -48,8 +48,8 @@ import { PassageFlex } from '@passageidentity/passage-flex-node';
 
 ```js
 const passage = new PassageFlex({
-    appId: process.env.YOUR_PASSAGE_APP_ID ?? 'your-passage-app-id',
-    apiKey: process.env.YOUR_PASSAGE_API_KEY ?? 'your-passage-api-key',
+    appId: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
 });
 ```
 

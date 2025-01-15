@@ -17,7 +17,7 @@ export class PassageFlex {
      */
     public constructor(config: PassageFlexConfig) {
         if (!config.appId) {
-            throw Error('A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.');
+            throw Error('A Passage App ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.');
         }
 
         if (!config.apiKey) {

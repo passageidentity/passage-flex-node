@@ -24,7 +24,7 @@ describe('PassageFlex', () => {
             } as unknown as PassageFlexConfig;
 
             expect(() => new PassageFlex(config)).toThrow(
-                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
+                'A Passage App ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         });
 
@@ -35,7 +35,7 @@ describe('PassageFlex', () => {
             };
 
             expect(() => new PassageFlex(config)).toThrow(
-                'A Passage app ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
+                'A Passage App ID is required. Please include {appId: YOUR_APP_ID, apiKey: YOUR_APP_ID}.',
             );
         });
 

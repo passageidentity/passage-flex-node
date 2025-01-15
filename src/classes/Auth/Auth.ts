@@ -26,6 +26,14 @@ export class Auth extends PassageBase {
      * @return {Promise<string>} The transaction ID
      */
     public async createRegisterTransaction(externalId: string, passkeyDisplayName: string): Promise<string> {
+        if (!externalId) {
+            throw new Error('externalId is required.');
+        }
+
+        if (!passkeyDisplayName) {
+            throw new Error('passkeyDisplayName is required.');
+        }
+
         try {
             const response = await this.transactionClient.createRegisterTransaction({
                 appId: this.config.appId,
@@ -48,6 +56,10 @@ export class Auth extends PassageBase {
      * @return {Promise<string>} The transaction ID
      */
     public async createAuthenticateTransaction(externalId: string): Promise<string> {
+        if (!externalId) {
+            throw new Error('externalId is required.');
+        }
+
         try {
             const response = await this.transactionClient.createAuthenticateTransaction({
                 appId: this.config.appId,
@@ -67,6 +79,10 @@ export class Auth extends PassageBase {
      * @return {Promise<string>} The unique identifier of the user associated with the nonce
      */
     public async verifyNonce(nonce: string): Promise<string> {
+        if (!nonce) {
+            throw new Error('nonce is required.');
+        }
+
         try {
             const response = await this.authClient.authenticateVerifyNonce({
                 appId: this.config.appId,

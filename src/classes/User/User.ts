@@ -82,6 +82,14 @@ export class User extends PassageBase {
      * @return {Promise<void>}
      */
     public async revokeDevice(externalId: string, deviceId: string): Promise<void> {
+        if (!externalId) {
+            throw new Error('externalId is required.');
+        }
+
+        if (!deviceId) {
+            throw new Error('deviceId is required.');
+        }
+
         try {
             const user = await this.get(externalId);
             await this.deviceClient.deleteUserDevices({

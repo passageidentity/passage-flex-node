@@ -5,12 +5,6 @@ on:
   workflow_dispatch:
   pull_request:
 
-env:
-    TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
-    TEST_APP_ID: ${{ secrets.TEST_APP_ID }}
-    TEST_USER_ID: ${{ secrets.TEST_USER_ID }}
-    TEST_USER_IDENTIFIER: ${{ secrets.TEST_USER_IDENTIFIER }}
-
 jobs:
   lint:
     name: Lint

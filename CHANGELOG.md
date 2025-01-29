@@ -4,6 +4,13 @@ This log was last generated on Thu, 24 Oct 2024 15:40:33 GMT and should not be m
 
 <!-- Start content -->
 
+## [1.0.1](https://github.com/passageidentity/passage-flex-node/compare/v1.0.0...v1.0.1) (2025-01-29)
+
+
+### Bug Fixes
+
+* remove references to old mjs files in package.json ([#89](https://github.com/passageidentity/passage-flex-node/issues/89)) ([a60d1d7](https://github.com/passageidentity/passage-flex-node/commit/a60d1d7d96a634da469b955660de89cf6f0bc5bb))
+
 ## [1.0.0](https://github.com/passageidentity/passage-flex-node/compare/v0.2.5...v1.0.0) (2025-01-16)
 
 

@@ -13,7 +13,7 @@ export function apiConfiguration(config: ConfigurationParameters): Configuration
         fetchApi: fetch as unknown as ConfigurationParameters['fetchApi'],
         headers: {
             ...config.headers,
-            'Passage-Version': `passage-flex-node ${process.env.npm_package_version ?? ''}`,
+            'Passage-Version': `passage-flex-node ${process.env.npm_package_version ?? 'v0.0.0'}`,
         },
         middleware: [],
     });

@@ -4,6 +4,13 @@ This log was last generated on Thu, 24 Oct 2024 15:40:33 GMT and should not be m
 
 <!-- Start content -->
 
+## [1.0.2](https://github.com/passageidentity/passage-flex-node/compare/v1.0.1...v1.0.2) (2025-02-13)
+
+
+### Bug Fixes
+
+* use v0 value if npm_package_version is undefined ([#91](https://github.com/passageidentity/passage-flex-node/issues/91)) ([f9d0944](https://github.com/passageidentity/passage-flex-node/commit/f9d094420b2e16a59e8e59b9415e4a0e491a495a))
+
 ## [1.0.1](https://github.com/passageidentity/passage-flex-node/compare/v1.0.0...v1.0.1) (2025-01-29)
 
 

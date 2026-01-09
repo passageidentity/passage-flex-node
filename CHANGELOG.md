@@ -4,6 +4,13 @@ This log was last generated on Thu, 24 Oct 2024 15:40:33 GMT and should not be m
 
 <!-- Start content -->
 
+## [1.0.3](https://github.com/passageidentity/passage-flex-node/compare/v1.0.2...v1.0.3) (2026-01-09)
+
+
+### Documentation
+
+* add sunset notice to README ([#95](https://github.com/passageidentity/passage-flex-node/issues/95)) ([d6bb311](https://github.com/passageidentity/passage-flex-node/commit/d6bb311d26b1660776a9b85fcdaa567c1de6d032))
+
 ## [1.0.2](https://github.com/passageidentity/passage-flex-node/compare/v1.0.1...v1.0.2) (2025-02-13)
 
 
